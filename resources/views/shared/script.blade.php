@@ -24,7 +24,7 @@
     <!-- END THIS PAGE PLUGINS-->
 
     <!-- START TEMPLATE -->
-    <script type="text/javascript" src="{{asset('js/settings.js')}}"></script>
+  
 
     <script type="text/javascript" src="{{asset('js/plugins.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/actions.js')}}"></script>

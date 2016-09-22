@@ -14,7 +14,7 @@
                     <img src="{{asset('img/user-image.png')}}" alt="Administrator"/>
                 </div>
                 <div class="profile-data">
-                    <div class="profile-data-name">Administrator</div>
+                    <div class="profile-data-name">{{Auth::user()->roles()->first()->display_name}}</div>
                     <div class="profile-data-title">Administrator Console</div>
                 </div>
                 <div class="profile-controls">
@@ -25,99 +25,25 @@
         </li>
         <li class="xn-title">Navigation</li>
         <li class="active">
-            <a href="index.html"><span class="fa fa-desktop"></span> <span class="xn-text">Dashboard</span></a>
+            <a href="{{url('home')}}"><span class="fa fa-desktop"></span> <span class="xn-text">Dashboard</span></a>
         </li>
         <li class="xn-openable">
-            <a href="index.html#"><span class="fa fa-files-o"></span> <span class="xn-text">Pages</span></a>
+            <a href="#"><span class="fa fa-files-o"></span> <span class="xn-text">User Management</span></a>
             <ul>
-                <li><a href="pages-gallery.html"><span class="fa fa-image"></span> Gallery</a></li>
-                <li><a href="pages-invoice.html"><span class="fa fa-dollar"></span> Invoice</a></li>
-                <li><a href="pages-edit-profile.html"><span class="fa fa-wrench"></span> Edit Profile</a></li>
-                <li><a href="pages-profile.html"><span class="fa fa-user"></span> Profile</a></li>
-                <li><a href="pages-address-book.html"><span class="fa fa-users"></span> Address Book</a></li>
+                <li><a href="pages-gallery.html"><span class="fa fa-image"></span>Manage User Groups</a></li>
+                <li><a href="pages-invoice.html"><span class="fa fa-dollar"></span>Manage Users</a></li>
                 <li class="xn-openable">
-                    <a href="index.html#"><span class="fa fa-clock-o"></span> Timeline</a>
+                    <a href="index.html#"><span class="fa fa-clock-o"></span>Permissions</a>
                     <ul>
-                        <li><a href="pages-timeline.html"><span class="fa fa-align-center"></span> Default</a></li>
-                        <li><a href="pages-timeline-simple.html"><span class="fa fa-align-justify"></span> Full Width</a></li>
+                        <li><a href="pages-timeline.html"><span class="fa fa-align-center"></span>Assign Permission</a></li>
+                        <!-- <li><a href="pages-timeline-simple.html"><span class="fa fa-align-justify"></span> Full Width</a></li> -->
                     </ul>
                 </li>
-                <li class="xn-openable">
-                    <a href="index.html#"><span class="fa fa-envelope"></span> Mailbox</a>
-                    <ul>
-                        <li><a href="pages-mailbox-inbox.html"><span class="fa fa-inbox"></span> Inbox</a></li>
-                        <li><a href="pages-mailbox-message.html"><span class="fa fa-file-text"></span> Message</a></li>
-                        <li><a href="pages-mailbox-compose.html"><span class="fa fa-pencil"></span> Compose</a></li>
-                    </ul>
-                </li>
-                <li><a href="pages-messages.html"><span class="fa fa-comments"></span> Messages</a></li>
-                <li><a href="pages-calendar.html"><span class="fa fa-calendar"></span> Calendar</a></li>
-                <li><a href="pages-tasks.html"><span class="fa fa-edit"></span> Tasks</a></li>
-                <li><a href="pages-content-table.html"><span class="fa fa-columns"></span> Content Table</a></li>
-                <li><a href="pages-faq.html"><span class="fa fa-question-circle"></span> FAQ</a></li>
-                <li><a href="pages-search.html"><span class="fa fa-search"></span> Search</a></li>
-                <li class="xn-openable">
-                    <a href="index.html#"><span class="fa fa-file"></span> Blog</a>
+            </ul>
+        </li>
 
-                    <ul>
-                        <li><a href="pages-blog-list.html"><span class="fa fa-copy"></span> List of Posts</a></li>
-                        <li><a href="pages-blog-post.html"><span class="fa fa-file-o"></span>Single Post</a></li>
-                    </ul>
-                </li>
-                <li><a href="pages-lock-screen.html"><span class="fa fa-lock"></span> Lock Screen</a></li>
-                <li class="xn-openable">
-                    <a href="index.html#"><span class="fa fa-sign-in"></span> Login</a>
-                    <ul>
-                        <li><a href="pages-login.html">Login v1</a></li>
-                        <li><a href="pages-login-v2.html">Login v2</a></li>
-                        <li><a href="pages-login-inside.html">Login v2 Inside</a></li>
-                        <li><a href="pages-login-website.html">Website Login</a></li>
-                        <li><a href="pages-login-website-light.html"> Website Login Light</a></li>
-                    </ul>
-                </li>
-                <li class="xn-openable">
-                    <a href="index.html#"><span class="fa fa-plus"></span> Registration</a><div class="informer informer-danger">New!</div>
-                    <ul>
-                        <li><a href="pages-registration.html">Default</a></li>
-                        <li><a href="pages-registration-login.html">With Login</a></li>
-                    </ul>
-                </li>
-                <li><a href="pages-forgot-password.html"><span class="fa fa-question"></span> Forgot Password</a><div class="informer informer-danger">New!</div></li>
-                <li class="xn-openable">
-                    <a href="index.html#"><span class="fa fa-warning"></span> Error Pages</a>
-                    <ul>
-                        <li><a href="pages-error-404.html">Error 404 Sample 1</a></li>
-                        <li><a href="pages-error-404-2.html">Error 404 Sample 2</a></li>
-                        <li><a href="pages-error-500.html"> Error 500</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </li>
-        <li class="xn-openable">
-            <a href="index.html#"><span class="fa fa-file-text-o"></span> <span class="xn-text">Layouts</span></a>
-            <ul>
-                <li><a href="layout-boxed.html">Boxed</a></li>
-                <li><a href="layout-nav-toggled.html">Navigation Toggled</a></li>
-                <li><a href="layout-nav-toggled-hover.html">Nav Toggled (Hover)</a></li>
-                <li><a href="layout-nav-toggled-item-hover.html">Nav Toggled (Item Hover)</a></li>
-                <li><a href="layout-nav-top.html">Navigation Top</a></li>
-                <li><a href="layout-nav-right.html">Navigation Right</a></li>
-                <li><a href="layout-nav-top-fixed.html">Top Navigation Fixed</a></li>
-                <li><a href="layout-nav-custom.html">Custom Navigation</a></li>
-                <li><a href="layout-nav-top-custom.html">Custom Top Navigation</a></li>
-                <li><a href="layout-frame-left.html">Frame Left Column</a></li>
-                <li><a href="layout-frame-right.html">Frame Right Column</a></li>
-                <li><a href="layout-search-left.html">Search Left Side</a></li>
-                <li><a href="layout-page-sidebar.html">Page Sidebar</a></li>
-                <li><a href="layout-page-loading.html">Page Loading</a></li>
-                <li><a href="layout-rtl.html">Layout RTL</a></li>
-                <li><a href="layout-tabbed.html">Page Tabbed</a><div class="informer informer-danger">New!</div></li>
-                <li><a href="layout-custom-header.html">Custom Header</a><div class="informer informer-danger">New!</div></li>
-                <li><a href="layout-adaptive-panels.html">Adaptive Panels</a><div class="informer informer-danger">New!</div></li>
-                <li><a href="blank.html">Blank Page</a></li>
-            </ul>
-        </li>
         <li class="xn-title">Components</li>
+<!--
         <li class="xn-openable">
             <a href="index.html#"><span class="fa fa-cogs"></span> <span class="xn-text">UI Kits</span></a>
             <ul>
@@ -197,6 +123,6 @@
                 </li>
             </ul>
         </li>
-
+-->
     </ul>
     <!-- END X-NAVIGATION -->

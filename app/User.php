@@ -8,7 +8,7 @@ use Zizaco\Entrust\Traits\EntrustUserTrait;
 
 class User extends Authenticatable
 {
-  use EntrustUserTrait; 
+  use EntrustUserTrait;
     /**
      * The attributes that are mass assignable.
      *
@@ -26,4 +26,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function roles()
+    {
+        return $this->belongsToMany('App\Role', 'role_user');
+    }
 }

@@ -8793,3 +8793,7 @@ li.ext_zip {
     margin-left: 0px;
   }
 }
+
+span.help-block {
+    color: #9a1212;
+}

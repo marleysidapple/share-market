@@ -10,25 +10,34 @@
             <div class="login-box animated fadeInDown">
                 <div class="login-body">
                     <div class="login-title"><strong>Welcome</strong>, Please login.</div>
-                    <form action="" class="form-horizontal" method="post">
+                    <form action="{{url('/login')}}" class="form-horizontal" method="post">
+                      {!! csrf_field() !!}
                     <div class="form-group">
                         <div class="col-md-12">
-                            <div class="input-group">
+                            <div class="input-group {{ $errors->has('email') ? ' has-error' : '' }}">
                                 <div class="input-group-addon">
                                     <span class="fa fa-user"></span>
                                 </div>
-                                <input type="text" class="form-control" placeholder="Email"/>
+                                <input type="text" name="email" class="form-control" placeholder="Email"/>
                             </div>
+                            @if ($errors->has('email'))
+                                <span class="help-block">{{ $errors->first('email') }} </span>
+                             @endif
                         </div>
                     </div>
+
+
                     <div class="form-group">
                         <div class="col-md-12">
-                            <div class="input-group">
+                            <div class="input-group {{ $errors->has('password') ? ' has-error' : '' }}">
                                 <div class="input-group-addon">
                                     <span class="fa fa-lock"></span>
                                 </div>
-                                <input type="password" class="form-control" placeholder="Password"/>
+                                <input type="password" name="password" class="form-control" placeholder="Password"/>
                             </div>
+                            @if ($errors->has('password'))
+                                 <span class="help-block">{{ $errors->first('password') }}</span>
+                             @endif
                         </div>
                     </div>
 
@@ -43,7 +52,7 @@
 
                     <div class="form-group">
                         <div class="col-md-12">
-                            <button class="btn btn-primary btn-lg btn-block">Login</button>
+                            <button type="submit" class="btn btn-primary btn-lg btn-block">Login</button>
                         </div>
                     </div>
                     </form>
