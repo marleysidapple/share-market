@@ -33,7 +33,7 @@ class AuthenticationController extends Controller
         if (Auth::attempt(array('email' => $request->email, 'password' => $request->password))){
             return redirect()->intended('home');
         } else {
-          return redirect()->back();
+          return redirect()->back()->with('error', 'Invalid login credentials');
         }
     }
 

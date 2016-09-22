@@ -19,12 +19,21 @@
     <script type='text/javascript' src="{{asset('js/plugins/bootstrap/bootstrap-datepicker.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/plugins/owl/owl.carousel.min.js')}}"></script>
 
+
+    <script type="text/javascript" src="{{asset('js/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/plugins/tableexport/tableExport.js')}}"></script>
+	  <script type="text/javascript" src="{{asset('js/plugins/tableexport/jquery.base64.js')}}"></script>
+	  <script type="text/javascript" src="{{asset('js/plugins/tableexport/html2canvas.js')}}"></script>
+	  <script type="text/javascript" src="{{asset('js/plugins/tableexport/jspdf/libs/sprintf.js')}}"></script>
+	  <script type="text/javascript" src="{{asset('js/plugins/tableexport/jspdf/jspdf.js')}}"></script>
+	  <script type="text/javascript" src="{{asset('js/plugins/tableexport/jspdf/libs/base64.js')}}"></script>
+
     <script type="text/javascript" src="{{asset('js/plugins/moment.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/plugins/daterangepicker/daterangepicker.js')}}"></script>
     <!-- END THIS PAGE PLUGINS-->
 
     <!-- START TEMPLATE -->
-  
+
 
     <script type="text/javascript" src="{{asset('js/plugins.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/actions.js')}}"></script>

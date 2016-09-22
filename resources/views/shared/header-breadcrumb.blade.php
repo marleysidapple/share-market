@@ -6,7 +6,8 @@
 
   <!-- START BREADCRUMB -->
   <ul class="breadcrumb">
-      <li><a href="index.html#">Home</a></li>
-      <li class="active">Dashboard</li>
+      <!-- <li><a href="index.html#">Home</a></li> -->
+      <li>Home</li>
+      <li class="active"><a href="{{route(\Request::route()->getName())}}">{{ucfirst(\Request::route()->getName())}}</a></li>
   </ul>
   <!-- END BREADCRUMB -->

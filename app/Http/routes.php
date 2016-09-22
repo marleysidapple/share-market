@@ -27,7 +27,26 @@ Route::group(['middleware' => 'auth'], function(){
    * Rendering dashboard
    * /home
    */
-    Route::get('home', 'dashboardController@index');
+   Route::get('home', 'dashboardController@index')->name('dashboard');
+
+
+   Route::group(['prefix' => 'home'], function(){
+        /*
+        *
+        * listing user-groups
+        * get route
+        */
+        Route::get('usergroup', 'UserGroupController@index')->name('usergroup');
+
+
+        /*
+        * adding new user group
+        * /usergroup/add
+        */
+        Route::get('usergroup/add', 'UserGroupController@show')->name('addusergroup');
+
+
+  });
 
 
 });
