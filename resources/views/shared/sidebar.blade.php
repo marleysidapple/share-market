@@ -27,7 +27,7 @@
         <li class="{{(\Request::route()->getName() == 'dashboard') ? 'active' : ''}}">
             <a href="{{url('home')}}"><span class="fa fa-desktop"></span> <span class="xn-text">Dashboard</span></a>
         </li>
-        <li class="xn-openable {{(\Request::route()->getName() == 'usergroup') ? 'active' : ''}}">
+        <li class="xn-openable {{(\Request::route()->getName() == 'usergroup' || \Request::route()->getName() == 'addusergroup' ) ? 'active' : ''}}">
             <a href="#"><span class="fa fa-files-o"></span> <span class="xn-text">User Management</span></a>
             <ul>
                 <li class="{{(\Request::route()->getName() == 'usergroup') ? 'active' : ''}}"><a href="{{url('home/usergroup')}}"><span class="fa fa-image"></span>Manage User Groups</a></li>

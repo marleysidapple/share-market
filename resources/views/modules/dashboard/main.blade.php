@@ -3,11 +3,9 @@
 
 @section('main-content')
 
-<!-- PAGE CONTENT WRAPPER -->
-<div class="page-content-wrap">
 
-    <!-- START WIDGETS -->
-    <div class="row">
+
+   
         <div class="col-md-3">
 
             <!-- START WIDGET SLIDER -->
@@ -98,8 +96,7 @@
             <!-- END WIDGET CLOCK -->
 
         </div>
-    </div>
-    <!-- END WIDGETS -->
+   
 
-</div>
+
 @endsection

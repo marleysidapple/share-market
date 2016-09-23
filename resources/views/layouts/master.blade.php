@@ -20,7 +20,12 @@
 
                 <!-- PAGE CONTENT WRAPPER -->
                 <div class="page-content-wrap">
-                  @yield('main-content')
+                    <div class="row">
+                        <div class="col-md-12">
+                            @include('shared.alert')
+                            @yield('main-content')
+                        </div>
+                    </div>
                 </div>
                 <!-- END PAGE CONTENT WRAPPER -->
             </div>

@@ -2,9 +2,9 @@
 
 @section('main-content')
 
-<div class="page-content-wrap">
-  <div class="row">
-    <div class="col-md-12">
+
+ 
+  
       <div class="panel panel-default">
                              <div class="panel-heading">
                                  <h3 class="panel-title">User Groups <a href="{{url('home/usergroup/add')}}" class="btn btn-success btn-sm">Add User Group</a></h3>
@@ -50,7 +50,7 @@
                                                   <td>{{$value->name}}</td>
                                                   <td>{{$value->display_name}}</td>
                                                   <td>{{$value->description}}</td>
-                                                  <td><a href="" class="btn btn-warning btn-sm">Edit</a>&nbsp; <a href="" class="btn btn-danger btn-sm disabled">Delete</a></td>
+                                                  <td><a href="{{url('home/usergroup/edit/'.$value->id)}}" class="btn btn-warning btn-sm">Edit</a>&nbsp; <a href="" class="btn btn-danger btn-sm disabled">Delete</a></td>
                                                 </tr>
                                             @endforeach
                                          </tbody>
@@ -58,8 +58,8 @@
                                  </div>
                              </div>
                          </div>
-    </div>
-  </div>
-</div>
+   
+ 
+
 
 @endsection
