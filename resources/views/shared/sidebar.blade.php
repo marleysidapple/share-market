@@ -27,15 +27,16 @@
         <li class="{{(\Request::route()->getName() == 'dashboard') ? 'active' : ''}}">
             <a href="{{url('home')}}"><span class="fa fa-desktop"></span> <span class="xn-text">Dashboard</span></a>
         </li>
-        <li class="xn-openable {{(\Request::route()->getName() == 'usergroup' || \Request::route()->getName() == 'addusergroup' || \Request::route()->getName() == 'users' )   ? 'active' : ''}}">
+
+        <li class="xn-openable {{(\Request::route()->getName() == 'usergroup' || \Request::route()->getName() == 'addusergroup' || \Request::route()->getName() == 'users' || \Request::route()->getName() == 'assignpermission' )   ? 'active' : ''}}">
             <a href="#"><span class="fa fa-files-o"></span> <span class="xn-text">User Management</span></a>
             <ul>
                 <li class="{{(\Request::route()->getName() == 'usergroup') ? 'active' : ''}}"><a href="{{url('home/usergroup')}}"><span class="fa fa-image"></span>Manage User Groups</a></li>
                 <li class="{{(\Request::route()->getName() == 'users') ? 'active' : ''}}"><a href="{{url('home/users')}}"><span class="fa fa-dollar"></span>Manage Users</a></li>
                 <li class="xn-openable">
-                    <a href="index.html#"><span class="fa fa-clock-o"></span>Permissions</a>
+                    <a href="#"><span class="fa fa-clock-o"></span>Permissions</a>
                     <ul>
-                        <li><a href="pages-timeline.html"><span class="fa fa-align-center"></span>Assign Permission</a></li>
+                        <li><a href="{{url('home/permissions')}}"><span class="fa fa-align-center"></span>Assign Permission</a></li>
                         <!-- <li><a href="pages-timeline-simple.html"><span class="fa fa-align-justify"></span> Full Width</a></li> -->
                     </ul>
                 </li>

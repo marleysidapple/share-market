@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Requests\LoginRequest;
 use Auth;
 use Redirect;
+use App\Permission;
 
 class AuthenticationController extends Controller
 {
@@ -58,6 +59,5 @@ class AuthenticationController extends Controller
       Auth::logout();
       return redirect()->to('login');
     }
-
 
 }

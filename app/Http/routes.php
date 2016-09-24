@@ -4,7 +4,6 @@
  * User login Route
  * /GET / or GET /login
  */
-
 Route::get('/', 'AuthenticationController@login');
 
 Route::get('/login', 'AuthenticationController@login');
@@ -20,6 +19,9 @@ Route::post('login', 'AuthenticationController@validateLogin');
  * protected routes
  */
 Route::group(['middleware' => 'auth'], function () {
+
+
+    Route::get('/routes', 'dashboardController@permissions');
 
     /*
      * Rendering dashboard
@@ -92,6 +94,19 @@ Route::group(['middleware' => 'auth'], function () {
         * post route
         */
         Route::post('user/update/{id}', 'UserController@update')->name('updateuser');
+
+        /*
+        * assigning permission
+        * get route
+        */
+        Route::get('permissions', 'dashboardController@assignPermission')->name('assignpermission');
+
+
+        /*
+        * ajax route
+        * for attaching permission
+        */
+        Route::post('user/attachpermission', 'dashboardController@attachPermission');
 
     });
 

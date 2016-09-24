@@ -8797,3 +8797,7 @@ li.ext_zip {
 span.help-block {
     color: #9a1212;
 }
+
+span.loading{
+  display: none;
+}
