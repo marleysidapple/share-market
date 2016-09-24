@@ -7,12 +7,21 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Role;
 use App\Permission;
+use Auth;
 
 class dashboardController extends Controller
 {
 
     public function index()
     {
+        // $user = Auth::user();
+        // if ($user->can('users')){
+        //     dd('yes can');
+        // } else {
+        //     dd('no');
+        // }
+
+
       return view('modules.dashboard.main');
     }
 
