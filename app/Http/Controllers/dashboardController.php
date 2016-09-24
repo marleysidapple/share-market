@@ -41,7 +41,6 @@ class dashboardController extends Controller
     }
 
 
-
     /*
     * assigning permission 
     * rendering view
