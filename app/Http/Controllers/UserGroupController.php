@@ -10,7 +10,6 @@ class UserGroupController extends Controller
 {
 
     /*
-     *
      * list of user groups
      *
      */

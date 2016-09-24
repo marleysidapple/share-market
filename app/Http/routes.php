@@ -60,6 +60,39 @@ Route::group(['middleware' => 'auth'], function () {
         */
         Route::post('usergroup/update/{id}', 'UserGroupController@update')->name('updateusergroup');
 
+
+        /*
+        * listing users
+        * get route
+        */
+        Route::get('users', 'UserController@index')->name('users');
+
+        /*
+        * adding users
+        * get route
+        */
+        Route::get('user/add', 'UserController@add')->name('adduser');
+
+
+        /*
+        * adding new user
+        * post route
+        */
+        Route::post('user/store', 'UserController@store')->name('saveuser');
+
+        /*
+        * editing user
+        * get route
+        */
+        Route::get('user/edit/{id}', 'UserController@edit')->name('edituser');
+
+
+        /*
+        * updating user details
+        * post route
+        */
+        Route::post('user/update/{id}', 'UserController@update')->name('updateuser');
+
     });
 
 });

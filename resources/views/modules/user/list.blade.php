@@ -7,7 +7,7 @@
   
       <div class="panel panel-default">
                              <div class="panel-heading">
-                                 <h3 class="panel-title">User Groups <a href="{{url('home/usergroup/add')}}" class="btn btn-success btn-sm">Add User Group</a></h3>
+                                 <h3 class="panel-title">System Users <a href="{{url('home/user/add')}}" class="btn btn-success btn-sm">Add User</a></h3>
                                  <div class="btn-group pull-right">
                                      <button class="btn btn-danger dropdown-toggle" data-toggle="dropdown" style="display:none;"><i class="fa fa-bars"></i> Export Data</button>
                                      <ul class="dropdown-menu">
@@ -37,20 +37,21 @@
                                          <thead>
                                              <tr>
                                                  <th>S.no</th>
-                                                 <th>Role Name</th>
-                                                 <th>Display Name</th>
-                                                 <th>Description</th>
+                                                 <th>Name</th>
+                                                 <th>Email</th>
+                                                 <th>Role</th>
                                                  <th>Action</th>
                                              </tr>
                                          </thead>
                                          <tbody>
-                                            @foreach($roles as $key => $value)
+
+                                            @foreach($users as $key => $value)
                                                 <tr>
                                                   <td>{{$key+1}}</td>
                                                   <td>{{$value->name}}</td>
-                                                  <td>{{$value->display_name}}</td>
-                                                  <td>{{$value->description}}</td>
-                                                  <td><a href="{{url('home/usergroup/edit/'.$value->id)}}" class="btn btn-warning btn-sm">Edit</a>&nbsp; <a href="" class="btn btn-danger btn-sm disabled">Delete</a></td>
+                                                  <td>{{$value->email}}</td>
+                                                  <td>{{$value->roles->first()->display_name}}</td>
+                                                  <td><a href="{{url('home/user/edit/'.$value->id)}}" class="btn btn-warning btn-sm">Edit</a>&nbsp; <a href="" class="btn btn-danger btn-sm disabled">Delete</a></td>
                                                 </tr>
                                             @endforeach
                                          </tbody>
