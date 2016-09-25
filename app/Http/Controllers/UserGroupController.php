@@ -9,6 +9,12 @@ use App\Role;
 class UserGroupController extends Controller
 {
 
+
+    public function __construct()
+    {
+        $this->middleware('able');
+    }
+
     /*
      * list of user groups
      *

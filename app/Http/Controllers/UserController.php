@@ -15,6 +15,10 @@ use Entrust;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('able');
+    }
 
     public function index()
     {
@@ -63,7 +67,7 @@ class UserController extends Controller
     public function edit($id)
     {
     	$user = User::find($id);
-    	$roles = Role::all();
+        $roles = Role::all();
     	return view('modules.user.edit', compact('user', 'roles'));
     }
 
