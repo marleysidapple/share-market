@@ -17,9 +17,10 @@ class Able
      */
     public function handle($request, Closure $next)
     {
-        
-        if (!Auth::user()->can(\Request::route()->getName())){
-           return response()->view('errors.404');
+        if (!\Request::ajax()){
+            if (!Auth::user()->can(\Request::route()->getName())){
+               return response()->view('errors.404');
+            }
         }
         return $next($request);
     }

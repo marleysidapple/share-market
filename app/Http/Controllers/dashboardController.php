@@ -15,7 +15,7 @@ class dashboardController extends Controller
 
     public function __construct()
     {
-        $this->middleware('able', ['except' => 'index']);
+        $this->middleware('able', ['except' => 'index', 'attachPermission']);
     }
 
     public function index()
