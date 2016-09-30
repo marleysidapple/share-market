@@ -110,6 +110,23 @@ Route::group(['middleware' => 'auth'], function () {
 
     });
 
+    /* Bank routes */
+    Route::get('bank', 'BankController@index')->name('bank');
+    Route::get('bank/add', 'BankController@add')->name('bank');
+    Route::post('bank/add', 'BankController@store')->name('bank');
+    Route::get('bank/edit/{id}', 'BankController@edit')->name('bank');
+    Route::post('bank/edit', 'BankController@update')->name('bank');
+    Route::get('bank/delete/{id}', 'BankController@deleteData')->name('bank');
+
+    /* branch routes */
+
+    Route::get('branch/{id}', 'BranchController@index')->name('bank');
+    Route::get('branch/{id}/add', 'BranchController@add')->name('bank');
+    Route::post('branch/add', 'BranchController@store')->name('bank');
+    Route::get('branch/edit/{bid}', 'BranchController@edit')->name('bank');
+    Route::post('branch/edit', 'BranchController@update')->name('bank');
+    Route::get('branch/{id}/delete/{bid}', 'BranchController@deleteData')->name('bank');
+
 });
 
 /*

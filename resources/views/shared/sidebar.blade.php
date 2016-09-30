@@ -28,6 +28,10 @@
             <a href="{{url('home')}}"><span class="fa fa-desktop"></span> <span class="xn-text">Dashboard</span></a>
         </li>
 
+        <li class="{{(\Request::route()->getName() == 'bank') ? 'active' : ''}}">
+            <a href="{{url('bank')}}"><span class="fa fa-desktop"></span> <span class="xn-text">Bank Management</span></a>
+        </li>
+
         @if(Auth::user()->can('usergroup'))
         <li class="{{(\Request::route()->getName() == 'usergroup' || \Request::route()->getName() == 'addusergroup') ? 'active' : ''}}">
            <a href="{{url('home/usergroup')}}"><span class="fa fa-users"></span>Manage User Groups</a>
