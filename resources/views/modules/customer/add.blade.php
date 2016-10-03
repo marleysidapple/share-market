@@ -227,7 +227,7 @@
 @section('javascript')
 <script type="text/javascript">
 	$('.newrow').off('click').on('click', function(e){
-        $('.bankdetail:first').clone(true).appendTo('.added');
+        $('.bankdetail').first().clone(true).appendTo('.added');
 	});
 
 	$('.removerow').off('click').on('click', function(e){
