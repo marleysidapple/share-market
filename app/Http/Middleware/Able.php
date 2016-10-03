@@ -18,9 +18,11 @@ class Able
     public function handle($request, Closure $next)
     {
         if (!\Request::ajax()){
+           if (Auth::user()->roles()->first()->name != "superadmin"){
             if (!Auth::user()->can(\Request::route()->getName())){
                return response()->view('errors.404');
             }
+          }
         }
         return $next($request);
     }

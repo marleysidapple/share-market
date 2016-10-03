@@ -1,4 +1,5 @@
 
+
     <!-- START X-NAVIGATION -->
     <ul class="x-navigation">
         <li class="xn-logo1" style="background:#fe9804;">
@@ -28,20 +29,20 @@
             <a href="{{url('home')}}"><span class="fa fa-desktop"></span> <span class="xn-text">Dashboard</span></a>
         </li>
 
-        @if(Auth::user()->can('usergroup'))
+  @if(Auth::user()->can('usergroup') || Auth::user()->roles()->first()->name == "superadmin")       
         <li class="{{(\Request::route()->getName() == 'usergroup' || \Request::route()->getName() == 'addusergroup') ? 'active' : ''}}">
            <a href="{{url('home/usergroup')}}"><span class="fa fa-users"></span>Manage User Groups</a>
         </li>
-        @endif
+  @endif        
 
-        @if(Auth::user()->can('users'))
+        @if(Auth::user()->can('users') || Auth::user()->roles()->first()->name == "superadmin")
         <li class="{{(\Request::route()->getName() == 'users' || \Request::route()->getName() == 'adduser')   ? 'active' : ''}}">
             <a href="{{url('home/users')}}"><span class="fa fa-user"></span>Manage Users</a>
         </li>
         @endif
 
 
-        @if(Auth::user()->can('assignpermission'))
+        @if(Auth::user()->can('assignpermission') || Auth::user()->roles()->first()->name == "superadmin")
         <li class="xn-openable {{(\Request::route()->getName() == 'assignpermission') ? 'active' : ''}}">
             <a href="#"><span class="fa fa-cogs"></span> <span class="xn-text">Permissions</span></a>
             <ul>
