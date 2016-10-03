@@ -45,6 +45,7 @@
                                          </thead>
                                          <tbody>
 
+                                            
                                             @foreach($users as $key => $value)
                                                 <tr>
                                                   <td>{{$key+1}}</td>

@@ -38,6 +38,12 @@
     <script type="text/javascript" src="{{asset('js/plugins.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/actions.js')}}"></script>
 
+    <script type="text/javascript">
+        $('#confirm-delete').on('show.bs.modal', function (e) {
+               $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+            });
+    </script>
+
     
     <!-- END TEMPLATE -->
 <!-- END SCRIPTS -->
