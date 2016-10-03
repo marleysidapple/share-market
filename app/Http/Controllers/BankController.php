@@ -13,6 +13,7 @@ class BankController extends Controller
     {
         // parent::__construct();
         $this->bankService = new BankService();
+        $this->middleware('able');
     }
 
     public function index()
