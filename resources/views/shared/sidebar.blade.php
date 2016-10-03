@@ -1,4 +1,5 @@
 
+
     <!-- START X-NAVIGATION -->
     <ul class="x-navigation">
         <li class="xn-logo1" style="background:#fe9804;">
@@ -28,6 +29,18 @@
             <a href="{{url('home')}}"><span class="fa fa-desktop"></span> <span class="xn-text">Dashboard</span></a>
         </li>
 
+<<<<<<< HEAD
+  @if(Auth::user()->can('usergroup') || Auth::user()->roles()->first()->name == "superadmin")       
+        <li class="{{(\Request::route()->getName() == 'usergroup' || \Request::route()->getName() == 'addusergroup') ? 'active' : ''}}">
+           <a href="{{url('home/usergroup')}}"><span class="fa fa-users"></span>Manage User Groups</a>
+        </li>
+  @endif        
+
+        @if(Auth::user()->can('users') || Auth::user()->roles()->first()->name == "superadmin")
+        <li class="{{(\Request::route()->getName() == 'users' || \Request::route()->getName() == 'adduser')   ? 'active' : ''}}">
+            <a href="{{url('home/users')}}"><span class="fa fa-user"></span>Manage Users</a>
+        </li>
+=======
         @if(Auth::user()->roles()->first()->name = 'superadmin' || Auth::user()->can('listbank'))
             <li class="{{(\Request::route()->getName() == 'listbank') ? 'active' : ''}}">
                 <a href="{{url('home/bank')}}"><span class="fa fa-building"></span> <span class="xn-text">Bank Management</span></a>
@@ -38,6 +51,7 @@
             <li class="{{(\Request::route()->getName() == 'usergroup' || \Request::route()->getName() == 'addusergroup') ? 'active' : ''}}">
                <a href="{{url('home/usergroup')}}"><span class="fa fa-users"></span>Manage User Groups</a>
             </li>
+>>>>>>> c37c6120ae460a4d617edbe194f5952839b10937
         @endif
 
         @if(Auth::user()->roles()->first()->name = 'superadmin' || Auth::user()->can('users'))
@@ -46,6 +60,15 @@
             </li>
         @endif
 
+<<<<<<< HEAD
+        @if(Auth::user()->can('assignpermission') || Auth::user()->roles()->first()->name == "superadmin")
+        <li class="xn-openable {{(\Request::route()->getName() == 'assignpermission') ? 'active' : ''}}">
+            <a href="#"><span class="fa fa-cogs"></span> <span class="xn-text">Permissions</span></a>
+            <ul>
+                <li><a href="{{url('home/permissions')}}"><span class="fa fa-align-center"></span>Assign Permission</a></li>
+            </ul>
+        </li>
+=======
 
         @if(Auth::user()->roles()->first()->name = 'superadmin' || Auth::user()->can('assignpermission'))
             <li class="xn-openable {{(\Request::route()->getName() == 'assignpermission') ? 'active' : ''}}">
@@ -54,6 +77,7 @@
                     <li><a href="{{url('home/permissions')}}"><span class="fa fa-align-center"></span>Assign Permission</a></li>
                 </ul>
             </li>
+>>>>>>> c37c6120ae460a4d617edbe194f5952839b10937
         @endif
 
         <li class="xn-title">Components</li>
