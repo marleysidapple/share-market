@@ -14,7 +14,7 @@
                     <img src="{{asset('img/user-image.png')}}" alt="Administrator"/>
                 </div>
                 <div class="profile-data">
-                    <div class="profile-data-name">{{Aut::user()->roles()->first()->display_name}}</div>
+                    <div class="profile-data-name">{{Auth::user()->roles()->first()->display_name}}</div>
                 <div class="profile-data-title">Administrator Console</div>
                 </div>
                 <div class="profile-controls">
