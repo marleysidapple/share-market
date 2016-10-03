@@ -20,7 +20,6 @@ Route::post('login', 'AuthenticationController@validateLogin');
  */
 Route::group(['middleware' => 'auth'], function () {
 
-
     Route::get('/routes', 'dashboardController@permissions');
 
     /*
@@ -50,63 +49,142 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('usergroup/store', 'UserGroupController@store')->name('storeusergroup');
 
         /*
-        * editing usergroup
-        * /usergroup/edit/{roles}
-        */
+         * editing usergroup
+         * /usergroup/edit/{roles}
+         */
         Route::get('usergroup/edit/{id}', 'UserGroupController@edit')->name('editusergroup');
 
-
         /*
-        * updating usergroups
-        * post datas
-        */
+         * updating usergroups
+         * post datas
+         */
         Route::post('usergroup/update/{id}', 'UserGroupController@update')->name('updateusergroup');
 
-
         /*
-        * listing users
-        * get route
-        */
+         * listing users
+         * get route
+         */
         Route::get('users', 'UserController@index')->name('users');
 
         /*
-        * adding users
-        * get route
-        */
+         * adding users
+         * get route
+         */
         Route::get('user/add', 'UserController@add')->name('adduser');
 
-
         /*
-        * adding new user
-        * post route
-        */
+         * adding new user
+         * post route
+         */
         Route::post('user/store', 'UserController@store')->name('saveuser');
 
         /*
-        * editing user
-        * get route
-        */
+         * editing user
+         * get route
+         */
         Route::get('user/edit/{id}', 'UserController@edit')->name('edituser');
 
-
         /*
-        * updating user details
-        * post route
-        */
+         * updating user details
+         * post route
+         */
         Route::post('user/update/{id}', 'UserController@update')->name('updateuser');
 
         /*
-        * assigning permission
-        * get route
-        */
+         * assigning permission
+         * get route
+         */
         Route::get('permissions', 'dashboardController@assignPermission')->name('assignpermission');
 
+        /*
+         * ajax route
+         * for attaching permission
+         */
+        Route::post('user/attachpermission', 'dashboardController@attachPermission');
 
         /*
-        * ajax route
-        * for attaching permission
+         *---------------------------------------------------------------------------------------------
+         * START OF BANK ROUTES
+         *---------------------------------------------------------------------------------------------
+         */
+
+        /*
+         * getting list of bank
+         * get route
+         */
+        Route::get('bank', 'BankController@index')->name('listbank');
+
+        /*
+         * adding bank
+         * get route
+         */
+        Route::get('bank/add', 'BankController@add')->name('addbank');
+
+        /*
+         * saving bank details
+         * post route
+         */
+        Route::post('bank/add', 'BankController@store')->name('savebank');
+
+        /*
+         * editing bank detail
+         * get route
+         */
+        Route::get('bank/edit/{id}', 'BankController@edit')->name('editbank');
+
+        /*
+         * updating bank information
+         * post route
+         */
+        Route::post('bank/edit', 'BankController@update')->name('updatebank');
+
+        /*
+         * deleting bank detail
+         * get route
+         */
+        Route::get('bank/delete/{id}', 'BankController@deleteData')->name('deletebank');
+
+        /* 
+        *------------------------------------------------------------------------------------------
+        * START OF BRANCH ROUTES
+        *------------------------------------------------------------------------------------------
         */
-        Route::post('user/attachpermission', 'dashboardController@attachPermission');
+
+        /*
+        * listing the branch of bank
+        * get route
+        */
+        Route::get('branch/{id}', 'BranchController@index')->name('listbankbranch');
+
+        /*
+        * adding the detail of branch
+        * get route
+        */
+        Route::get('branch/{id}/add', 'BranchController@add')->name('addbankbranch');
+
+        /*
+        * saving detail of the branch
+        * post route
+        */
+        Route::post('branch/add', 'BranchController@store')->name('savebankbranch');
+
+        /*
+        * editing detail of the branch
+        * get route
+        */
+        Route::get('branch/edit/{bid}', 'BranchController@edit')->name('editbankbranch');
+
+        /*
+        * updating the branch detail
+        * post route
+        */
+        Route::post('branch/edit', 'BranchController@update')->name('updatebankbranch');
+
+        /*
+        * deleting branch detail
+        * get route
+        */
+        Route::get('branch/{id}/delete/{bid}', 'BranchController@deleteData')->name('deletebankbranch');
 
     });
 
