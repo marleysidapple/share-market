@@ -202,6 +202,13 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('customer/add', 'CustomerController@add')->name('addcustomer');
 
 
+        /*
+        * saving new customer
+        * post route
+        */
+        Route::post('customer/store', 'CustomerController@store')->name('savecustomer');
+
+
     });
 
 });

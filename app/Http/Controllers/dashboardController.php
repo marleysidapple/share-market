@@ -42,7 +42,11 @@ class dashboardController extends Controller
             unset($totalRoutes[$key]);
         }
 
-        $newRoutesToAdd = array_diff($totalRoutes, $existingPermissions);
+        if (!empty($existingPermissions)) {
+            $newRoutesToAdd = array_diff($totalRoutes, $existingPermissions);
+        } else {
+            $newRoutesToAdd = $totalRoutes;
+        }
 
         if (!empty($newRoutesToAdd)) {
             foreach ($newRoutesToAdd as $key => $value) {

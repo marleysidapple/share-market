@@ -22,6 +22,7 @@
 
 </style>
  <form action="{{url('home/customer/store')}}" method="post">
+ {!! csrf_field() !!}
  	 <div class="panel panel-default">
         <div class="panel-body">
 	        <h3>Add New Customer</h3>
@@ -184,27 +185,27 @@
 			<h3>Bank Information</h3>
 			<hr/>	
 			<div class="row">
-			<span class="btn btn-primary btn-sm newrow">Add New Row</span> &nbsp; <span class="btn btn-primary btn-sm removerow">Remove row</span>
+			<span class="btn btn-primary btn-sm newrow">Add New Bank</span>
 				<div class="bankdetail">
 					<div class="col-sm-3">
-				 		  <div class="form-group {{ $errors->has('bank') ? ' has-error' : '' }}">
+				 		  <div class="form-group">
 				              <label>Bank Name</label>
-				              <select class="form-control select" name="bank[]">
+				              <select class="form-control" name="customer[0][bank]">
 				                <option value="">Select Bank</option>
 				                @foreach($bank as $key => $val)
 				                <option value="{{$val->id}}">{{$val->name}}</option>
 				                @endforeach
 				              </select>
-				              @if ($errors->has('bank'))<span class="help-block">{{ $errors->first('bank') }} </span>@endif
+				               @if ($errors->has('customer.0.bank'))<span class="help-block">{{ $errors->first('customer.0.bank') }} </span>@endif
 				          </div>
 				 	</div>
 
 
 				 	<div class="col-sm-3">
-				 		  <div class="form-group {{ $errors->has('accountnumber') ? ' has-error' : '' }}">
+				 		  <div class="form-group">
 				              <label>Account No</label>
-				              <input type="text" name="accountnumber[]" class="form-control" value="{{old('accountnumber')}}" />
-				              @if ($errors->has('accountnumber'))<span class="help-block">{{ $errors->first('accountnumber') }} </span>@endif
+				              <input type="text" name="customer[0][accountno]" class="form-control" value="{{old('accountnumber')}}" />
+				               @if ($errors->has('customer.0.accountno'))<span class="help-block">{{ $errors->first('customer.0.accountno') }} </span>@endif
 				          </div>
 				 	</div>
 
@@ -215,29 +216,77 @@
 
 		 </div>
 
-		 <div class="row added">
+		 <div class="row added"></div>
 
-		
-      	</div>
+		 <!--login details-->
+
+		 <h3 style="margin-top:5px;">Login Credentials</h3>
+		 <hr/>
+
+		 <div class="row">
+		 	 <div class=" col-sm-6 form-group {{ $errors->has('username') ? ' has-error' : '' }}">
+                <label>Username</label>
+                <input type="text" name="username" class="form-control" value="{{$username}}" readonly/>
+                @if ($errors->has('username'))<span class="help-block">{{ $errors->first('username') }} </span>@endif
+			 </div> 
+		 </div>
+
+		 <div class="row" style="margin-top:15px;">
+			 <div class=" col-sm-6 form-group {{ $errors->has('password') ? ' has-error' : '' }}">
+                <label>Password</label>
+                <input type="password" name="password" class="form-control" value="{{old('password')}}"/>
+                @if ($errors->has('password'))<span class="help-block">{{ $errors->first('password') }} </span>@endif
+			 </div>
+		</div>
+
+		<div class="clearfix"></div>
+		<div class="col-sm-6" style="margin-top:10px;">
+			<span class="text text-primary"><strong>Multiple users or not?&nbsp;&nbsp;</strong><input type="radio" name="multiple" value="1">Yes &nbsp; <input type="radio" name="multiple" value="0">No</span>
+			 @if ($errors->has('multiple'))<span class="help-block">{{ $errors->first('multiple') }} </span>@endif
+		</div>
+		<div class="clearfix"></div><br/>
+		<button type="submit" class="btn btn-primary btn-sm">Submit</button>
+   </div>
  </form>
-
 @endsection
 
 
 @section('javascript')
 <script type="text/javascript">
+    var i = 1;
 	$('.newrow').off('click').on('click', function(e){
-        $('.bankdetail').first().clone(true).appendTo('.added');
+		var newi = i++;
+        var htmlbuild = `<div class="bankdetail"><div class="col-sm-3">
+				 		  <div class="form-group">
+				              <label>Bank Name</label>
+				              <select class="form-control select" name="customer[`+newi+`][bank]">
+				                <option value="">Select Bank</option>
+				                @foreach($bank as $key => $val)
+				                <option value="{{$val->id}}">{{$val->name}}</option>
+				                @endforeach
+				              </select>
+				            
+				          </div>
+				 	</div>
+
+				 	<div class="col-sm-3">
+				 		  <div class="form-group">
+				              <label>Account No</label>
+				              <input type="text" name="customer[`+newi+`][accountno]" class="form-control" value="{{old('accountnumber')}}"/>
+				            
+				          </div>
+				 	</div>
+				 	<div class="col-sm-3" style="margin-top:25px;"><span class="btn btn-danger btn-sm rmrow">Remove Row</span></div>
+				 	<div class="col-sm-3">&nbsp;</div>
+				 	<div class="clearfix"></div>
+				 	</div>`;
+        $('.added').append(htmlbuild);
 	});
 
-	$('.removerow').off('click').on('click', function(e){
-		if ($('.added').find('.bankdetail').length == 0){
-			//$('.bankdetail:last').remove();
-			alert('You cannot delete first row');
-			return;
-		} 
-		$('.bankdetail:last').remove();
-		
+
+
+	$('.added').off('click').on('click', '.rmrow', function(){
+		$(this).parent().parent().remove();
 	});
 </script>
 @endsection

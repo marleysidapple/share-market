@@ -39,12 +39,28 @@
                                                  <th>S.no</th>
                                                  <th>Name</th>
                                                  <th>Email</th>
-                                                 <th>Role</th>
+                                                 <th>Username</th>
+                                                 <th>Contact</th>
+                                                 <th>Temporary Address</th>
+                                                 <th>Citizenship No.</th>
+                                                 <th>Date of Birth.</th>
                                                  <th>Action</th>
                                              </tr>
                                          </thead>
                                          <tbody>
-
+                                         @foreach($customer as $key => $val)
+                                            <tr>
+                                                <td>{{$key+1}}</td>
+                                                <td>{{$val->userdetail->name}}</td>
+                                                <td>{{$val->userdetail->email}}</td>
+                                                <td>{{$val->userdetail->username}}</td>
+                                                <td>{{$val->mobile}}</td>
+                                                <td>{{$val->temporaryaddress}}</td>
+                                                <td>{{$val->citizenshipno}}</td>
+                                                <td>{{$val->dateofbirth}}</td>
+                                                <td><a href="" class="btn btn-warning btn-sm">Edit</a>&nbsp;<a href="" class="btn btn-danger btn-sm" disabled>Delete</a></td>
+                                            </tr>
+                                         @endforeach
                                             
                                          </tbody>
                                      </table>
