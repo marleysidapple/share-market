@@ -56,6 +56,12 @@
         @endif
 
         <li class="xn-title">Components</li>
+          @if(Auth::user()->roles()->first()->name = 'superadmin' || Auth::user()->can('customerlist'))
+            <li class="{{(\Request::route()->getName() == 'customerlist' || \Request::route()->getName() == 'addcustomer')   ? 'active' : ''}}">
+                <a href="{{url('home/customer/list')}}"><span class="fa fa-user"></span>Customer Management</a>
+            </li>
+        @endif
+       
 <!--
         <li class="xn-openable">
             <a href="index.html#"><span class="fa fa-cogs"></span> <span class="xn-text">UI Kits</span></a>

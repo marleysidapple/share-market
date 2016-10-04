@@ -186,6 +186,29 @@ Route::group(['middleware' => 'auth'], function () {
         */
         Route::get('branch/{id}/delete/{bid}', 'BranchController@deleteData')->name('deletebankbranch');
 
+
+        /* 
+        *------------------------------------------------------------------------------------------
+        * START OF CUSTOMER ROUTES
+        *------------------------------------------------------------------------------------------
+        */
+        Route::get('customer/list', 'CustomerController@show')->name('customerlist');
+
+
+        /*
+        * adding new customer
+        * get route
+        */
+        Route::get('customer/add', 'CustomerController@add')->name('addcustomer');
+
+
+        /*
+        * saving new customer
+        * post route
+        */
+        Route::post('customer/store', 'CustomerController@store')->name('savecustomer');
+
+
     });
 
 });

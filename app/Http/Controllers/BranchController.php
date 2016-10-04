@@ -15,6 +15,7 @@ class BranchController extends Controller
     {
         // parent::__construct();
         $this->branchService = new BranchService();
+        $this->middleware('able');
     }
 
     public function index($bankId)

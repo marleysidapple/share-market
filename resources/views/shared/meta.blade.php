@@ -9,4 +9,5 @@
 
 <!-- CSS INCLUDE -->
 <link rel="stylesheet" type="text/css" id="theme" href="{{asset('css/theme-default.css')}}"/>
+<link rel="stylesheet" type="text/css" id="theme" href="{{asset('css/form-helper.min.css')}}"/>
 <!-- EOF CSS INCLUDE -->
