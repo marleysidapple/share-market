@@ -31,7 +31,8 @@ class AuthenticationController extends Controller
 
     public function validateLogin(LoginRequest $request)
     {
-        if (Auth::attempt(array('email' => $request->email, 'password' => $request->password))){
+        if (Auth::attempt(array('email' => $request->email, 'password' => $request->password)) 
+          || Auth::attempt(array('username' => $request->email, 'password' => $request->password))){
            return redirect()->intended('home');
         } else {
            return redirect()->back()->with('error', 'Invalid login credentials');
