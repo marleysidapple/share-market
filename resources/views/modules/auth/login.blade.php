@@ -24,7 +24,7 @@
                                 <div class="input-group-addon">
                                     <span class="fa fa-user"></span>
                                 </div>
-                                <input type="text" name="email" class="form-control" placeholder="Email"/>
+                                <input type="text" name="email" class="form-control" placeholder="Email/Username"/>
                             </div>
                             @if ($errors->has('email'))
                                 <span class="help-block">{{ $errors->first('email') }} </span>
