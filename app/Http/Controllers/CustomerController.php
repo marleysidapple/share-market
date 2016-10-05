@@ -21,7 +21,7 @@ class CustomerController extends Controller
      * displaying list of customer
      * rendering view
      */
-    public function show()
+    public function index()
     {
     	$customer = Customer::all();
         return view('modules.customer.list', compact('customer'));
@@ -106,6 +106,18 @@ class CustomerController extends Controller
     	}
 
     	return redirect()->back()->with('success', 'New Customer added successfully');
+    }
+
+
+
+    /*
+    * Displaying the detail of the customer
+    * render view and pass data
+    */
+    public function show($id)
+    {
+        $customer = Customer::find($id);
+        return view('modules.customer.detail', compact('customer'));
     }
 
 }

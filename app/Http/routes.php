@@ -192,7 +192,7 @@ Route::group(['middleware' => 'auth'], function () {
         * START OF CUSTOMER ROUTES
         *------------------------------------------------------------------------------------------
         */
-        Route::get('customer/list', 'CustomerController@show')->name('customerlist');
+        Route::get('customer/list', 'CustomerController@index')->name('customerlist');
 
 
         /*
@@ -207,6 +207,13 @@ Route::group(['middleware' => 'auth'], function () {
         * post route
         */
         Route::post('customer/store', 'CustomerController@store')->name('savecustomer');
+
+
+        /*
+        * Displaying the details of customer
+        * get route
+        */
+        Route::get('customer/{id}/detail', 'CustomerController@show')->name('displaycustomerdetail');
 
 
     });

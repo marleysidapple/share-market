@@ -58,7 +58,7 @@
                                                 <td>{{$val->temporaryaddress}}</td>
                                                 <td>{{$val->citizenshipno}}</td>
                                                 <td>{{$val->dateofbirth}}</td>
-                                                <td><a href="" class="btn btn-warning btn-sm">Edit</a>&nbsp;<a href="" class="btn btn-danger btn-sm" disabled>Delete</a></td>
+                                                <td><a href="{{url('home/customer/'.$val->id .'/detail')}}" class="btn btn-success btn-sm">View</a>&nbsp;<a href="" class="btn btn-warning btn-sm">Edit</a>&nbsp;<a href="" class="btn btn-danger btn-sm" disabled>Delete</a></td>
                                             </tr>
                                          @endforeach
                                             
