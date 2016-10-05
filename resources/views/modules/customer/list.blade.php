@@ -37,11 +37,9 @@
                                          <thead>
                                              <tr>
                                                  <th>S.no</th>
-                                                 <th>Name</th>
-                                                 <th>Email</th>
+                                                 <th>Name</th>                                                 
                                                  <th>Username</th>
                                                  <th>Contact</th>
-                                                 <th>Temporary Address</th>
                                                  <th>Citizenship No.</th>
                                                  <th>Date of Birth.</th>
                                                  <th>Action</th>
@@ -52,13 +50,11 @@
                                             <tr>
                                                 <td>{{$key+1}}</td>
                                                 <td>{{$val->userdetail->name}}</td>
-                                                <td>{{$val->userdetail->email}}</td>
                                                 <td>{{$val->userdetail->username}}</td>
                                                 <td>{{$val->mobile}}</td>
-                                                <td>{{$val->temporaryaddress}}</td>
                                                 <td>{{$val->citizenshipno}}</td>
                                                 <td>{{$val->dateofbirth}}</td>
-                                                <td><a href="{{url('home/customer/'.$val->id .'/detail')}}" class="btn btn-success btn-sm">View</a>&nbsp;<a href="" class="btn btn-warning btn-sm">Edit</a>&nbsp;<a href="" class="btn btn-danger btn-sm" disabled>Delete</a></td>
+                                                <td><a href="{{url('home/customer/'.$val->id .'/detail')}}" class="btn btn-success btn-sm">View</a>&nbsp;<a href="{{url('home/customer/'.$val->id .'/detail')}}" class="btn btn-warning btn-sm">Edit</a>&nbsp;<a href="" class="btn btn-danger btn-sm">Add Member</a></td>
                                             </tr>
                                          @endforeach
                                             
