@@ -15,4 +15,10 @@ class Customer extends Model
     {
     	return $this->belongsTo('App\User', 'user_id');
     }
+
+
+    public function bank()
+    {
+    	return $this->hasMany('App\CustomerBank');
+    }
 }
