@@ -8,7 +8,7 @@
 <div class="panel panel-default">
     <div class="panel-heading">
      <h3 class="panel-title">
-        <a href="{{URL::to('bank')}}">Bank Management</a> -> Branch List <a href="{{URL::to('branch/'.$bankId.'/add')}}" class="btn btn-success btn-sm">Add New Branch</a></h3>
+        <a href="{{URL::to('bank')}}">Bank Management</a> -> Branch List <a href="{{URL::to('branch/'.$bankId.'/add')}}" class="btn btn-success btn-sm">Add New</a></h3>
 
     </div>
     <div class="panel-body">

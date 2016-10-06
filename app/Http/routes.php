@@ -127,6 +127,15 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('branch/edit', 'BranchController@update')->name('bank');
     Route::get('branch/{id}/delete/{bid}', 'BranchController@deleteData')->name('bank');
 
+    /* broker routes */
+
+    Route::get('broker', 'BrokerController@index')->name('broker');
+    Route::get('broker/add', 'BrokerController@add')->name('broker');
+    Route::post('broker/add', 'BrokerController@store')->name('broker');
+    Route::get('broker/edit/{id}', 'BrokerController@edit')->name('broker');
+    Route::post('broker/edit', 'BrokerController@update')->name('broker');
+    Route::get('broker/delete/{id}', 'BrokerController@deleteData')->name('broker');
+
 });
 
 /*
