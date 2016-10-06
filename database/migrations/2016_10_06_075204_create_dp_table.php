@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBokerTable extends Migration
+class CreateDpTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,14 +12,12 @@ class CreateBokerTable extends Migration
      */
     public function up()
     {
-        Schema::create('brokers', function (Blueprint $table) {
+        Schema::create('dp', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->integer('dp_id')->unsigned();
             $table->string('address');
-            $table->string('broker_no');
             $table->string('phone');
-            $table->string('contact_person');
-            $table->string('contact_person_no');
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ class CreateBokerTable extends Migration
      */
     public function down()
     {
-        Schema::drop('brokers');
+        Schema::drop('dp');
     }
 }

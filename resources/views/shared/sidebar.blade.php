@@ -32,8 +32,20 @@
             <a href="{{url('bank')}}"><span class="fa fa-desktop"></span> <span class="xn-text">Bank Management</span></a>
         </li>
 
-         <li class="{{(\Request::route()->getName() == 'broker') ? 'active' : ''}}">
+        <li class="{{(\Request::route()->getName() == 'broker') ? 'active' : ''}}">
             <a href="{{url('broker')}}"><span class="fa fa-desktop"></span> <span class="xn-text">Broker Management</span></a>
+        </li>
+
+        <li class="{{(\Request::route()->getName() == 'rta') ? 'active' : ''}}">
+            <a href="{{url('rta')}}"><span class="fa fa-desktop"></span> <span class="xn-text">RTA Management</span></a>
+        </li>
+
+        <li class="{{(\Request::route()->getName() == 'dp') ? 'active' : ''}}">
+            <a href="{{url('dp')}}"><span class="fa fa-desktop"></span> <span class="xn-text">DP Management</span></a>
+        </li>
+
+        <li class="{{(\Request::route()->getName() == 'company') ? 'active' : ''}}">
+            <a href="{{url('company')}}"><span class="fa fa-desktop"></span> <span class="xn-text">Company Management</span></a>
         </li>
 
         @if(Auth::user()->can('usergroup'))
