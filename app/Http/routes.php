@@ -216,6 +216,27 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('customer/{id}/detail', 'CustomerController@show')->name('displaycustomerdetail');
 
 
+        /*
+        * updating the login information of user
+        * post route
+        */
+        Route::post('customer/updatelogininfo/{id}', 'CustomerController@updateLoginInfo')->name('updatelogininformation');
+
+
+        /*
+        * updating customer detail
+        * post route
+        */
+        Route::post('customer/update/{id}', 'CustomerController@updateCustomerDetail')->name('updatecustomerdetail');
+
+
+        /*
+        * adding new bank
+        * post route
+        */
+        Route::post('customer/addbank/{id}', 'CustomerController@updateBank')->name('updatebankdetail');
+
+
     });
 
 });

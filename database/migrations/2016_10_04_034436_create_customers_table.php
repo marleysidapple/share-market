@@ -29,6 +29,7 @@ class CreateCustomersTable extends Migration
             $table->string('citizenshipno');
             $table->string('maritalstatus');
             $table->string('occupation');
+            $table->tinyInteger('ismultiple');
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade');
             $table->timestamps();
         });
