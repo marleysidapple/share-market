@@ -11,6 +11,10 @@ class Companytype extends Model
 
   	protected $fillable = array('type');
 
+  	// public function comType(){
+  	// 	return Companytype::hasMany('App\Company', 'company_type_id', 'id');
+  	// }
+
 }
 
 

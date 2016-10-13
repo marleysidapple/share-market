@@ -45,7 +45,7 @@
 
               <div class="button pull-left">
                   <button type="submit" class="btn btn-primary btn-sm">Update</button>
-                  <a href="{{URL::to('branch')}}" class="btn btn-default btn-sm">Cancel</a>
+                  <a href="{{URL::to('branch/'.$pageData->bank_id)}}" class="btn btn-default btn-sm">Cancel</a>
               </div>
           {!! Form::close() !!}
       </div>

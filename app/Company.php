@@ -11,6 +11,14 @@ class Company extends Model
 
   	protected $fillable = array('company_name', 'company_type_id', 'company_ticker', 'rta_id');
 
+  	public function companyComtype(){
+  		return Company::belongsTo('App\Companytype', 'company_type_id', 'id');
+  	}
+
+  	public function companyRta(){
+  		return Company::belongsTo('App\Rta', 'rta_id', 'id');
+  	}
+
 }
 
 

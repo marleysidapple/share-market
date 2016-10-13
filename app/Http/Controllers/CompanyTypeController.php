@@ -35,17 +35,14 @@ class CompanyTypeController extends Controller
     public function add()
     {
         // dd($data);
-    	return view('modules.company.company-add');
+    	return view('modules.company.type-add');
     }
 
     public function store(Request $request){
         // dd($request->all());
 
         $rules = array(
-            'company_name' => 'required',
-            'company_type_id' => 'required|int',
-            'company_ticker' => 'required',
-            'rta_id' => 'required|int'
+            'type' => 'required',
             );
         $validator = Validator::make($request->all(), $rules);
 
@@ -55,8 +52,8 @@ class CompanyTypeController extends Controller
 
         $res = $this->companyTypeService->add($request->except('_token'));
 
-        $data['msgSuccess'] = "New Company added successfully";
-        return Redirect::to('company')->withErrors($data);
+        $data['msgSuccess'] = "New Company Type added successfully";
+        return Redirect::to('company-type')->withErrors($data);
     }
 
     public function edit($id){
@@ -64,38 +61,35 @@ class CompanyTypeController extends Controller
 
         $data['pageData'] = $this->companyTypeService->getDataById($id);
         // dd($data);
-        return view('modules.company.company-edit', $data);
+        return view('modules.company.type-edit', $data);
     }
 
     public function update(Request $request){
 
         $rules = array(
-            'company_name' => 'required',
-            'company_type_id' => 'required|int',
-            'company_ticker' => 'required',
-            'rta_id' => 'required|int'
+            'type' => 'required'
             );
         $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) {
             return Redirect::back()->withErrors($validator)->withInput($request->all());
         }
 
-        $brokerId = $request->get('id');
+        $id = $request->get('id');
         $inputData = $request->except('_token', 'id');
 
         // dd($inputData);
-        $this->companyTypeService->update($brokerId, $inputData);
+        $this->companyTypeService->update($id, $inputData);
 
-        $data['msgSuccess'] = "Company updated successfully";
-        return Redirect::to('company')->withErrors($data);
+        $data['msgSuccess'] = "Company Type updated successfully";
+        return Redirect::to('company-type')->withErrors($data);
     }
 
     public function deleteData($id){
         // dd($id);
         $this->companyTypeService->deleteData($id);
 
-        $data['msgSuccess'] = "Company deleted successfully";
-        return Redirect::to('company')->withErrors($data);
+        $data['msgSuccess'] = "Company Type deleted successfully";
+        return Redirect::to('company-type')->withErrors($data);
     }
 
 }

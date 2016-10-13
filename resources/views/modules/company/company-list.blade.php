@@ -7,7 +7,9 @@
   
 <div class="panel panel-default">
     <div class="panel-heading">
-     <h3 class="panel-title">Company Management <a href="{{URL::to('company/add')}}" class="btn btn-success btn-sm">Add New</a></h3>
+        <h3 class="panel-title">Company Management <a href="{{URL::to('company/add')}}" class="btn btn-success btn-sm">Add New</a>
+        <a href="{{URL::to('company-type')}}" class="btn btn-success btn-sm">Company Type</a>
+        </h3>
 
     </div>
     <div class="panel-body">
@@ -36,12 +38,11 @@
                 <tr>
                     <td>{{$start}}</td>
                     <td>{{$pData->company_name}}</td>
-                    <td>{{$pData->company_type_id}}</td>
+                <td>{{$pData->companyComtype->type}}</td>
                     <td>{{$pData->company_ticker}}</td>
-                    <td>{{$pData->rta_id}}</td>
+                    <td>{{$pData->companyRta->name}}</td>
                     <td><a href="{{URL::to('company/edit/'.$pData->id)}}" class="btn btn-warning btn-sm">Edit</a>&nbsp; 
                         <a href="javascript:void(0)" data-toggle="modal" data-target="#confirm-delete" data-href="{{URL::to('/company/delete/'.$pData->id)}}" class="btn btn-danger btn-sm">Delete</a>&nbsp; 
-                        <a href="{{URL::to('company-type/'.$pData->id)}}" class="btn btn-success btn-sm">Add Company Type</a>
                     </td>
                 </tr>
                 @endforeach

@@ -163,8 +163,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('company/edit', 'CompanyController@update')->name('company');
     Route::get('company/delete/{id}', 'CompanyController@deleteData')->name('company');
 
-    Route::get('company-type/{id}', 'CompanyTypeController@index')->name('company-type');
-    Route::get('company-type/{id}/add', 'CompanyTypeController@add')->name('company-type');
+    Route::get('company-type', 'CompanyTypeController@index')->name('company-type');
+    Route::get('company-type/add', 'CompanyTypeController@add')->name('company-type');
     Route::post('company-type/add', 'CompanyTypeController@store')->name('company-type');
     Route::get('company-type/edit/{id}', 'CompanyTypeController@edit')->name('company-type');
     Route::post('company-type/edit', 'CompanyTypeController@update')->name('company-type');
