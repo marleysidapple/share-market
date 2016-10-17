@@ -217,24 +217,18 @@ Route::group(['middleware' => 'auth'], function () {
 
 
         /*
-        * updating the login information of user
-        * post route
+        * ajax route
+        * getting the districts from zone
         */
-        Route::post('customer/updatelogininfo/{id}', 'CustomerController@updateLoginInfo')->name('updatelogininformation');
+        Route::post('customer/district', 'CustomerController@district');
 
 
         /*
-        * updating customer detail
-        * post route
+        * ajax route
+        * getting branches of bank
         */
-        Route::post('customer/update/{id}', 'CustomerController@updateCustomerDetail')->name('updatecustomerdetail');
+        Route::post('customer/branch', 'CustomerController@branches');
 
-
-        /*
-        * adding new bank
-        * post route
-        */
-        Route::post('customer/addbank/{id}', 'CustomerController@updateBank')->name('updatebankdetail');
 
 
     });
