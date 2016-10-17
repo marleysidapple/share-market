@@ -8,7 +8,9 @@ class Customer extends Model
 {
     protected $table = 'customers';
 
+
     protected $fillable = array('user_id', 'gender', 'dateofbirth', 'fathername', 'mothername', 'gfathername', 'gmothername', 'mobile', 'pan', 'photo', 'status');
+
 
     public function userdetail()
     {

@@ -230,6 +230,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('customer/branch', 'CustomerController@branches');
 
 
+
     });
 
 });

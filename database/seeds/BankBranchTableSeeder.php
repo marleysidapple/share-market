@@ -12,14 +12,7 @@ class BankBranchTableSeeder extends Seeder
      */
     public function run()
     {
-    	Branch::create([
-	        'bank_id' => '1',
-	        'address' => 'Nagpokhari, Kathmanduu',
-	        'phone' => '014392183',
-	        'contact_person'	=> 'Pratik Deshar',
-	        'contact_person_no'	=> '984983745'
-	    ]);
-
+    	
         Branch::create([
             'bank_id' => '1',
             'address' => 'Newroad, Kathmanduu',
