@@ -216,6 +216,20 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('customer/{id}/detail', 'CustomerController@show')->name('displaycustomerdetail');
 
 
+        /*
+        * ajax route
+        * getting the districts from zone
+        */
+        Route::post('customer/district', 'CustomerController@district');
+
+
+        /*
+        * ajax route
+        * getting branches of bank
+        */
+        Route::post('customer/branch', 'CustomerController@branches');
+
+
     });
 
 });

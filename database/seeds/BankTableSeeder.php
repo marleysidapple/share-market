@@ -13,12 +13,30 @@ class BankTableSeeder extends Seeder
     public function run()
     {
         Bank::create([
-	        'name' => 'Bank1',
-	        'address' => 'Kupandol',
-	        'phone' => '1234456789',
+	        'name' => 'Nepal Merchant Bank',
+	        'address' => 'BabarMahal, Kathmandu',
+	        'phone' => '01437928',
 	        'bank_grade'	=> 'A',
-	        'contact_person'	=> 'someone',
+	        'contact_person'	=> 'Suden Balami',
 	        'contact_person_no'	=> '9874546512'
 	    ]);
+
+        Bank::create([
+            'name' => 'Nepal SBI Bank',
+            'address' => 'Hattisar, Kathmandu',
+            'phone' => '01432324',
+            'bank_grade'    => 'A',
+            'contact_person'    => 'Rabin Shrestha',
+            'contact_person_no' => '9874546423'
+        ]);
+
+         Bank::create([
+            'name' => 'Laxmi Bank',
+            'address' => 'Hattisar, Kathmandu',
+            'phone' => '01432532',
+            'bank_grade'    => 'A',
+            'contact_person'    => 'Pradeep Bista',
+            'contact_person_no' => '987409332'
+        ]);
     }
 }

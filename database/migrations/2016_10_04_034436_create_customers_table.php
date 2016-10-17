@@ -21,16 +21,13 @@ class CreateCustomersTable extends Migration
             $table->string('mothername');
             $table->string('gfathername');
             $table->string('gmothername');
-            $table->string('permanentaddress');
-            $table->string('temporaryaddress');
-            $table->string('phone');
             $table->string('mobile');
-            $table->string('country');
-            $table->string('citizenshipno');
-            $table->string('maritalstatus');
-            $table->string('occupation');
+            $table->string('pan');
+            $table->string('photo');
+            $table->tinyInteger('status');
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade');
             $table->timestamps();
+
         });
     }
 
