@@ -230,6 +230,13 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('customer/branch', 'CustomerController@branches');
 
 
+        /*
+        * personal detail
+        * get route
+        */
+        Route::get('customer/{id}/personaldetail', 'CustomerController@personalDetail');
+
+
 
     });
 
