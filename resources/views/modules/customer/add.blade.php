@@ -65,47 +65,7 @@
 			          </div>
 			 	</div>
 
-			 	<div class="col-sm-2">
-			 		  <div class="form-group {{ $errors->has('fathername') ? ' has-error' : '' }}">
-			              <label>Father's name</label>
-			              <input type="text" name="fathername" class="form-control" value="{{old('fathername')}}"/>
-			              @if ($errors->has('fathername'))<span class="help-block">{{ $errors->first('fathername') }} </span>@endif
-			          </div>
-			 	</div>
-
-
-			 	<div class="col-sm-2">
-			 		  <div class="form-group {{ $errors->has('mothername') ? ' has-error' : '' }}">
-			              <label>Mother's Name</label>
-			              <input type="text" name="mothername" class="form-control" value="{{old('mothername')}}"/>
-			              @if ($errors->has('mothername'))<span class="help-block">{{ $errors->first('mothername') }} </span>@endif
-			          </div>
-			 	</div>
-
-			</div>
-
-			<div class="row personal">
-			 	
-
-			 	<div class="col-sm-2">
-			 		  <div class="form-group {{ $errors->has('grandfathername') ? ' has-error' : '' }}">
-			              <label>Grand Father's name</label>
-			              <input type="text" name="grandfathername" class="form-control" value="{{old('grandfathername')}}"/>
-			              @if ($errors->has('grandfathername'))<span class="help-block">{{ $errors->first('grandfathername') }} </span>@endif
-			          </div>
-			 	</div>
-
-
-			  	<div class="col-sm-2">
-			 		  <div class="form-group {{ $errors->has('grandmothername') ? ' has-error' : '' }}">
-			              <label>Grand mother's name</label>
-			              <input type="text" name="grandmothername" class="form-control" value="{{old('grandmothername')}}"/>
-			              @if ($errors->has('grandmothername'))<span class="help-block">{{ $errors->first('grandmothername') }} </span>@endif
-			          </div>
-			 	</div>
-
-
-			  	<div class="col-sm-2">
+			 	  	<div class="col-sm-2">
 			 		  <div class="form-group {{ $errors->has('mobile') ? ' has-error' : '' }}">
 			              <label>Mobile No.</label>
 			              <input type="text" name="mobile" class="form-control" value="{{old('mobile')}}"/>
@@ -113,13 +73,6 @@
 			          </div>
 			 	</div>
 
-			 	<div class="col-sm-2">
-			 		  <div class="form-group {{ $errors->has('pan') ? ' has-error' : '' }}">
-			              <label>PAN No.</label>
-			              <input type="text" name="pan" class="form-control" value="{{old('pan')}}"/>
-			              @if ($errors->has('pan'))<span class="help-block">{{ $errors->first('pan') }} </span>@endif
-			          </div>
-			 	</div>
 
 			 		<div class="col-sm-2">
 			 		  <div class="form-group {{ $errors->has('profilephoto') ? ' has-error' : '' }}">
@@ -128,8 +81,10 @@
 			              @if ($errors->has('profilephoto'))<span class="help-block">{{ $errors->first('profilephoto') }} </span>@endif
 			          </div>
 			 	</div>
+
 			</div>
 
+		
 		
 			<br/>
 			<h4>Address Information</h4>
@@ -163,7 +118,7 @@
 
 			 	 	<div class="col-sm-2">
 			 		  <div class="form-group {{ $errors->has('vdc_municipality') ? ' has-error' : '' }}">
-			              <label>VDC/Municipality</label>
+			              <label>Municipality/VDC</label>
 			              <input type="text" name="vdc_municipality" class="form-control" value="{{old('vdc_municipality')}}"/>
 			              @if ($errors->has('vdc_municipality'))<span class="help-block">{{ $errors->first('vdc_municipality') }} </span>@endif
 			          </div>
@@ -178,11 +133,27 @@
 			 	   </div>
 
 
-			  	<div class="col-sm-2">
-			 		  <div class="form-group {{ $errors->has('street') ? ' has-error' : '' }}">
-			              <label>Street Address</label>
-			              <input type="text" name="street" class="form-control" value="{{old('street')}}"/>
-			              @if ($errors->has('street'))<span class="help-block">{{ $errors->first('street') }} </span>@endif
+			  	<div class="col-sm-1">
+			 		  <div class="form-group {{ $errors->has('tole') ? ' has-error' : '' }}">
+			              <label>Tole</label>
+			              <input type="text" name="tole" class="form-control" value="{{old('tole')}}"/>
+			              @if ($errors->has('tole'))<span class="help-block">{{ $errors->first('tole') }} </span>@endif
+			          </div>
+			 	</div>
+
+			 	<div class="col-sm-1">
+			 		  <div class="form-group {{ $errors->has('houseno') ? ' has-error' : '' }}">
+			              <label>House No.</label>
+			              <input type="text" name="houseno" class="form-control" value="{{old('houseno')}}"/>
+			              @if ($errors->has('houseno'))<span class="help-block">{{ $errors->first('houseno') }} </span>@endif
+			          </div>
+			 	</div>
+
+			 	<div class="col-sm-2">
+			 		  <div class="form-group {{ $errors->has('tel') ? ' has-error' : '' }}">
+			              <label>Telephone no.</label>
+			              <input type="text" name="tel" class="form-control" value="{{old('tel')}}"/>
+			              @if ($errors->has('tel'))<span class="help-block">{{ $errors->first('tel') }} </span>@endif
 			          </div>
 			 	</div>
 			</div>
@@ -218,7 +189,7 @@
 
 			 	 	<div class="col-sm-2">
 			 		  <div class="form-group {{ $errors->has('tvdc_municipality') ? ' has-error' : '' }}">
-			              <label>VDC/Municipality</label>
+			              <label>Municipality/VDC</label>
 			              <input type="text" name="tvdc_municipality" class="form-control" value="{{old('tvdc_municipality')}}"/>
 			              @if ($errors->has('tvdc_municipality'))<span class="help-block">{{ $errors->first('tvdc_municipality') }} </span>@endif
 			          </div>
@@ -233,11 +204,28 @@
 			 	   </div>
 
 
-			  	<div class="col-sm-2">
-			 		  <div class="form-group {{ $errors->has('tstreet') ? ' has-error' : '' }}">
-			              <label>Street Address</label>
-			              <input type="text" name="tstreet" class="form-control" value="{{old('tstreet')}}"/>
-			              @if ($errors->has('tstreet'))<span class="help-block">{{ $errors->first('tstreet') }} </span>@endif
+			  	<div class="col-sm-1">
+			 		  <div class="form-group {{ $errors->has('ttole') ? ' has-error' : '' }}">
+			              <label>Tole</label>
+			              <input type="text" name="ttole" class="form-control" value="{{old('ttole')}}"/>
+			              @if ($errors->has('ttole'))<span class="help-block">{{ $errors->first('ttole') }} </span>@endif
+			          </div>
+			 	</div>
+
+
+			 	<div class="col-sm-1">
+			 		  <div class="form-group {{ $errors->has('thouseno') ? ' has-error' : '' }}">
+			              <label>House No.</label>
+			              <input type="text" name="thouseno" class="form-control" value="{{old('thouseno')}}"/>
+			              @if ($errors->has('thouseno'))<span class="help-block">{{ $errors->first('thouseno') }} </span>@endif
+			          </div>
+			 	</div>
+
+			 		<div class="col-sm-2" >
+			 		  <div class="form-group {{ $errors->has('ttel') ? ' has-error' : '' }}">
+			              <label>Telephone no.</label>
+			              <input type="text" name="ttel" class="form-control" value="{{old('ttel')}}"/>
+			              @if ($errors->has('ttel'))<span class="help-block">{{ $errors->first('ttel') }} </span>@endif
 			          </div>
 			 	</div>
 			</div>
@@ -247,7 +235,7 @@
 			<div class="row personal">
 			 	<div class="col-sm-2">
 			 		   <div class="form-group {{ $errors->has('issuedistrict') ? ' has-error' : '' }}">
-			              <label>Citizenship Issued District</label>
+			              <label>Citizenship Issued Place</label>
 			             <select class="form-control" name="issuedistrict">
 			             	<option value="">Select District</option>
 			             	@foreach($district as $key => $val)
@@ -259,7 +247,7 @@
 			 	</div>
 
 
-			 	<div class="col-sm-2">
+			 	<div class="col-sm-1">
 			 		  <div class="form-group {{ $errors->has('citizenshipno') ? ' has-error' : '' }}">
 			              <label>Citizenship no.</label>
 			              <input type="text" name="citizenshipno" class="form-control" value="{{old('citizenshipno')}}"/>
@@ -268,14 +256,37 @@
 			 	</div>
 
 
-			 	<div class="col-sm-2">
+			 	<div class="col-sm-1">
 			 		  <div class="form-group {{ $errors->has('issuedate') ? ' has-error' : '' }}">
-			              <label>Citizenship Issued Date.</label>
+			              <label>Issued Date.</label>
 			              <input type="text" name="issuedate" id="issuedate" class="form-control" value="{{old('issuedate')}}"/>
 			              @if ($errors->has('issuedate'))<span class="help-block">{{ $errors->first('issuedate') }} </span>@endif
 			          </div>
 			 	</div>
 
+			 	<div class="col-sm-2">
+			 		  <div class="form-group {{ $errors->has('fathername') ? ' has-error' : '' }}">
+			              <label>Father's name</label>
+			              <input type="text" name="fathername" class="form-control" value="{{old('fathername')}}"/>
+			              @if ($errors->has('fathername'))<span class="help-block">{{ $errors->first('fathername') }} </span>@endif
+			          </div>
+			 	</div>
+
+			 	<div class="col-sm-2">
+			 		  <div class="form-group {{ $errors->has('grandfathername') ? ' has-error' : '' }}">
+			              <label>Grand Father's name</label>
+			              <input type="text" name="grandfathername" class="form-control" value="{{old('grandfathername')}}"/>
+			              @if ($errors->has('grandfathername'))<span class="help-block">{{ $errors->first('grandfathername') }} </span>@endif
+			          </div>
+			 	</div>
+
+			 	<div class="col-sm-2">
+			 		  <div class="form-group {{ $errors->has('husband_wife_name') ? ' has-error' : '' }}">
+			              <label>Husband/Wife's Name</label>
+			              <input type="text" name="husband_wife_name" class="form-control" value="{{old('husband_wife_name')}}"/>
+			              @if ($errors->has('husband_wife_name'))<span class="help-block">{{ $errors->first('husband_wife_name') }} </span>@endif
+			          </div>
+			 	</div>
 
 			  	<div class="col-sm-2">
 			 		  <div class="form-group {{ $errors->has('scancitizenshipcopy') ? ' has-error' : '' }}">
@@ -309,11 +320,19 @@
 
 				 	<div class="col-sm-2">
 				 		  <div class="form-group mybranch">
-				              <label>Select Branch</label>
+				              <label>Branch Office</label>
 				              <select class="form-control branch" name="customer[0][branch]">
 
 				              </select>
 				               @if ($errors->has('customer.0.branch'))<span class="help-block">{{ $errors->first('customer.0.branch') }} </span>@endif
+				          </div>
+				 	</div>
+
+				 	<div class="col-sm-2">
+				 		  <div class="form-group mybranch">
+				              <label>Account Name</label>
+				              <input type="text" name="customer[0][accname]" class="form-control">
+				               @if ($errors->has('customer.0.accname'))<span class="help-block">{{ $errors->first('customer.0.accname') }} </span>@endif
 				          </div>
 				 	</div>
 
@@ -327,7 +346,7 @@
 				          </div>
 				 	</div>
 
-				 	<div class="col-sm-6">&nbsp;</div>
+				 	<div class="col-sm-4">&nbsp;</div>
 				 	<div class="clearfix"></div>
 			</div>
 
@@ -359,7 +378,7 @@
 
 			  	<div class="col-sm-2">
 			 		  <div class="form-group {{ $errors->has('address') ? ' has-error' : '' }}">
-			              <label>Office Address</label>
+			              <label>Organisation Address</label>
 			              <input type="text" name="address" class="form-control" value="{{old('address')}}"/>
 			              @if ($errors->has('address'))<span class="help-block">{{ $errors->first('address') }} </span>@endif
 			          </div>
@@ -370,6 +389,22 @@
 			              <label>Contact No.</label>
 			              <input type="text" name="contact" class="form-control" value="{{old('contact')}}"/>
 			              @if ($errors->has('contact'))<span class="help-block">{{ $errors->first('contact') }} </span>@endif
+			          </div>
+			 	</div>
+
+			 	<div class="col-sm-2">
+			 		  <div class="form-group {{ $errors->has('pan') ? ' has-error' : '' }}">
+			              <label>PAN No.</label>
+			              <input type="text" name="pan" class="form-control" value="{{old('pan')}}"/>
+			              @if ($errors->has('pan'))<span class="help-block">{{ $errors->first('pan') }} </span>@endif
+			          </div>
+			 	</div>
+
+			 	<div class="col-sm-2">
+			 		  <div class="form-group {{ $errors->has('income') ? ' has-error' : '' }}">
+			              <label>Income (p.a)</label>
+			              <input type="text" name="income" class="form-control" value="{{old('income')}}"/>
+			              @if ($errors->has('income'))<span class="help-block">{{ $errors->first('income') }} </span>@endif
 			          </div>
 			 	</div>
 			</div>
@@ -426,6 +461,13 @@
 				              <select class="form-control branch" name="customer[`+newi+`][branch]">
 
 				              </select>
+				          </div>
+				 	</div>
+
+				 	<div class="col-sm-2">
+				 		  <div class="form-group mybranch">
+				              <label>Account Name</label>
+				              <input type="text" name="customer[`+newi+`][accname]" class="form-control">
 				          </div>
 				 	</div>
 

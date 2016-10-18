@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Http\Requests;
+
 use App\Address;
 use App\Bank;
 use App\Branch;
@@ -9,12 +9,12 @@ use App\Citizenship;
 use App\Customer;
 use App\CustomerBank;
 use App\District;
+use App\Http\Requests\CustomerRequest;
 use App\Occupation;
 use App\Role;
 use App\User;
 use App\Zone;
 use Illuminate\Http\Request;
-use App\Http\Requests\CustomerRequest;
 
 class CustomerController extends Controller
 {
@@ -84,7 +84,7 @@ class CustomerController extends Controller
         $destinationPath = 'uploads/' . date('his') . '-' . str_slug($request->name);
         $ext             = $request->file('profilephoto')->getClientOriginalExtension();
         if ($request->file('profilephoto')->isValid()) {
-            $fileName = str_random(4) . date('his').'.'.$ext;
+            $fileName = str_random(4) . date('his') . '.' . $ext;
             $request->file('profilephoto')->move($destinationPath, $fileName);
         }
 
@@ -92,12 +92,7 @@ class CustomerController extends Controller
             'user_id'     => $user->id,
             'gender'      => $request->gender,
             'dateofbirth' => $request->dateofbirth,
-            'fathername'  => $request->fathername,
-            'mothername'  => $request->mothername,
-            'gfathername' => $request->grandfathername,
-            'gmothername' => $request->grandmothername,
             'mobile'      => $request->mobile,
-            'pan'         => $request->pan,
             'photo'       => $fileName,
             'status'      => 1,
         ]);
@@ -120,12 +115,16 @@ class CustomerController extends Controller
             'district_id'       => $request->district,
             'vdc_municipality'  => $request->vdc_municipality,
             'ward'              => $request->ward,
-            'street_address'    => $request->street,
+            'tole'              => $request->tole,
+            'tel'               => $request->tel,
+            'houseno'           => $request->houseno,
             'tzone_id'          => $request->tzone,
             'tdistrict_id'      => $request->tdistrict,
             'tvdc_municipality' => $request->tvdc_municipality,
             'tward'             => $request->tward,
-            'tstreet_address'   => $request->tstreet,
+            'ttole'             => $request->ttole,
+            'thouseno'          => $request->thouseno,
+            'ttel'              => $request->ttel
         ]);
     }
 
@@ -133,15 +132,18 @@ class CustomerController extends Controller
     {
         $ext = $request->file('scancitizenshipcopy')->getClientOriginalExtension();
         if ($request->file('scancitizenshipcopy')->isValid()) {
-            $fileName = str_random(4) . date('his').'.'.$ext;
+            $fileName = str_random(4) . date('his') . '.' . $ext;
             $request->file('scancitizenshipcopy')->move($destinationPath, $fileName);
         }
         $citizenship = Citizenship::create([
-            'customer_id'   => $customer->id,
-            'citizenshipno' => $request->citizenshipno,
-            'issuedate'     => $request->issuedate,
-            'issuedistrict' => $request->issuedistrict,
-            'filename'      => $fileName,
+            'customer_id'       => $customer->id,
+            'citizenshipno'     => $request->citizenshipno,
+            'issuedate'         => $request->issuedate,
+            'issuedistrict'     => $request->issuedistrict,
+            'fathername'        => $request->fathername,
+            'gfathername'       => $request->grandfathername,
+            'husband_wife_name' => $request->husband_wife_name,
+            'filename'          => $fileName,
         ]);
     }
 
@@ -153,6 +155,7 @@ class CustomerController extends Controller
             $banks->bank_id     = $val['bank'];
             $banks->branch_id   = $val['branch'];
             $banks->accountno   = $val['accountno'];
+            $banks->accountname = $val['accname'];
 
             $banks->save();
         }
@@ -167,6 +170,8 @@ class CustomerController extends Controller
             'designation' => $request->designation,
             'name'        => $request->organisation,
             'address'     => $request->address,
+            'pan'         => $request->pan,
+            'income'      => $request->income,
             'contact'     => $request->contact,
 
         ]);
