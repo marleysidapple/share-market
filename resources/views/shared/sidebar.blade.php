@@ -28,11 +28,34 @@
         </li>
 
 
+<<<<<<< HEAD
 
         @if(Auth::user()->roles()->first()->name == 'superadmin' || Auth::user()->can('listbank'))
             <li class="{{(\Request::route()->getName() == 'listbank') ? 'active' : ''}}">
                 <a href="{{url('home/bank')}}"><span class="fa fa-building"></span> <span class="xn-text">Bank Management</span></a>
             </li>
+=======
+        <li class="{{(\Request::route()->getName() == 'broker') ? 'active' : ''}}">
+            <a href="{{url('broker')}}"><span class="fa fa-desktop"></span> <span class="xn-text">Broker Management</span></a>
+        </li>
+
+        <li class="{{(\Request::route()->getName() == 'rta') ? 'active' : ''}}">
+            <a href="{{url('rta')}}"><span class="fa fa-desktop"></span> <span class="xn-text">RTA Management</span></a>
+        </li>
+
+        <li class="{{(\Request::route()->getName() == 'dp') ? 'active' : ''}}">
+            <a href="{{url('dp')}}"><span class="fa fa-desktop"></span> <span class="xn-text">DP Management</span></a>
+        </li>
+
+        <li class="{{(\Request::route()->getName() == 'company') ? 'active' : ''}}">
+            <a href="{{url('company')}}"><span class="fa fa-desktop"></span> <span class="xn-text">Company Management</span></a>
+        </li>
+
+        @if(Auth::user()->can('usergroup'))
+        <li class="{{(\Request::route()->getName() == 'usergroup' || \Request::route()->getName() == 'addusergroup') ? 'active' : ''}}">
+           <a href="{{url('home/usergroup')}}"><span class="fa fa-users"></span>Manage User Groups</a>
+        </li>
+>>>>>>> b304fde90cbd83036a736ac5f6d3abc42112806c
         @endif
 
         @if(Auth::user()->roles()->first()->name == 'superadmin' || Auth::user()->can('usergroup'))

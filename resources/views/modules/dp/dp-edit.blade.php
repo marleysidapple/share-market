@@ -6,11 +6,26 @@
   {!!csrf_field()!!}
   <div class="panel panel-default">
       <div class="panel-body">
-          <h3>Edit Branch Details</h3>
-          {!! Form::open(array('url'=>'home/branch/edit', 'role'=>'form', 'method'=>'POST')) !!}
+          <h3>Edit Depository Participants(DP) Details</h3>
+          {!! Form::open(array('url'=>'dp/edit', 'role'=>'form', 'method'=>'POST')) !!}
 
-               <input type="hidden" name="id" value="{{$pageData->id}}">
-               <input type="hidden" name="bankId" value="{{$pageData->bank_id}}">
+              <input type="hidden" name="id" value="{{$pageData->id}}">
+              <div class="form-group {{ $errors->has('name') ? ' has-error' : '' }}">
+                  <label>Name</label>
+                  <input type="text" name="name" class="form-control" value="{{$pageData->name}}"/>
+                  @if ($errors->has('name'))
+                      <span class="help-block">{{ $errors->first('name') }} </span>
+                   @endif
+              </div>
+
+              <div class="form-group {{ $errors->has('dp_id') ? ' has-error' : '' }}">
+                  <label>DP Code</label>
+                  <input type="text" name="dp_id" class="form-control" value="{{$pageData->dp_id}}"/>
+                  @if ($errors->has('dp_id'))
+                      <span class="help-block">{{ $errors->first('dp_id') }} </span>
+                   @endif
+              </div>
+
               <div class="form-group {{ $errors->has('address') ? ' has-error' : '' }}">
                   <label>Address</label>
                   <input type="text" name="address" class="form-control" value="{{$pageData->address}}"/>
@@ -27,26 +42,9 @@
                    @endif
               </div>
 
-              <div class="form-group {{ $errors->has('contact_person') ? ' has-error' : '' }}">
-                  <label>Contact Person</label>
-                  <input type="text" name="contact_person" class="form-control" value="{{$pageData->contact_person}}"/>
-                  @if ($errors->has('contact_person'))
-                      <span class="help-block">{{ $errors->first('contact_person') }} </span>
-                   @endif
-              </div>
-
-              <div class="form-group {{ $errors->has('contact_person_no') ? ' has-error' : '' }}">
-                  <label>Contact Person Number</label>
-                  <input type="text" name="contact_person_no" class="form-control" value="{{$pageData->contact_person_no}}"/>
-                  @if ($errors->has('contact_person_no'))
-                      <span class="help-block">{{ $errors->first('contact_person_no') }} </span>
-                   @endif
-              </div>
-
               <div class="button pull-left">
                   <button type="submit" class="btn btn-primary btn-sm">Update</button>
-                  <a href="{{URL::to('home/bank')}}" class="btn btn-default btn-sm">Cancel</a>
-
+                  <a href="{{URL::to('dp')}}" class="btn btn-default btn-sm">Cancel</a>
               </div>
           {!! Form::close() !!}
       </div>
