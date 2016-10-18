@@ -93,7 +93,7 @@ class CustomerController extends Controller
             'gender'      => $request->gender,
             'dateofbirth' => $request->dateofbirth,
             'mobile'      => $request->mobile,
-            'photo'       => $fileName,
+            'photo'       => $destinationPath . '/' . $fileName,
             'status'      => 1,
         ]);
 
@@ -143,7 +143,7 @@ class CustomerController extends Controller
             'fathername'        => $request->fathername,
             'gfathername'       => $request->grandfathername,
             'husband_wife_name' => $request->husband_wife_name,
-            'filename'          => $fileName,
+            'filename'          => $destinationPath . '/' . $fileName,
         ]);
     }
 
@@ -183,8 +183,9 @@ class CustomerController extends Controller
      */
     public function show($id)
     {
+        $bank = Bank::all();
         $customer = Customer::find($id);
-        return view('modules.customer.detail', compact('customer'));
+        return view('modules.customer.detail', compact('customer', 'bank'));
     }
 
     /*
@@ -205,6 +206,18 @@ class CustomerController extends Controller
     {
         $branch = Branch::where('bank_id', $request->bank)->get();
         return \Response::json($branch);
+    }
+
+
+
+    /*
+    * Getting personal detail
+    *
+    */
+    public function personalDetail($id)
+    {
+        $customer = Customer::find($id);
+        return view('modules.customer.personaldetail', compact('customer'));
     }
 
 }

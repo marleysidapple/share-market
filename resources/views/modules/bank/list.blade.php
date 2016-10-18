@@ -7,7 +7,9 @@
   
 <div class="panel panel-default">
     <div class="panel-heading">
+
      <h3 class="panel-title">Bank Management <a href="{{URL::to('home/bank/add')}}" class="btn btn-success btn-sm">Add New Bank</a></h3>
+
 
     </div>
     <div class="panel-body">

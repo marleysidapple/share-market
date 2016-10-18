@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBankBranchTable extends Migration
+class CreateRtaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,18 +12,15 @@ class CreateBankBranchTable extends Migration
      */
     public function up()
     {
-        Schema::create('bank_branch', function (Blueprint $table) {
+        Schema::create('rta', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('bank_id')->unsigned();
-            $table->string('address');
+            $table->string('name');
+            $table->string('email');
             $table->string('phone');
             $table->string('contact_person');
             $table->string('contact_person_no');
-
+            $table->string('remarks');
             $table->timestamps();
-
-            $table->foreign('bank_id')->references('id')->on('bank')
-                ->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
@@ -34,6 +31,6 @@ class CreateBankBranchTable extends Migration
      */
     public function down()
     {
-        Schema::drop('bank_branch');
+        Schema::drop('rta');
     }
 }
