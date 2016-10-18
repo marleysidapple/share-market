@@ -17,12 +17,7 @@ class CreateCustomersTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->string('gender');
             $table->string('dateofbirth');
-            $table->string('fathername');
-            $table->string('mothername');
-            $table->string('gfathername');
-            $table->string('gmothername');
             $table->string('mobile');
-            $table->string('pan');
             $table->string('photo');
             $table->tinyInteger('status');
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade');

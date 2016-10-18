@@ -17,6 +17,9 @@ class CreateCustomerCitizenshipTable extends Migration
             $table->integer('customer_id')->unsigned();
             $table->string('citizenshipno');
             $table->string('issuedate');
+            $table->string('fathername');
+            $table->string('gfathername');
+            $table->string('husband_wife_name');
             $table->integer('issuedistrict')->unsigned();
             $table->string('filename');
             $table->timestamps();

@@ -8,5 +8,5 @@ class Address extends Model
 {
     protected $table = 'customer_address';
 
-    protected $fillable = array('customer_id', 'zone_id', 'district_id', 'vdc_municipality', 'ward', 'street_address', 'tzone_id', 'tdistrict_id', 'tvdc_municipality', 'tward', 'tstreet_address');
+    protected $fillable = array('customer_id', 'zone_id', 'district_id', 'vdc_municipality', 'ward', 'houseno', 'tel', 'tzone_id', 'tdistrict_id', 'tvdc_municipality', 'tward', 'thouseno', 'ttole', 'ttel');
 }
