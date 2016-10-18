@@ -32,12 +32,14 @@ class CustomerRequest extends Request
             'grandfathername'      => 'required',
             'mobile'               => 'required',
             'profilephoto'         => 'required|mimes:jpg,jpeg,png',
+            
             'zone'                 => 'required',
             'district'             => 'required',
             'vdc_municipality'     => 'required',
             'tzone'                => 'required',
             'tdistrict'            => 'required',
             'tvdc_municipality'    => 'required',
+            
             'issuedistrict'        => 'required',
             'issuedate'            => 'required',
             'scancitizenshipcopy'  => 'required|mimes:jpg,jpeg,png',

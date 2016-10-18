@@ -223,6 +223,13 @@ Route::group(['middleware' => 'auth'], function () {
          */
         Route::post('customer/branch', 'CustomerController@branches');
 
+
+        /*
+        * ajax post route
+        * getting dmat registrar
+        */
+        Route::post('customer/registrar', 'CustomerController@registrar');
+
         /*
          * personal detail
          * get route

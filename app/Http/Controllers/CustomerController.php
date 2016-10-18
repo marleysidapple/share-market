@@ -5,13 +5,17 @@ namespace App\Http\Controllers;
 use App\Address;
 use App\Bank;
 use App\Branch;
+use App\Broker;
 use App\Citizenship;
 use App\Customer;
 use App\CustomerBank;
+use App\Customerdmat;
 use App\District;
+use App\Dptable;
 use App\Http\Requests\CustomerRequest;
 use App\Occupation;
 use App\Role;
+use App\Rta;
 use App\User;
 use App\Zone;
 use Illuminate\Http\Request;
@@ -53,7 +57,6 @@ class CustomerController extends Controller
      */
     public function store(CustomerRequest $request)
     {
-
         /*
          *
          * things to do
@@ -100,6 +103,7 @@ class CustomerController extends Controller
         $this->storeAddressDetail($customer, $request);
         $this->storeCitizenshipDetail($customer, $destinationPath, $request);
         $this->storeOccupationDetail($customer, $request);
+        $this->storeDmatDetail($customer, $request);
         $this->storeBankDetail($customer, $request);
 
         return redirect()->back()->with('success', 'New Customer added successfully');
@@ -124,7 +128,7 @@ class CustomerController extends Controller
             'tward'             => $request->tward,
             'ttole'             => $request->ttole,
             'thouseno'          => $request->thouseno,
-            'ttel'              => $request->ttel
+            'ttel'              => $request->ttel,
         ]);
     }
 
@@ -177,13 +181,25 @@ class CustomerController extends Controller
         ]);
     }
 
+    public function storeDmatDetail($customer, $request)
+    {
+        foreach ($request->dmat as $key => $val) {
+            $dmat                     = new Customerdmat;
+            $dmat->customer_id        = $customer->id;
+            $dmat->registrar_type     = $val['registrar'];
+            $dmat->registrar_agent_id = $val['regname'];
+            $dmat->accountnumber      = $val['accno'];
+            $dmat->save();
+        }
+    }
+
     /*
      * Displaying the detail of the customer
      * render view and pass data
      */
     public function show($id)
     {
-        $bank = Bank::all();
+        $bank     = Bank::all();
         $customer = Customer::find($id);
         return view('modules.customer.detail', compact('customer', 'bank'));
     }
@@ -208,12 +224,39 @@ class CustomerController extends Controller
         return \Response::json($branch);
     }
 
+    /*
+     *
+     * sending data back for the ajax request
+     * finding appropriate registrar
+     */
+    public function registrar(Request $request)
+    {
+        $reg = $request->registrar;
+        switch ($reg) {
+            case 'broker':
+                $rDetail = Broker::all();
+                break;
 
+            case 'dp':
+                $rDetail = Dptable::all();
+                break;
+
+            case 'rta':
+                $rDetail = Rta::all();
+                break;
+
+            default:
+                echo "none";
+                break;
+        }
+
+        return \Response::json($rDetail);
+    }
 
     /*
-    * Getting personal detail
-    *
-    */
+     * Getting personal detail
+     *
+     */
     public function personalDetail($id)
     {
         $customer = Customer::find($id);

@@ -409,6 +409,54 @@
 			 	</div>
 			</div>
 
+
+
+		<!-- DMAT Detail-->
+		 <br/>
+		 <h4>DMAT Account Information</h4><hr/>
+			<div class="row personal">
+				<span class="btn btn-primary btn-sm newreg">Add New Row</span>
+				 <div class="registrardetail">
+						<div class="col-sm-2">
+						 	<div class="form-group">
+						              <label>Select DMAT Registrar</label>
+						              <select class="form-control registrar" name="dmat[0][registrar]">
+						                <option value="">Select DMAT Registrar</option>
+						               	<option value="broker">Broker</option>
+						               	<option value="dp">DP</option>
+						               	<option value="rta">RTA</option>
+						              </select>
+						               @if ($errors->has('dmat.0.registrar'))<span class="help-block">{{ $errors->first('dmat.0.registrar') }} </span>@endif
+						    </div>
+						</div>
+
+					 	<div class="col-sm-2">
+						 		  <div class="form-group"> 
+						 		  	  <label>Name</label>
+						              <select class="form-control regname" name="dmat[0][regname]">
+						              
+						              </select>
+						               @if ($errors->has('dmat.0.regname'))<span class="help-block">{{ $errors->first('dmat.0.regname') }} </span>@endif
+						          </div>
+						</div>
+
+
+					  
+					 	<div class="col-sm-2">
+					 		  <div class="form-group {{ $errors->has('accno') ? ' has-error' : '' }}">
+					              <label>Account No.</label>
+					              <input type="text" name="dmat[0][accno]" class="form-control" value="{{old('accno')}}"/>
+					               @if ($errors->has('dmat.0.accno'))<span class="help-block">{{ $errors->first('dmat.0.accno') }} </span>@endif
+					          </div>
+					 	</div>
+					 	<div class="col-sm-6">&nbsp;</div>
+						<div class="clearfix"></div>
+				</div>
+			</div>
+
+			<div class="row addede"></div>
+		<!--End of DMAT Detail-->
+
 		 <!--login details-->
 		 <br/>
 		 <h4 style="margin-top:5px;">Login Credentials</h4>
@@ -528,7 +576,10 @@
 	});
 
 
-	$(document.body).off('change').on('change', 'select.bank', function(){
+	
+
+
+	$(document).on('change', '.bank', function(){
 		var $this = $(this);
 		var bank = $(this).find('option:selected').val();
 		$.ajax({
@@ -548,6 +599,74 @@
 		});
 		
 	});
+
+
+
+	 var i = 1;
+	$('.newreg').off('click').on('click', function(e){
+		var newe = i++;
+        var htmlbuilde = ` <div class="registrardetail">
+						<div class="col-sm-2">
+						 	<div class="form-group">
+						              <label>Select DMAT Registrar</label>
+						              <select class="form-control registrar" name="dmat[`+newe+`][registrar]">
+						                <option value="">Select DMAT Registrar</option>
+						               	<option value="broker">Broker</option>
+						               	<option value="dp">DP</option>
+						               	<option value="rta">RTA</option>
+						              </select>
+						    </div>
+						</div>
+
+					 	<div class="col-sm-2">
+						 		  <div class="form-group"> 
+						 		  	  <label>Name</label>
+						              <select class="form-control regname" name="dmat[`+newe+`][regname]">
+						              </select>
+						          </div>
+						</div>
+
+					 	<div class="col-sm-2">
+					 		  <div class="form-group {{ $errors->has('accno') ? ' has-error' : '' }}">
+					              <label>Account No.</label>
+					              <input type="text" name="dmat[`+newe+`][accno]" class="form-control" value="{{old('accno')}}"/>
+					          </div>
+					 	</div>
+				 	<div class="col-sm-2" style="margin-top:25px;"><span class="btn btn-danger btn-sm rmreg">Remove Row</span></div>
+				 	<div class="clearfix"></div>
+				 	</div>`;
+        $('.addede').append(htmlbuilde);
+	});
+
+
+
+	$('.addede').off('click').on('click', '.rmreg', function(){
+		$(this).parent().parent().remove();
+	});
+
+
+	$(document).on('change', '.registrar', function(){
+		var $this = $(this);
+		var registrar = $(this).closest('.registrardetail').find('select.registrar option:selected').val();
+		$.ajax({
+			type:'post',
+			url: '{{url("home/customer/registrar")}}',
+			data: {registrar: registrar, _token: $('input[name=_token]').val()},
+			success: function(data){
+				$this.closest('.registrardetail').find('.regname').html('');
+				$.each(data, function(key, value){
+					var tname = "<option value='"+value.id+"'>"+value.name+"</option>";
+					//$('.bankdetail').('select.branch').append(tbank);  
+					//$('select.branch').append(tbank);  
+					$this.closest('.registrardetail').find('.regname').append(tname);
+				});
+				
+			}
+		});
+		
+	});
+
+
 
 
   $(function(){
