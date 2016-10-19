@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Permission;
 use App\Role;
+use App\Username;
 use Illuminate\Http\Request;
 
 class dashboardController extends Controller
@@ -86,5 +87,36 @@ class dashboardController extends Controller
         } else {
             $perm->find($request->permission)->perms()->detach();
         }
+    }
+
+    /*
+     * Rendering username setting view
+     *
+     */
+    public function usernameDefiner()
+    {
+        $user = Username::first();
+        return view('modules.username.show', compact('user'));
+    }
+
+    /*
+     * storing username
+     * post
+     */
+    public function storeUsername(Request $request, $id = null)
+    {
+        if (!is_null($id)) {
+            $username         = Username::find($id);
+            $username->prefix = $request->prefix;
+            $username->year   = $request->year;
+            $username->save();
+        } else {
+            $username = Username::create([
+                'prefix' => $request->prefix,
+                'year'   => $request->year,
+            ]);
+        }
+
+        return redirect()->back()->with('success', 'Username setting added/updated successfully');
     }
 }
