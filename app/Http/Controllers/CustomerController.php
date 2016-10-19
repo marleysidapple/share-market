@@ -51,7 +51,7 @@ class CustomerController extends Controller
 
         $user = User::OrderBy('id', 'desc')->select('username')->first();
 
-        if ($user != "") {
+        if ($user->username != "") {
             $year    = date('Y');
             $result  = explode($year, $user->username);
             $counter = $result['1'];
