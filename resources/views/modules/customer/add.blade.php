@@ -49,9 +49,9 @@
 			              <label>Gender</label>
 			              <select class="form-control select" name="gender">
 			                <option value="">Select Gender</option>
-			              	<option value="male">Male</option>
-			              	<option value="female">Female</option>
-			              	<option value="Other">other</option>
+			              	<option value="male" {{old('gender') == 'male' ? 'selected' : ''}}>Male</option>
+			              	<option value="female" {{old('gender') == 'female' ? 'selected' : ''}}>Female</option>
+			              	<option value="other" {{old('gender') == 'other' ? 'selected' : ''}}>other</option>
 			              </select>
 			              @if ($errors->has('gender'))<span class="help-block">{{ $errors->first('gender') }} </span>@endif
 			          </div>
@@ -97,7 +97,7 @@
 			             <select class="form-control zone" name="zone">
 			             	<option value="">Select zone</option>
 			             	@foreach($zone as $key => $val)
-			             		<option value="{{$val->id}}">{{$val->name}}</option>
+			             		<option value="{{$val->id}}" {{old('zone') == $val->id ? 'selected' : ''}}>{{$val->name}}</option>
 			             	@endforeach
 			             </select>
 			              @if ($errors->has('zone'))<span class="help-block">{{ $errors->first('zone') }} </span>@endif
@@ -168,7 +168,7 @@
 			             <select class="form-control tzone" name="tzone">
 			             	<option value="">Select zone</option>
 			             	@foreach($zone as $key => $val)
-			             		<option value="{{$val->id}}">{{$val->name}}</option>
+			             		<option value="{{$val->id}}" {{old('tzone') == $val->id ? 'selected' : ''}}>{{$val->name}}</option>
 			             	@endforeach
 			             </select>
 			              @if ($errors->has('tzone'))<span class="help-block">{{ $errors->first('tzone') }} </span>@endif
@@ -486,6 +486,12 @@
 
 @section('javascript')
 <script type="text/javascript">
+
+   $().ready(function() {
+      $(".zone").trigger('change');
+      $(".tzone").trigger('change');      
+    });
+
     var i = 1;
 	$('.newrow').off('click').on('click', function(e){
 		var newi = i++;
@@ -549,12 +555,18 @@
 			success: function(data){
 				$('select.district').html('');
 				$.each(data, function(key, value){
-					var tapp = "<option value='"+value.id+"'>"+value.name+"</option>";
+					var tapp = `<option value='`+value.id+`'>`+value.name+`</option>`;
 					$('select.district').append(tapp);  
 				});
 				
 			}
 		});
+	});
+
+
+
+	$('select.district').on('change', function(){
+			localStorage.setItem('district', $('select.district option:selected').val());
 	});
 
 	$('select.tzone').off('change').on('change', function(){
