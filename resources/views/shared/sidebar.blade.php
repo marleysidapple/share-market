@@ -79,6 +79,13 @@
             </li>
         @endif
 
+        @if(Auth::user()->roles()->first()->name == 'superadmin' || Auth::user()->can('usernamesetting'))
+            <li class="{{(\Request::route()->getName() == 'usernamesetting')   ? 'active' : ''}}">
+                <a href="{{url('home/usernamesetting')}}"><span class="fa fa-cogs"></span>Username Setting</a>
+            </li>
+        @endif
+
+
 
         @if(Auth::user()->roles()->first()->name == 'superadmin' || Auth::user()->can('assignpermission'))
             <li class="xn-openable {{(\Request::route()->getName() == 'assignpermission') ? 'active' : ''}}">

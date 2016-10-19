@@ -102,6 +102,29 @@ Route::group(['middleware' => 'auth'], function () {
          */
         Route::post('user/attachpermission', 'dashboardController@attachPermission');
 
+
+
+
+
+         /*
+         *---------------------------------------------------------------------------------------------
+         * START OF USERNAME SETTING ROUTES
+         *---------------------------------------------------------------------------------------------
+         */
+
+         /*
+         * setting username
+         * get route
+         */
+         Route::get('usernamesetting/{id?}', 'dashboardController@usernameDefiner')->name('usernamesetting');
+
+
+         /*
+         * saving username
+         * post route
+         */
+         Route::post('username/store/{id?}', 'dashboardController@storeUsername');
+
         /*
          *---------------------------------------------------------------------------------------------
          * START OF BANK ROUTES
@@ -222,6 +245,13 @@ Route::group(['middleware' => 'auth'], function () {
          * getting branches of bank
          */
         Route::post('customer/branch', 'CustomerController@branches');
+
+
+        /*
+        * ajax post route
+        * getting dmat registrar
+        */
+        Route::post('customer/registrar', 'CustomerController@registrar');
 
         /*
          * personal detail
