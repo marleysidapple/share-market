@@ -10,6 +10,7 @@
      <h3 class="panel-title">
         <a href="{{URL::to('home/bank')}}">Bank Management</a> -> Branch List <a href="{{URL::to('home/branch/'.$bankId.'/add')}}" class="btn btn-success btn-sm">Add New Branch</a></h3>
 
+
     </div>
     <div class="panel-body">
      <div class="table-responsive">

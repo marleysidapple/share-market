@@ -46,6 +46,7 @@
               <div class="button pull-left">
                   <button type="submit" class="btn btn-primary btn-sm">Update</button>
                   <a href="{{URL::to('home/bank')}}" class="btn btn-default btn-sm">Cancel</a>
+
               </div>
           {!! Form::close() !!}
       </div>

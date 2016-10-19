@@ -144,100 +144,299 @@ Route::group(['middleware' => 'auth'], function () {
          */
         Route::get('bank/delete/{id}', 'BankController@deleteData')->name('deletebank');
 
-        /* 
-        *------------------------------------------------------------------------------------------
-        * START OF BRANCH ROUTES
-        *------------------------------------------------------------------------------------------
-        */
+        /*
+         *------------------------------------------------------------------------------------------
+         * START OF BRANCH ROUTES
+         *------------------------------------------------------------------------------------------
+         */
 
         /*
-        * listing the branch of bank
-        * get route
-        */
+         * listing the branch of bank
+         * get route
+         */
         Route::get('branch/{id}', 'BranchController@index')->name('listbankbranch');
 
         /*
-        * adding the detail of branch
-        * get route
-        */
+         * adding the detail of branch
+         * get route
+         */
         Route::get('branch/{id}/add', 'BranchController@add')->name('addbankbranch');
 
         /*
-        * saving detail of the branch
-        * post route
-        */
+         * saving detail of the branch
+         * post route
+         */
         Route::post('branch/add', 'BranchController@store')->name('savebankbranch');
 
         /*
-        * editing detail of the branch
-        * get route
-        */
+         * editing detail of the branch
+         * get route
+         */
         Route::get('branch/edit/{bid}', 'BranchController@edit')->name('editbankbranch');
 
         /*
-        * updating the branch detail
-        * post route
-        */
+         * updating the branch detail
+         * post route
+         */
         Route::post('branch/edit', 'BranchController@update')->name('updatebankbranch');
 
         /*
-        * deleting branch detail
-        * get route
-        */
+         * deleting branch detail
+         * get route
+         */
         Route::get('branch/{id}/delete/{bid}', 'BranchController@deleteData')->name('deletebankbranch');
 
-
-        /* 
-        *------------------------------------------------------------------------------------------
-        * START OF CUSTOMER ROUTES
-        *------------------------------------------------------------------------------------------
-        */
+        /*
+         *------------------------------------------------------------------------------------------
+         * START OF CUSTOMER ROUTES
+         *------------------------------------------------------------------------------------------
+         */
         Route::get('customer/list', 'CustomerController@index')->name('customerlist');
 
-
         /*
-        * adding new customer
-        * get route
-        */
+         * adding new customer
+         * get route
+         */
         Route::get('customer/add', 'CustomerController@add')->name('addcustomer');
 
-
         /*
-        * saving new customer
-        * post route
-        */
+         * saving new customer
+         * post route
+         */
         Route::post('customer/store', 'CustomerController@store')->name('savecustomer');
 
-
         /*
-        * Displaying the details of customer
-        * get route
-        */
+         * Displaying the details of customer
+         * get route
+         */
         Route::get('customer/{id}/detail', 'CustomerController@show')->name('displaycustomerdetail');
 
+        /*
+         * ajax route
+         * getting the districts from zone
+         */
+        Route::post('customer/district', 'CustomerController@district');
 
         /*
-        * updating the login information of user
-        * post route
-        */
-        Route::post('customer/updatelogininfo/{id}', 'CustomerController@updateLoginInfo')->name('updatelogininformation');
-
-
-        /*
-        * updating customer detail
-        * post route
-        */
-        Route::post('customer/update/{id}', 'CustomerController@updateCustomerDetail')->name('updatecustomerdetail');
-
+         * ajax route
+         * getting branches of bank
+         */
+        Route::post('customer/branch', 'CustomerController@branches');
 
         /*
-        * adding new bank
-        * post route
-        */
-        Route::post('customer/addbank/{id}', 'CustomerController@updateBank')->name('updatebankdetail');
-
+         * personal detail
+         * get route
+         */
+        Route::get('customer/{id}/personaldetail', 'CustomerController@personalDetail');
 
     });
+
+    /*
+     *----------------------------------------------------------------------------------
+     * broker routes
+     *----------------------------------------------------------------------------------
+     */
+
+    /*
+     * list broker
+     * get route
+     */
+    Route::get('broker', 'BrokerController@index')->name('listbroker');
+
+    /*
+     * add broker
+     * get route
+     */
+    Route::get('broker/add', 'BrokerController@add')->name('addbroker');
+
+    /*
+     * save broker
+     * post route
+     */
+    Route::post('broker/add', 'BrokerController@store');
+
+    /*
+     * edit broker
+     * get route
+     */
+    Route::get('broker/edit/{id}', 'BrokerController@edit')->name('editbroker');
+
+    /*
+     * update broker
+     * post route
+     */
+    Route::post('broker/edit', 'BrokerController@update');
+
+    /*
+     * delete broker
+     * get route
+     */
+    Route::get('broker/delete/{id}', 'BrokerController@deleteData')->name('deletebroker');
+
+    /*
+     * --------------------------------------------------------------------------------------
+     * RTA ROUTES
+     *----------------------------------------------------------------------------------------
+     *
+     */
+
+    /*
+     * list rta
+     * get route
+     */
+    Route::get('rta', 'RtaController@index')->name('listrta');
+
+    /*
+     * add rta
+     * get route
+     */
+    Route::get('rta/add', 'RtaController@add')->name('addrta');
+
+    /*
+     * save rta
+     * post route
+     */
+    Route::post('rta/add', 'RtaController@store');
+
+    /*
+     * edit rta
+     * get route
+     */
+    Route::get('rta/edit/{id}', 'RtaController@edit')->name('editrta');
+
+    /*
+     * update rta
+     * post route
+     */
+    Route::post('rta/edit', 'RtaController@update');
+
+    /*
+     * delete rta
+     * get route
+     */
+    Route::get('rta/delete/{id}', 'RtaController@deleteData')->name('deleterta');
+
+    /*
+     *---------------------------------------------------------------------------------------------
+     * dp routes
+     *---------------------------------------------------------------------------------------------
+     *
+     */
+
+    /*
+     * list dp
+     * get route
+     */
+    Route::get('dp', 'DpController@index')->name('listdp');
+
+    /*
+     * add dp
+     * get route
+     */
+    Route::get('dp/add', 'DpController@add')->name('adddp');
+
+    /*
+     * save dp
+     * post route
+     */
+    Route::post('dp/add', 'DpController@store');
+
+    /*
+     * edit dp
+     * get route
+     */
+    Route::get('dp/edit/{id}', 'DpController@edit')->name('editdp');
+
+    /*
+     * update dp
+     * post route
+     */
+    Route::post('dp/edit', 'DpController@update');
+
+    /*
+     * delete dp
+     * get route
+     */
+    Route::get('dp/delete/{id}', 'DpController@deleteData')->name('deletedp');
+
+    /*
+     *------------------------------------------------------------------------------------------------------
+     * COMPANY AND COMPANY TYPE ROUTES
+     *------------------------------------------------------------------------------------------------------
+     *
+     */
+
+    /*
+     * list company
+     * get route
+     */
+    Route::get('company', 'CompanyController@index')->name('listcompany');
+
+    /*
+     * add company
+     * get route
+     */
+    Route::get('company/add', 'CompanyController@add')->name('addcompany');
+
+    /*
+     * save company
+     * post route
+     */
+    Route::post('company/add', 'CompanyController@store');
+
+    /*
+     * edit company
+     * get route
+     */
+    Route::get('company/edit/{id}', 'CompanyController@edit')->name('editcompany');
+
+    /*
+     * update company
+     * post route
+     */
+    Route::post('company/edit', 'CompanyController@update');
+
+    /*
+     * delete company
+     * get route
+     */
+    Route::get('company/delete/{id}', 'CompanyController@deleteData')->name('deletecompany');
+
+    /*
+     * list company-type
+     * get route
+     */
+    Route::get('company-type', 'CompanyTypeController@index')->name('listcompany-type');
+
+    /*
+     * add company-type
+     * get route
+     */
+    Route::get('company-type/add', 'CompanyTypeController@add')->name('addcompany-type');
+
+    /*
+     * save company-type
+     * post route
+     */
+    Route::post('company-type/add', 'CompanyTypeController@store');
+
+    /*
+     * edit company-type
+     * get route
+     */
+    Route::get('company-type/edit/{id}', 'CompanyTypeController@edit')->name('editcompany-type');
+
+    /*
+     * update company-type
+     * post route
+     */
+    Route::post('company-type/edit', 'CompanyTypeController@update');
+
+    /*
+     * delete company-type
+     * get route
+     */
+    Route::get('company-type/delete/{id}', 'CompanyTypeController@deleteData')->name('deletecompany-type');
 
 });
 

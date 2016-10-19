@@ -2,16 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests;
-use Illuminate\Http\Request;
+use App\Address;
 use App\Bank;
+use App\Branch;
+use App\Citizenship;
 use App\Customer;
-use App\Http\Requests\CustomerRequest;
-use App\Http\Requests\UpdateLoginInfoRequest;
-use App\Http\Requests\UpdateCustomerDetailRequest;
-use App\User;
 use App\CustomerBank;
+use App\District;
+use App\Http\Requests\CustomerRequest;
+use App\Occupation;
 use App\Role;
+use App\User;
+use App\Zone;
+use Illuminate\Http\Request;
 
 class CustomerController extends Controller
 {
@@ -27,7 +30,7 @@ class CustomerController extends Controller
      */
     public function index()
     {
-    	$customer = Customer::all();
+        $customer = Customer::all();
         return view('modules.customer.list', compact('customer'));
     }
 
@@ -38,8 +41,10 @@ class CustomerController extends Controller
     public function add($username = null)
     {
         $bank     = Bank::all();
+        $zone     = Zone::all();
+        $district = District::OrderBy('name', 'asc')->get();
         $username = "share" . date('his') . str_random(3);
-        return view('modules.customer.add', compact(array('bank', 'username')));
+        return view('modules.customer.add', compact(array('bank', 'username', 'zone', 'district')));
     }
 
     /*
@@ -48,6 +53,7 @@ class CustomerController extends Controller
      */
     public function store(CustomerRequest $request)
     {
+
         /*
          *
          * things to do
@@ -74,51 +80,107 @@ class CustomerController extends Controller
 
     public function storeCustomerDetail($user, $request)
     {
+
+        $destinationPath = 'uploads/' . date('his') . '-' . str_slug($request->name);
+        $ext             = $request->file('profilephoto')->getClientOriginalExtension();
+        if ($request->file('profilephoto')->isValid()) {
+            $fileName = str_random(4) . date('his') . '.' . $ext;
+            $request->file('profilephoto')->move($destinationPath, $fileName);
+        }
+
         $customer = Customer::create([
-            'user_id'          => $user->id,
-            'gender'           => $request->gender,
-            'dateofbirth'      => $request->dateofbirth,
-            'fathername'       => $request->fathername,
-            'mothername'       => $request->mothername,
-            'gfathername'      => $request->grandfathername,
-            'gmothername'      => $request->grandmothername,
-            'permanentaddress' => $request->permanentaddress,
-            'temporaryaddress' => $request->temporaryaddress,
-            'phone'            => $request->phone,
-            'mobile'           => $request->mobile,
-            'country'          => $request->country,
-            'citizenshipno'    => $request->citizenshipno,
-            'maritalstatus'    => $request->maritalstatus,
-            'occupation'       => $request->occupation,
-            'ismultiple'       => $request->multiple
+            'user_id'     => $user->id,
+            'gender'      => $request->gender,
+            'dateofbirth' => $request->dateofbirth,
+            'mobile'      => $request->mobile,
+            'photo'       => $destinationPath . '/' . $fileName,
+            'status'      => 1,
         ]);
 
+        $this->storeAddressDetail($customer, $request);
+        $this->storeCitizenshipDetail($customer, $destinationPath, $request);
+        $this->storeOccupationDetail($customer, $request);
         $this->storeBankDetail($customer, $request);
+
+        return redirect()->back()->with('success', 'New Customer added successfully');
 
     }
 
+    public function storeAddressDetail($customer, $request)
+    {
 
+        $address = Address::create([
+            'customer_id'       => $customer->id,
+            'zone_id'           => $request->zone,
+            'district_id'       => $request->district,
+            'vdc_municipality'  => $request->vdc_municipality,
+            'ward'              => $request->ward,
+            'tole'              => $request->tole,
+            'tel'               => $request->tel,
+            'houseno'           => $request->houseno,
+            'tzone_id'          => $request->tzone,
+            'tdistrict_id'      => $request->tdistrict,
+            'tvdc_municipality' => $request->tvdc_municipality,
+            'tward'             => $request->tward,
+            'ttole'             => $request->ttole,
+            'thouseno'          => $request->thouseno,
+            'ttel'              => $request->ttel
+        ]);
+    }
+
+    public function storeCitizenshipDetail($customer, $destinationPath, $request)
+    {
+        $ext = $request->file('scancitizenshipcopy')->getClientOriginalExtension();
+        if ($request->file('scancitizenshipcopy')->isValid()) {
+            $fileName = str_random(4) . date('his') . '.' . $ext;
+            $request->file('scancitizenshipcopy')->move($destinationPath, $fileName);
+        }
+        $citizenship = Citizenship::create([
+            'customer_id'       => $customer->id,
+            'citizenshipno'     => $request->citizenshipno,
+            'issuedate'         => $request->issuedate,
+            'issuedistrict'     => $request->issuedistrict,
+            'fathername'        => $request->fathername,
+            'gfathername'       => $request->grandfathername,
+            'husband_wife_name' => $request->husband_wife_name,
+            'filename'          => $destinationPath . '/' . $fileName,
+        ]);
+    }
 
     public function storeBankDetail($customer, $request)
     {
-    	foreach($request->customer as $key => $val){
-    		$banks = new CustomerBank;
-    		$banks->customer_id = $customer->id;
-    		$banks->bank_id = $val['bank'];
-    		$banks->accountno = $val['accountno'];
+        foreach ($request->customer as $key => $val) {
+            $banks              = new CustomerBank;
+            $banks->customer_id = $customer->id;
+            $banks->bank_id     = $val['bank'];
+            $banks->branch_id   = $val['branch'];
+            $banks->accountno   = $val['accountno'];
+            $banks->accountname = $val['accname'];
 
-    		$banks->save();
-    	}
+            $banks->save();
+        }
 
-    	return redirect()->back()->with('success', 'New Customer added successfully');
+        return redirect()->back()->with('success', 'New Customer added successfully');
     }
 
+    public function storeOccupationDetail($customer, $request)
+    {
+        $occupation = Occupation::create([
+            'customer_id' => $customer->id,
+            'designation' => $request->designation,
+            'name'        => $request->organisation,
+            'address'     => $request->address,
+            'pan'         => $request->pan,
+            'income'      => $request->income,
+            'contact'     => $request->contact,
 
+        ]);
+    }
 
     /*
-    * Displaying the detail of the customer
-    * render view and pass data
-    */
+     * Displaying the detail of the customer
+     * render view and pass data
+     */
     public function show($id)
     {
         $bank = Bank::all();
@@ -126,65 +188,36 @@ class CustomerController extends Controller
         return view('modules.customer.detail', compact('customer', 'bank'));
     }
 
+    /*
+     * Displaying district from zone
+     *
+     */
+    public function district(Request $request)
+    {
+        $district = District::where('zone_id', $request->zone)->get();
+        return \Response::json($district);
+    }
+
+    /*
+     * Displaying branches
+     *
+     */
+    public function branches(Request $request)
+    {
+        $branch = Branch::where('bank_id', $request->bank)->get();
+        return \Response::json($branch);
+    }
+
 
 
     /*
-    * Updating login information of the customer
-    * save to database
+    * Getting personal detail
     *
     */
-    public function updateLoginInfo(UpdateLoginInfoRequest $request, $id)
+    public function personalDetail($id)
     {
-        $user = User::find($id);
-        $user->username = $request->username;
-        if ($user->password != ""){
-            $user->password = \bcrypt($request->password);
-        }
-        $user->save();
-        return redirect()->back()->with('success', 'Login detail updated successfully');
-    }
-
-
-
-    /*
-    * updating customer detail
-    * save to database
-    */
-    public function updateCustomerDetail(UpdateCustomerDetailRequest $request, $id)
-    {
-
-        $customer                   = Customer::find($id);
-        //$customer->name             = $request->name;
-        $customer->permanentaddress = $request->permanentaddress;
-        $customer->temporaryaddress = $request->temporaryaddress;
-        $customer->mobile           = $request->mobile;
-        $customer->fathername       = $request->fathername;
-        $customer->mothername       = $request->mothername;
-        $customer->citizenshipno    = $request->citizenshipno;
-        $customer->ismultiple       = $request->multiple;
-        $customer->save();
-
-        $user = User::find($customer->user_id);
-        $user->name = $request->name;
-        $user->save();
-
-        return redirect()->back()->with('success', 'Customer detail updated successfully');
-
-    }
-
-
-    /*
-    * updating bank details
-    * save to database
-    */
-    public function updateBank(Request $request, $id)
-    {
-        $customer = CustomerBank::create([
-                'customer_id' => $id,
-                'bank_id'  => $request->bank,
-                'accountno' => $request->accountno
-            ]);
-        return redirect()->back()->with('success', 'Bank updated successfully');
+        $customer = Customer::find($id);
+        return view('modules.customer.personaldetail', compact('customer'));
     }
 
 }

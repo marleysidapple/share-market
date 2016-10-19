@@ -14,29 +14,29 @@ class BankTableSeeder extends Seeder
     {
         Bank::create([
 	        'name' => 'Nepal Merchant Bank',
-	        'address' => 'Babarmahal,Kathmandu',
-	        'phone' => '014839984',
+	        'address' => 'BabarMahal, Kathmandu',
+	        'phone' => '01437928',
 	        'bank_grade'	=> 'A',
-	        'contact_person'	=> 'Sirish Luitel',
+	        'contact_person'	=> 'Suden Balami',
 	        'contact_person_no'	=> '9874546512'
 	    ]);
 
-         Bank::create([
-            'name' => 'Nabil Bank Ltd.',
-            'address' => 'Kamaladi,Kathmandu',
-            'phone' => '014439384',
+        Bank::create([
+            'name' => 'Nepal SBI Bank',
+            'address' => 'Hattisar, Kathmandu',
+            'phone' => '01432324',
             'bank_grade'    => 'A',
-            'contact_person'    => 'Harihar Bastola',
-            'contact_person_no' => '98511928340'
+            'contact_person'    => 'Rabin Shrestha',
+            'contact_person_no' => '9874546423'
         ]);
 
-          Bank::create([
-            'name' => 'NIC Asia Bank',
-            'address' => 'Kamaladi,Kathmandu',
-            'phone' => '014938984',
+         Bank::create([
+            'name' => 'Laxmi Bank',
+            'address' => 'Hattisar, Kathmandu',
+            'phone' => '01432532',
             'bank_grade'    => 'A',
-            'contact_person'    => 'Rama Shrestha',
-            'contact_person_no' => '9808393843'
+            'contact_person'    => 'Pradeep Bista',
+            'contact_person_no' => '987409332'
         ]);
     }
 }

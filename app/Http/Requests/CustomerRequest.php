@@ -29,18 +29,28 @@ class CustomerRequest extends Request
             'gender'               => 'required',
             'dateofbirth'          => 'required',
             'fathername'           => 'required',
-            'mothername'           => 'required',
-            'permanentaddress'     => 'required',
-            'temporaryaddress'     => 'required',
+            'grandfathername'      => 'required',
             'mobile'               => 'required',
+            'profilephoto'         => 'required|mimes:jpg,jpeg,png',
+            'zone'                 => 'required',
+            'district'             => 'required',
+            'vdc_municipality'     => 'required',
+            'tzone'                => 'required',
+            'tdistrict'            => 'required',
+            'tvdc_municipality'    => 'required',
+            'issuedistrict'        => 'required',
+            'issuedate'            => 'required',
+            'scancitizenshipcopy'  => 'required|mimes:jpg,jpeg,png',
             'citizenshipno'        => 'required',
             'customer.*.bank'      => 'required',
+            'customer.*.branch'    => 'required',
             'customer.*.accountno' => 'required',
-            'maritalstatus'        => 'required',
-            'occupation'           => 'required',
-            'username'             => 'required',
-            'password'             => 'required|min:8',
-            'multiple'             => 'required',
+            'customer.*.accname'   => 'required',
+            'organisation'         => 'required',
+            'designation'          => 'required',
+            'address'              => 'required',
+            'contact'              => 'required',
+            'password'             => 'required',
         ];
     }
 
@@ -48,7 +58,12 @@ class CustomerRequest extends Request
     {
         return [
             'customer.*.bank.required'      => 'Bank field is required',
+            'customer.*.branch.required'    => 'Branch field is required',
             'customer.*.accountno.required' => 'Account no. field is required',
+            'customer.*.accname.required'   => 'Account name is required',
+            'tzone.required'                => 'Zone is required',
+            'tdistrict.required'            => 'District is required',
+            'tvdc_municipality.required'    => 'VDC/Municipality is required',
         ];
     }
 }
