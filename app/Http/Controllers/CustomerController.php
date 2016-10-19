@@ -17,6 +17,7 @@ use App\Occupation;
 use App\Role;
 use App\Rta;
 use App\User;
+use App\Username;
 use App\Zone;
 use Illuminate\Http\Request;
 
@@ -47,7 +48,24 @@ class CustomerController extends Controller
         $bank     = Bank::all();
         $zone     = Zone::all();
         $district = District::OrderBy('name', 'asc')->get();
-        $username = "share" . date('his') . str_random(3);
+
+        $user = User::OrderBy('id', 'desc')->select('username')->first();
+
+        if ($user != "") {
+            $year    = date('Y');
+            $result  = explode($year, $user->username);
+            $counter = $result['1'];
+            $count   = $counter + 1;
+            $final   = sprintf("%04d", $count);
+        } else {
+            $final = '0001';
+        }
+
+        /*
+         * username config
+         */
+        $username = Username::first();
+        $username = $username->prefix . $username->year . $final;
         return view('modules.customer.add', compact(array('bank', 'username', 'zone', 'district')));
     }
 
