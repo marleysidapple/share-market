@@ -13,6 +13,10 @@ use App\Customerdmat;
 use App\District;
 use App\Dptable;
 use App\Http\Requests\CustomerRequest;
+use App\Http\Requests\UpdateCitizenshipRequest;
+use App\Http\Requests\UpdatePermanentAddressRequest;
+use App\Http\Requests\UpdatePersonalDetailRequest;
+use App\Http\Requests\UpdateTemporaryAddressRequest;
 use App\Occupation;
 use App\Role;
 use App\Rta;
@@ -279,6 +283,179 @@ class CustomerController extends Controller
     {
         $customer = Customer::find($id);
         return view('modules.customer.personaldetail', compact('customer'));
+    }
+
+    /*
+     * updating personal detail
+     * update in database
+     */
+    public function updatePersonalDetail(UpdatePersonalDetailRequest $request, $id)
+    {
+        $customer = Customer::find($id);
+        $user     = User::find($customer->user_id);
+        //if user has updated the profie picture
+        if ($request->profilephoto != "") {
+            //delete the previous profile picture
+            $directoryAndFile = explode('/', $customer->photo);
+            //0 - parent(uploads) 1-folder name 2-filename
+            if (\File::exists('uploads/' . $directoryAndFile['1'] . '/' . $directoryAndFile['2'])) {
+                \File::delete('uploads/' . $directoryAndFile['1'] . '/' . $directoryAndFile['2']);
+            }
+            //now prepare for destination
+
+            $destination = 'uploads/' . $directoryAndFile['1'];
+            $ext         = $request->file('profilephoto')->getClientOriginalExtension();
+            $fileName    = str_random(4) . date('his') . '.' . $ext;
+            $request->file('profilephoto')->move($destination, $fileName);
+            $customer->photo = $destination . '/' . $fileName;
+        }
+        $user->name  = $request->name;
+        $user->email = $request->email;
+
+        $customer->gender      = $request->gender;
+        $customer->dateofbirth = $request->dateofbirth;
+        $customer->mobile      = $request->mobile;
+
+        $user->save();
+        $customer->save();
+
+        return redirect()->back()->with('success', 'Personal Details updated successfully');
+    }
+
+    /*
+     * getting permanent address detail
+     * render edit view
+     *
+     */
+    public function paddressDetail($id)
+    {
+        $customer = Customer::find($id);
+        $zone     = Zone::all();
+        return view('modules.customer.permanentaddressdetail', compact('customer', 'zone'));
+    }
+
+    /*
+     * updating permanent address detail
+     * post to database
+     */
+    public function updatePaddressDetail(UpdatePermanentAddressRequest $request, $id)
+    {
+        $address                   = Address::where('customer_id', $id)->select('id')->first();
+        $address                   = Address::find($address->id);
+        $address->zone_id          = $request->zone;
+        $address->district_id      = $request->district;
+        $address->vdc_municipality = $request->vdc_municipality;
+        $address->ward             = $request->ward;
+        $address->houseno          = $request->houseno;
+        $address->tole             = $request->tole;
+        $address->tel              = $request->tel;
+        $address->save();
+        return redirect()->back()->with('success', 'Permanent Address updated successfully');
+    }
+
+    /*
+     * getting permanent address detail
+     * render edit view
+     *
+     */
+    public function taddressDetail($id)
+    {
+        $customer = Customer::find($id);
+        $zone     = Zone::all();
+        return view('modules.customer.temporaryaddressdetail', compact('customer', 'zone'));
+    }
+
+    /*
+     * updating permanent address detail
+     * post to database
+     */
+    public function updateTaddressDetail(UpdateTemporaryAddressRequest $request, $id)
+    {
+        $address                    = Address::where('customer_id', $id)->select('id')->first();
+        $address                    = Address::find($address->id);
+        $address->tzone_id          = $request->zone;
+        $address->tdistrict_id      = $request->district;
+        $address->tvdc_municipality = $request->vdc_municipality;
+        $address->tward             = $request->ward;
+        $address->thouseno          = $request->houseno;
+        $address->ttole             = $request->tole;
+        $address->ttel              = $request->tel;
+        $address->save();
+        return redirect()->back()->with('success', 'Temporary Address updated successfully');
+    }
+
+    /*
+     * editing citizenship detail
+     * render view
+     */
+    public function editCitizen($id)
+    {
+        $district = District::all();
+        $customer = Customer::find($id);
+        return view('modules.customer.citizenship', compact('customer', 'district'));
+    }
+
+    /*
+     * updating citizenship detail
+     * post to database
+     */
+    public function updateCitizenShip(UpdateCitizenshipRequest $request, $id)
+    {
+        $customer            = Customer::find($id);
+        $findIdOfCitizenShip = Citizenship::where('customer_id', $id)->select('id')->first();
+        $citizenship         = Citizenship::find($findIdOfCitizenShip->id);
+
+        if ($request->scancopy != "") {
+            //delete the previous profile picture
+            $directoryAndFile = explode('/', $customer->citizen->filename);
+            //0 - parent(uploads) 1-folder name 2-filename
+            if (\File::exists('uploads/' . $directoryAndFile['1'] . '/' . $directoryAndFile['2'])) {
+                \File::delete('uploads/' . $directoryAndFile['1'] . '/' . $directoryAndFile['2']);
+            }
+            //now prepare for destination
+
+            $destination = 'uploads/' . $directoryAndFile['1'];
+            $ext         = $request->file('scancopy')->getClientOriginalExtension();
+            $fileName    = str_random(4) . date('his') . '.' . $ext;
+            $request->file('scancopy')->move($destination, $fileName);
+            $citizenship->filename = $destination . '/' . $fileName;
+        }
+
+        $citizenship->citizenshipno     = $request->citizenshipno;
+        $citizenship->issuedate         = $request->issuedate;
+        $citizenship->fathername        = $request->fathername;
+        $citizenship->gfathername       = $request->gfathername;
+        $citizenship->husband_wife_name = $request->husband_wife_name;
+        $citizenship->issuedistrict     = $request->issuedistrict;
+        $citizenship->save();
+
+        return redirect()->back()->with('success', 'Citizenship details updated successfully');
+    }
+
+    /*
+     * editing bank
+     * rendering edit view
+     */
+    public function editBank($id)
+    {
+        $bank          = Bank::all();
+        $customer      = Customer::find($id);
+        $customer_bank = CustomerBank::where('customer_id', $id)->get();
+        return view('modules.customer.banks', compact('bank', 'customer_bank', 'customer'));
+    }
+
+
+    /*
+    * editing the bank detail
+    * rendering edit view
+    */
+    public function editBankDetail($ids, $id)
+    {
+        // id = branch_id, ids = customer_id
+        $customer = Customer::find($ids);
+        $bank = Bank::all();
+        $customer_bank = CustomerBank::where(['customer_id' => $ids, 'branch_id' => $id])->first();
+        return view('modules.customer.editbank', compact('bank', 'customer_bank', 'customer'));
     }
 
 }

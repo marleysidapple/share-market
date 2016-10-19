@@ -18,4 +18,9 @@ class CustomerBank extends Model
     {
     	return $this->belongsTo('App\Bank', 'bank_id');
     }
+
+    public function branchname()
+    {
+    	return $this->belongsTo('App\Branch', 'bank_id');
+    }
 }
