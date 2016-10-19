@@ -31,7 +31,7 @@ class CustomerRequest extends Request
             'fathername'           => 'required',
             'grandfathername'      => 'required',
             'mobile'               => 'required',
-            'profilephoto'         => 'required|mimes:jpg,jpeg,png',
+            'profilephoto'         => 'mimes:jpg,jpeg,png',
             
             'zone'                 => 'required',
             'district'             => 'required',
@@ -42,7 +42,7 @@ class CustomerRequest extends Request
             
             'issuedistrict'        => 'required',
             'issuedate'            => 'required',
-            'scancitizenshipcopy'  => 'required|mimes:jpg,jpeg,png',
+            'scancitizenshipcopy'  => 'mimes:jpg,jpeg,png',
             'citizenshipno'        => 'required',
             'customer.*.bank'      => 'required',
             'customer.*.branch'    => 'required',
