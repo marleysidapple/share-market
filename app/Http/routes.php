@@ -102,28 +102,23 @@ Route::group(['middleware' => 'auth'], function () {
          */
         Route::post('user/attachpermission', 'dashboardController@attachPermission');
 
-
-
-
-
-         /*
+        /*
          *---------------------------------------------------------------------------------------------
          * START OF USERNAME SETTING ROUTES
          *---------------------------------------------------------------------------------------------
          */
 
-         /*
+        /*
          * setting username
          * get route
          */
-         Route::get('usernamesetting/{id?}', 'dashboardController@usernameDefiner')->name('usernamesetting');
+        Route::get('usernamesetting/{id?}', 'dashboardController@usernameDefiner')->name('usernamesetting');
 
-
-         /*
+        /*
          * saving username
          * post route
          */
-         Route::post('username/store/{id?}', 'dashboardController@storeUsername');
+        Route::post('username/store/{id?}', 'dashboardController@storeUsername');
 
         /*
          *---------------------------------------------------------------------------------------------
@@ -246,18 +241,72 @@ Route::group(['middleware' => 'auth'], function () {
          */
         Route::post('customer/branch', 'CustomerController@branches');
 
-
         /*
-        * ajax post route
-        * getting dmat registrar
-        */
+         * ajax post route
+         * getting dmat registrar
+         */
         Route::post('customer/registrar', 'CustomerController@registrar');
 
         /*
          * personal detail
          * get route
          */
-        Route::get('customer/{id}/personaldetail', 'CustomerController@personalDetail');
+        Route::get('customer/{id}/personaldetail', 'CustomerController@personalDetail')->name('editpersonaldetail');
+
+        /*
+         * updating personal information
+         * post route
+         */
+        Route::post('customer/personalinfo/update/{id}', 'CustomerController@updatePersonalDetail');
+
+        /*
+         * Editing permanent address detail
+         * get route
+         */
+        Route::get('customer/{id}/paddressdetail', 'CustomerController@paddressDetail')->name('editpermanentaddress');
+
+        /*
+         * updating permanent address detail
+         * post route
+         */
+        Route::post('customer/paddressinfo/update/{id}', 'CustomerController@updatePaddressDetail');
+
+        /*
+         * Editing temporary address detail
+         * get route
+         */
+        Route::get('customer/{id}/taddressdetail', 'CustomerController@taddressDetail')->name('edittemporaryaddress');
+
+        /*
+         * updating temporary address detail
+         * post route
+         */
+        Route::post('customer/taddressinfo/update/{id}', 'CustomerController@updateTaddressDetail');
+
+        /*
+        * Editing citizenship detail
+        * get route
+        */
+        Route::get('customer/{id}/citizenship', 'CustomerController@editCitizen')->name('editcitizenshipdetail');
+
+        /*
+        * updating citizenship detail
+        * post route
+        */
+        Route::post('customer/citizenship/update/{id}', 'CustomerController@updateCitizenShip');
+
+        /*
+        * editing bank detail
+        * rendering view
+        */
+        Route::get('customer/{id}/banks', 'CustomerController@editBank')->name('editbankdetail');
+
+
+        /*
+        * editing the customer bank detail
+        * rendering edit view
+        */
+        Route::get('customer/bank/{ids}/edit/{id}', 'CustomerController@editBankDetail');
 
     });
 
