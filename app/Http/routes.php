@@ -102,28 +102,23 @@ Route::group(['middleware' => 'auth'], function () {
          */
         Route::post('user/attachpermission', 'dashboardController@attachPermission');
 
-
-
-
-
-         /*
+        /*
          *---------------------------------------------------------------------------------------------
          * START OF USERNAME SETTING ROUTES
          *---------------------------------------------------------------------------------------------
          */
 
-         /*
+        /*
          * setting username
          * get route
          */
-         Route::get('usernamesetting/{id?}', 'dashboardController@usernameDefiner')->name('usernamesetting');
+        Route::get('usernamesetting/{id?}', 'dashboardController@usernameDefiner')->name('usernamesetting');
 
-
-         /*
+        /*
          * saving username
          * post route
          */
-         Route::post('username/store/{id?}', 'dashboardController@storeUsername');
+        Route::post('username/store/{id?}', 'dashboardController@storeUsername');
 
         /*
          *---------------------------------------------------------------------------------------------
@@ -246,18 +241,164 @@ Route::group(['middleware' => 'auth'], function () {
          */
         Route::post('customer/branch', 'CustomerController@branches');
 
-
         /*
-        * ajax post route
-        * getting dmat registrar
-        */
+         * ajax post route
+         * getting dmat registrar
+         */
         Route::post('customer/registrar', 'CustomerController@registrar');
 
         /*
          * personal detail
          * get route
          */
-        Route::get('customer/{id}/personaldetail', 'CustomerController@personalDetail');
+        Route::get('customer/{id}/personaldetail', 'CustomerController@personalDetail')->name('editpersonaldetail');
+
+        /*
+         * updating personal information
+         * post route
+         */
+        Route::post('customer/personalinfo/update/{id}', 'CustomerController@updatePersonalDetail');
+
+        /*
+         * Editing permanent address detail
+         * get route
+         */
+        Route::get('customer/{id}/paddressdetail', 'CustomerController@paddressDetail')->name('editpermanentaddress');
+
+        /*
+         * updating permanent address detail
+         * post route
+         */
+        Route::post('customer/paddressinfo/update/{id}', 'CustomerController@updatePaddressDetail');
+
+        /*
+         * Editing temporary address detail
+         * get route
+         */
+        Route::get('customer/{id}/taddressdetail', 'CustomerController@taddressDetail')->name('edittemporaryaddress');
+
+        /*
+         * updating temporary address detail
+         * post route
+         */
+        Route::post('customer/taddressinfo/update/{id}', 'CustomerController@updateTaddressDetail');
+
+        /*
+         * Editing citizenship detail
+         * get route
+         */
+        Route::get('customer/{id}/citizenship', 'CustomerController@editCitizen')->name('editcitizenshipdetail');
+
+        /*
+         * updating citizenship detail
+         * post route
+         */
+        Route::post('customer/citizenship/update/{id}', 'CustomerController@updateCitizenShip');
+
+        /*
+         * editing bank detail
+         * rendering view
+         */
+        Route::get('customer/{id}/banks', 'CustomerController@editBank')->name('editbankdetail');
+
+        /*
+         * editing the customer bank detail
+         * rendering edit view
+         */
+        Route::get('customer/bank/edit/{id}', 'CustomerController@editBankDetail');
+
+        /*
+         * updating the bankdetail
+         * post route
+         */
+        Route::post('customer/bankdetail/update/{id}', 'CustomerController@updateBankDetail');
+
+        /*
+         * deleting the bank detail
+         * get route
+         */
+        Route::get('customer/bank/delete/{id}', 'CustomerController@deleteBankDetail')->name('deletebankdetail');
+
+        /*
+         * Adding new bank
+         * get route
+         */
+        Route::get('customer/bank/add/{id}', 'CustomerController@addBankFromProfile')->name('addbankthroughprofile');
+
+        /*
+         * adding new bank detail
+         * post route
+         */
+        Route::post('customer/newbank/add/{id}', 'CustomerController@addNewBank');
+
+        /*
+         * editing dmat detail
+         * rendering view
+         */
+        Route::get('customer/{id}/dmat', 'CustomerController@editDmat')->name('editdmataccountdetail');
+
+
+        /*
+         * editing the customer dmat detail
+         * get route
+         */
+        Route::get('customer/dmat/edit/{id}', 'CustomerController@editDmatDetail')->name('editcustomerdmatdetail');
+
+
+        /*
+        * updatinhg dmat detail
+        * post route
+        */
+        Route::post('customer/dmatdetail/update/{id}', 'CustomerController@updateDmatDetail');
+
+
+        /*
+         * deleting the dmat detail
+         * get route
+         */
+        Route::get('customer/dmat/delete/{id}', 'CustomerController@deleteDmatDetail')->name('deletebankdetailthroughprofile');
+
+
+         /*
+         * Adding new dmat registrar
+         * get route
+         */
+        Route::get('customer/dmat/add/{id}', 'CustomerController@addDmatFromProfile')->name('adddmatthroughprofile');
+
+
+        /*
+        * Adding new dmat detail
+        * post route
+        */
+        Route::post('customer/dmatdetail/add/{id}', 'CustomerController@addNewDmat');
+
+
+        /*
+        * profession detail
+        * get route
+        */
+        Route::get('customer/{id}/profession', 'CustomerController@editProfession')->name('editprofession');
+
+
+        /*
+        * updating professional detail
+        * post route
+        */
+        Route::post('customer/profession/update/{id}', 'CustomerController@updateProfession');
+
+
+        /*
+        * editing login detail
+        * get route
+        */
+        Route::get('customer/{id}/login', 'CustomerController@editLogin')->name('editloginthroughprofile');
+
+
+        /*
+        * updating login detail
+        * post route
+        */
+        Route::post('customer/login/update/{id}', 'CustomerController@updateLoginDetail');
 
     });
 

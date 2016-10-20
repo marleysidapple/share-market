@@ -52,9 +52,9 @@
                                                 <td>{{$val->userdetail->name}}</td>
                                                 <td>{{$val->userdetail->username}}</td>
                                                 <td>{{$val->mobile}}</td>
-                                                <td>{{$val->citizenshipno}}</td>
+                                                <td>{{$val->citizen->citizenshipno}}</td>
                                                 <td>{{$val->dateofbirth}}</td>
-                                                <td><a href="{{url('home/customer/'.$val->id .'/detail')}}" class="btn btn-success btn-sm">View</a>&nbsp;<a href="{{url('home/customer/'.$val->id .'/detail')}}" class="btn btn-warning btn-sm">Edit</a>&nbsp;<a href="" class="btn btn-danger btn-sm">Add Member</a></td>
+                                                <td><a href="{{url('home/customer/'.$val->id .'/personaldetail')}}" class="btn btn-warning btn-sm">View and Edit</a></td>
                                             </tr>
                                          @endforeach
                                             
