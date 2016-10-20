@@ -411,7 +411,7 @@ class CustomerController extends Controller
         $citizenship         = Citizenship::find($findIdOfCitizenShip->id);
 
         if ($request->scancopy != "") {
-            //delete the previous profile picture
+            //delete the previous citizenship copy
             $directoryAndFile = explode('/', $customer->citizen->filename);
             //0 - parent(uploads) 1-folder name 2-filename
             if (\File::exists('uploads/' . $directoryAndFile['1'] . '/' . $directoryAndFile['2'])) {
