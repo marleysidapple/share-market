@@ -3,17 +3,18 @@
 @section('sub-content')
    <div class="panel panel-default">
    		 <div class="panel-body">
-   		 	 <form action="{{url('home/customer/bankdetail/update/'.$customer_bank->id)}}" method="post" enctype="multipart/form-data">
+   		 	 <form action="{{url('home/customer/newbank/add/'.$customer->id)}}" method="post">
                             {!!csrf_field()!!}
                             <div class="panel panel-default">
                                 <div class="panel-body">
-                                    <h3>Edit Bank Detail</h3>
+                                    <h3>Add Bank Detail</h3>
                                     <form role="form">
                                         <div class="form-group {{ $errors->has('bank') ? ' has-error' : '' }}">
                                             <label>Bank</label>
                                             <select class="form-control bank" name="bank">
+                                                  <option value="">Choose Bank</option>
                                                 @foreach($bank as $key => $val)
-                                                  <option value="{{$val->id}}" {{($customer_bank->bank_id == $val->id) ? 'selected': '' }}>{{$val->name}}</option>
+                                                  <option value="{{$val->id}}">{{$val->name}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -28,7 +29,7 @@
 
                                          <div class="form-group {{ $errors->has('accountname') ? ' has-error' : '' }}">
                                             <label>Account Name</label>
-                                            <input type="text" name="accountname" class="form-control" value="{{$customer_bank->accountname}}"/>
+                                            <input type="text" name="accountname" class="form-control" />
                                             @if ($errors->has('accountname'))
                                                 <span class="help-block">{{ $errors->first('accountname') }} </span>
                                              @endif
@@ -36,7 +37,7 @@
 
                                           <div class="form-group {{ $errors->has('accountnumber') ? ' has-error' : '' }}">
                                             <label>Account Number</label>
-                                            <input type="text" name="accountnumber" class="form-control" value="{{$customer_bank->accountno}}"/>
+                                            <input type="text" name="accountnumber" class="form-control" />
                                             @if ($errors->has('accountnumber'))
                                                 <span class="help-block">{{ $errors->first('accountnumber') }} </span>
                                              @endif
@@ -56,14 +57,11 @@
 
 @section('javascript')
 <script type="text/javascript">
-  $(function(){
-    $('select.bank').trigger('change');
-  });
 
 
 	$(document).on('change', '.bank', function(){
     var bank = $('.bank option:selected').val();
-    var bid = "{{$customer_bank->branch_id}}";
+  
     $.ajax({
       type:'post',
       url: '{{url("home/customer/branch")}}',
@@ -73,7 +71,6 @@
         $.each(data, function(key, value){
           var tbank = "<option value='"+value.id+"'>"+value.address+"</option>";
            $('.branch').append(tbank);
-           $(".branch option[value="+bid+"]").prop('selected', true);
         });
         
       }

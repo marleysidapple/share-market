@@ -12,11 +12,16 @@ use App\CustomerBank;
 use App\Customerdmat;
 use App\District;
 use App\Dptable;
+use App\Http\Requests\AddDmatRequest;
+use App\Http\Requests\AddNewBankRequest;
 use App\Http\Requests\CustomerRequest;
+use App\Http\Requests\UpdateBankRequest;
 use App\Http\Requests\UpdateCitizenshipRequest;
 use App\Http\Requests\UpdatePermanentAddressRequest;
 use App\Http\Requests\UpdatePersonalDetailRequest;
 use App\Http\Requests\UpdateTemporaryAddressRequest;
+use App\Http\Requests\UpdateProfessionRequest;
+use App\Http\Requests\UpdateLoginRequest;
 use App\Occupation;
 use App\Role;
 use App\Rta;
@@ -444,18 +449,209 @@ class CustomerController extends Controller
         return view('modules.customer.banks', compact('bank', 'customer_bank', 'customer'));
     }
 
+    /*
+     * editing the bank detail
+     * rendering edit view
+     */
+    public function editBankDetail($id)
+    {
+        $bank          = Bank::all();
+        $customer_bank = CustomerBank::find($id);
+        $customer      = Customer::find($customer_bank->customer_id);
+        return view('modules.customer.editbank', compact('bank', 'customer_bank', 'customer'));
+    }
 
     /*
-    * editing the bank detail
-    * rendering edit view
-    */
-    public function editBankDetail($ids, $id)
+     * updating bank detail
+     * save to database
+     */
+    public function updateBankDetail(UpdateBankRequest $request, $id)
     {
-        // id = branch_id, ids = customer_id
-        $customer = Customer::find($ids);
-        $bank = Bank::all();
-        $customer_bank = CustomerBank::where(['customer_id' => $ids, 'branch_id' => $id])->first();
-        return view('modules.customer.editbank', compact('bank', 'customer_bank', 'customer'));
+        $customerBank              = CustomerBank::find($id);
+        $customerBank->bank_id     = $request->bank;
+        $customerBank->branch_id   = $request->branch;
+        $customerBank->accountno   = $request->accountnumber;
+        $customerBank->accountname = $request->accountname;
+        $customerBank->save();
+
+        return redirect()->back()->with('success', 'Bank details updated successfully');
+    }
+
+    /*
+     * Deleting bank detail
+     * delete from database
+     */
+    public function deleteBankDetail($id)
+    {
+        $customerBank = CustomerBank::find($id);
+        $customerBank->delete();
+        return redirect()->back()->with('success', 'Bank details deleted successfully');
+    }
+
+    /*
+     * adding bank
+     * rendering view
+     */
+    public function addBankFromProfile($id)
+    {
+        $customer = Customer::find($id);
+        $bank     = Bank::all();
+        return view('modules.customer.addbank', compact('bank', 'customer'));
+    }
+
+    /*
+     * adding new bank
+     * saving to db
+     */
+    public function addNewBank(AddNewBankRequest $request, $id)
+    {
+        $bank = CustomerBank::create([
+            'customer_id' => $id,
+            'bank_id'     => $request->bank,
+            'branch_id'   => $request->branch,
+            'accountno'   => $request->accountnumber,
+            'accountname' => $request->accountname,
+        ]);
+
+        return redirect()->back()->with('success', 'Bank details added successfully');
+
+    }
+
+    /*
+     * editing dmat detail
+     * rendering view
+     */
+    public function editDmat($id)
+    {
+        $customer      = Customer::find($id);
+        $customer_dmat = Customerdmat::where('customer_id', $id)->get();
+        return view('modules.customer.dmat', compact('customer_dmat', 'customer'));
+    }
+
+    /*
+     * editing customer dmat detail
+     * rendering view
+     */
+    public function editDmatDetail($id)
+    {
+        $dmat     = Customerdmat::find($id);
+        $customer = Customer::find($dmat->customer_id);
+        return view('modules.customer.editdmat', compact('dmat', 'customer'));
+    }
+
+    /*
+     * updating dmat detail
+     * save to db
+     */
+    public function updateDmatDetail(Request $request, $id)
+    {
+        $dmat                     = Customerdmat::find($id);
+        $dmat->registrar_type     = $request->registrar;
+        $dmat->registrar_agent_id = $request->registrarname;
+        $dmat->accountnumber      = $request->accountnumber;
+        $dmat->save();
+
+        return redirect()->back()->with('success', 'DMAT details added successfully');
+    }
+
+    /*
+     * deleting dmat detail
+     * delete from db
+     */
+    public function deleteDmatDetail($id)
+    {
+        $customerDmat = Customerdmat::find($id);
+        $customerDmat->delete();
+        return redirect()->back()->with('success', 'DMAT details deleted successfully');
+    }
+
+    /*
+     * adding new dmat
+     * get route
+     */
+    public function addDmatFromProfile($id)
+    {
+        $customer = Customer::find($id);
+        return view('modules.customer.addDmat', compact('customer'));
+    }
+
+    /*
+     * adding new dmat
+     * save to database
+     */
+    public function addNewDmat(AddDmatRequest $request, $id)
+    {
+
+        $dmat = Customerdmat::create([
+            'customer_id'        => $id,
+            'registrar_type'     => $request->registrar,
+            'registrar_agent_id' => $request->registrarname,
+            'accountnumber'      => $request->accountnumber,
+        ]);
+
+        return redirect()->back()->with('success', 'DMAT details added successfully');
+    }
+
+    /*
+     * editing customer profession
+     * get route
+     */
+    public function editProfession($id)
+    {
+        $customer = Customer::find($id);
+        return view('modules.customer.profession', compact('customer'));
+    }
+
+    /*
+     * updating professional details
+     * post to database
+     */
+    public function updateProfession(UpdateProfessionRequest $request, $id)
+    {
+        $prof                    = Occupation::where('customer_id', $id)->select('id')->first();
+        $profession              = Occupation::find($prof->id);
+        $profession->name        = $request->name;
+        $profession->designation = $request->designation;
+        $profession->contact     = $request->contact;
+        $profession->address     = $request->address;
+        $profession->pan         = $request->pan;
+        $profession->income      = $request->income;
+
+        $profession->save();
+
+
+        return redirect()->back()->with('success', 'Profession details updated successfully');
+    }
+
+
+
+    /*
+    * editing login detail
+    * rendering view
+    */
+    public function editLogin($id)
+    {
+        $customer = Customer::find($id);
+        return view('modules.customer.login', compact('customer'));
+
+    }
+
+
+    /*
+    * updating login detail
+    * save to database
+    */
+    public function updateLoginDetail(UpdateLoginRequest $request, $id)
+    {
+        $user = User::find($id);
+
+        if ($request->password != ""){
+            $user->password = \bcrypt($request->password);
+        }
+
+        $user->save();
+
+        return redirect()->back()->with('success', 'Login details updated successfully');
     }
 
 }

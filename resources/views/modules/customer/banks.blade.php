@@ -3,7 +3,7 @@
 @section('sub-content')
    <div class="panel panel-default">
    		 <div class="panel-body">
-       <h3>Edit Bank Detail</h3>
+       <h3>Edit Bank Detail</h3> <a href="{{url('home/customer/bank/add/'.$customer->id)}}" class="btn btn-success btn-sm">Add New Bank</a>
    		     <table id="customers2" class="table">
                                          <thead>
                                              <tr>
@@ -23,7 +23,7 @@
                                            <td>{{$val->branchname->address}}</td>
                                            <td>{{$val->accountname}}</td>
                                            <td>{{$val->accountno}}</td>
-                                           <td><a href="{{url('home/customer/bank/'.$val->customer_id.'/edit/'.$val->branch_id)}}"><i class="fa fa-pencil"></i></a> &nbsp; <a href=""><i class="fa fa-trash-o"></i></a></td>
+                                           <td><a href="{{url('home/customer/bank/edit/'.$val->id)}}"><i class="fa fa-pencil"></i></a> &nbsp; <a onclick="return confirm('Are you sure?');" href="{{url('home/customer/bank/delete/'.$val->id)}}"><i class="fa fa-trash-o"></i></a></td>
                                          </tr>
                                          @endforeach
                                          </tbody>

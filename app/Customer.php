@@ -22,9 +22,14 @@ class Customer extends Model
         return $this->hasOne('App\Address', 'customer_id');
     }
 
-     public function citizen()
+    public function citizen()
     {
         return $this->hasOne('App\Citizenship', 'customer_id');
+    }
+
+    public function profession()
+    {
+        return $this->hasOne('App\Occupation', 'customer_id');
     }
 
     public function bank()

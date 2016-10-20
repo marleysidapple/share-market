@@ -13,6 +13,7 @@ class CreateCustomerBankTable extends Migration
     public function up()
     {
         Schema::create('customer_bank', function (Blueprint $table) {
+            $table->increments('id');
             $table->integer('customer_id')->unsigned();
             $table->integer('bank_id')->unsigned();
             $table->integer('branch_id')->unsigned();

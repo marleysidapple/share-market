@@ -52,9 +52,9 @@
                                                 <td>{{$val->userdetail->name}}</td>
                                                 <td>{{$val->userdetail->username}}</td>
                                                 <td>{{$val->mobile}}</td>
-                                                <td>{{$val->citizenshipno}}</td>
+                                                <td>{{$val->citizen->citizenshipno}}</td>
                                                 <td>{{$val->dateofbirth}}</td>
-                                                <td><a href="{{url('home/customer/'.$val->id .'/detail')}}" class="btn btn-success btn-sm">View</a>&nbsp;<a href="{{url('home/customer/'.$val->id .'/personaldetail')}}" class="btn btn-warning btn-sm">Edit</a>&nbsp;@if($val->ismultiple == 1)<a href="" class="btn btn-danger btn-sm">View Members</a>@endif</td>
+                                                <td><a href="{{url('home/customer/'.$val->id .'/personaldetail')}}" class="btn btn-warning btn-sm">View and Edit</a></td>
                                             </tr>
                                          @endforeach
                                             

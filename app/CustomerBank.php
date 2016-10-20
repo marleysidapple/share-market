@@ -21,6 +21,6 @@ class CustomerBank extends Model
 
     public function branchname()
     {
-    	return $this->belongsTo('App\Branch', 'bank_id');
+    	return $this->belongsTo('App\Branch', 'branch_id');
     }
 }
