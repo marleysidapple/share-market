@@ -43,10 +43,11 @@ class BrokerController extends Controller
         $rules = array(
             'name' => 'required',
             'address' => 'required|min:2|max:50',
+            'email' => 'email',
             'broker_no' => 'required',
             'phone' => 'required|digits_between:8,20',
-            'contact_person' => 'required|min:2|max:20',
-            'contact_person_no' => 'required|digits_between:8,20',  
+            'contact_person' => 'min:2|max:20',
+            'contact_person_no' => 'digits_between:8,20',  
             );
         $validator = Validator::make($request->all(), $rules);
 
@@ -57,7 +58,7 @@ class BrokerController extends Controller
         $res = $this->brokerService->add($request->except('_token'));
 
         $data['msgSuccess'] = "New Broker added successfully";
-        return Redirect::to('broker')->withErrors($data);
+        return Redirect::to('management/broker')->withErrors($data);
     }
 
     public function edit($id){
@@ -73,10 +74,11 @@ class BrokerController extends Controller
         $rules = array(
             'name' => 'required',
             'address' => 'required|min:2|max:50',
+            'email' => 'email',
             'broker_no' => 'required',
             'phone' => 'required|digits_between:8,20',
-            'contact_person' => 'required|min:2|max:20',
-            'contact_person_no' => 'required|digits_between:8,20',  
+            'contact_person' => 'min:2|max:20',
+            'contact_person_no' => 'digits_between:8,20',  
             );
         $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) {
@@ -90,7 +92,7 @@ class BrokerController extends Controller
         $this->brokerService->update($brokerId, $inputData);
 
         $data['msgSuccess'] = "Broker updated successfully";
-        return Redirect::to('broker')->withErrors($data);
+        return Redirect::to('management/broker')->withErrors($data);
     }
 
     public function deleteData($id){
@@ -98,7 +100,7 @@ class BrokerController extends Controller
         $this->brokerService->deleteData($id);
 
         $data['msgSuccess'] = "Broker deleted successfully";
-        return Redirect::to('broker')->withErrors($data);
+        return Redirect::to('management/broker')->withErrors($data);
     }
 
 }

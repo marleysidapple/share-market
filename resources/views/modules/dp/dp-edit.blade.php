@@ -42,9 +42,17 @@
                    @endif
               </div>
 
+              <div class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
+                  <label>Email</label>
+                  <input type="text" name="email" class="form-control" value="{{$pageData->email}}"/>
+                  @if ($errors->has('email'))
+                      <span class="help-block">{{ $errors->first('email') }} </span>
+                   @endif
+              </div>
+
               <div class="button pull-left">
                   <button type="submit" class="btn btn-primary btn-sm">Update</button>
-                  <a href="{{URL::to('dp')}}" class="btn btn-default btn-sm">Cancel</a>
+                  <a href="{{URL::to('management/dp')}}" class="btn btn-default btn-sm">Cancel</a>
               </div>
           {!! Form::close() !!}
       </div>

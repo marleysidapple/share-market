@@ -62,7 +62,7 @@ class CompanyController extends Controller
         $res = $this->companyService->add($request->except('_token'));
 
         $data['msgSuccess'] = "New Company added successfully";
-        return Redirect::to('company')->withErrors($data);
+        return Redirect::to('management/listed-company')->withErrors($data);
     }
 
     public function edit($id){
@@ -95,7 +95,7 @@ class CompanyController extends Controller
         $this->companyService->update($brokerId, $inputData);
 
         $data['msgSuccess'] = "Company updated successfully";
-        return Redirect::to('company')->withErrors($data);
+        return Redirect::to('management/listed-company')->withErrors($data);
     }
 
     public function deleteData($id){
@@ -103,7 +103,7 @@ class CompanyController extends Controller
         $this->companyService->deleteData($id);
 
         $data['msgSuccess'] = "Company deleted successfully";
-        return Redirect::to('company')->withErrors($data);
+        return Redirect::to('management/listed-company')->withErrors($data);
     }
 
 }

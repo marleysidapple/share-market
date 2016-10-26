@@ -9,7 +9,7 @@ class Bank extends Model
 {
 	protected $table = 'bank';
 
-  	protected $fillable = array('name', 'address', 'phone', 'bank_grade', 'contact_person', 'contact_person_no');
+  	protected $fillable = array('name', 'address', 'phone', 'email', 'bank_grade', 'contact_person', 'contact_person_no');
 }
 
 

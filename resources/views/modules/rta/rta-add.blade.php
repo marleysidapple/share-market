@@ -58,7 +58,7 @@
 
               <div class="button pull-left">
                   <button type="submit" class="btn btn-primary btn-sm">Add</button>
-                  <a href="{{URL::to('rta')}}" class="btn btn-default btn-sm">Cancel</a>
+                  <a href="{{URL::to('management/rts')}}" class="btn btn-default btn-sm">Cancel</a>
               </div>
           {!! Form::close() !!}
       </div>

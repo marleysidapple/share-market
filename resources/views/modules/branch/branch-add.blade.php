@@ -26,6 +26,14 @@
                    @endif
               </div>
 
+              <div class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
+                  <label>Email</label>
+                  <input type="text" name="email" class="form-control" value="{{old('email')}}"/>
+                  @if ($errors->has('email'))
+                      <span class="help-block">{{ $errors->first('email') }} </span>
+                   @endif
+              </div>
+
               <div class="form-group {{ $errors->has('contact_person') ? ' has-error' : '' }}">
                   <label>Contact Person</label>
                   <input type="text" name="contact_person" class="form-control" value="{{old('contact_person')}}"/>

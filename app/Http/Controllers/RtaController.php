@@ -44,9 +44,8 @@ class RtaController extends Controller
             'name' => 'required',
             'email' => 'required|email',
             'phone' => 'required|digits_between:8,20',
-            'contact_person' => 'required|min:2|max:20',
-            'contact_person_no' => 'required|digits_between:8,20',  
-            'remarks' => 'required',
+            'contact_person' => 'min:2|max:20',
+            'contact_person_no' => 'digits_between:8,20'
             );
         $validator = Validator::make($request->all(), $rules);
 
@@ -57,7 +56,7 @@ class RtaController extends Controller
         $res = $this->rtaService->add($request->except('_token'));
 
         $data['msgSuccess'] = "New New Registrar and Transfer Agent (RTA) added successfully";
-        return Redirect::to('rta')->withErrors($data);
+        return Redirect::to('management/rts')->withErrors($data);
     }
 
     public function edit($id){
@@ -74,9 +73,8 @@ class RtaController extends Controller
             'name' => 'required',
             'email' => 'required|email',
             'phone' => 'required|digits_between:8,20',
-            'contact_person' => 'required|min:2|max:20',
-            'contact_person_no' => 'required|digits_between:8,20',  
-            'remarks' => 'required',  
+            'contact_person' => 'min:2|max:20',
+            'contact_person_no' => 'digits_between:8,20'
             );
         $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) {
@@ -90,7 +88,7 @@ class RtaController extends Controller
         $this->rtaService->update($brokerId, $inputData);
 
         $data['msgSuccess'] = "New Registrar and Transfer Agent (RTA) updated successfully";
-        return Redirect::to('rta')->withErrors($data);
+        return Redirect::to('management/rts')->withErrors($data);
     }
 
     public function deleteData($id){
@@ -98,7 +96,7 @@ class RtaController extends Controller
         $this->rtaService->deleteData($id);
 
         $data['msgSuccess'] = "New Registrar and Transfer Agent (RTA) deleted successfully";
-        return Redirect::to('rta')->withErrors($data);
+        return Redirect::to('management/rts')->withErrors($data);
     }
 
 }

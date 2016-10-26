@@ -42,9 +42,10 @@ class DpController extends Controller
 
         $rules = array(
             'name' => 'required',
-            'dp_id' => 'required',
-            'address' => 'required|min:2|max:50',
-            'phone' => 'required|digits_between:8,20' 
+            'dp_id' => 'required|digits:8',
+            'address' => 'min:2|max:50',
+            'phone' => 'digits_between:8,20',
+            'email' => 'email'
             );
         $validator = Validator::make($request->all(), $rules);
 
@@ -55,7 +56,7 @@ class DpController extends Controller
         $res = $this->dpService->add($request->except('_token'));
 
         $data['msgSuccess'] = "New Depository Participants(DP) added successfully";
-        return Redirect::to('dp')->withErrors($data);
+        return Redirect::to('management/dp')->withErrors($data);
     }
 
     public function edit($id){
@@ -71,8 +72,9 @@ class DpController extends Controller
         $rules = array(
             'name' => 'required',
             'dp_id' => 'required',
-            'address' => 'required|min:2|max:50',
-            'phone' => 'required|digits_between:8,20' 
+            'address' => 'min:2|max:50',
+            'phone' => 'digits_between:8,20',
+            'email' => 'email'
             );
         $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) {
@@ -86,7 +88,7 @@ class DpController extends Controller
         $this->dpService->update($bankId, $inputData);
 
         $data['msgSuccess'] = "Depository Participants(DP) updated successfully";
-        return Redirect::to('dp')->withErrors($data);
+        return Redirect::to('management/dp')->withErrors($data);
     }
 
     public function deleteData($id){
@@ -94,7 +96,7 @@ class DpController extends Controller
         $this->dpService->deleteData($id);
 
         $data['msgSuccess'] = "Depository Participants(DP) deleted successfully";
-        return Redirect::to('dp')->withErrors($data);
+        return Redirect::to('management/dp')->withErrors($data);
     }
 
 }

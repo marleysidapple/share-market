@@ -44,8 +44,9 @@ class BankController extends Controller
             'name' => 'required',
             'address' => 'required|min:2|max:50',
             'phone' => 'required|digits_between:8,20',
-            'contact_person' => 'required|min:2|max:20',
-            'contact_person_no' => 'required|digits_between:8,20',  
+            'email' => 'email',
+            'contact_person' => 'min:2|max:20',
+            'contact_person_no' => 'digits_between:8,20',  
             );
         $validator = Validator::make($request->all(), $rules);
 
@@ -56,7 +57,7 @@ class BankController extends Controller
         $res = $this->bankService->add($request->except('_token'));
 
         $data['msgSuccess'] = "New Bank added successfully";
-        return Redirect::to('bank')->withErrors($data);
+        return Redirect::to('management/bank')->withErrors($data);
     }
 
     public function edit($id){
@@ -73,8 +74,9 @@ class BankController extends Controller
             'name' => 'required',
             'address' => 'required|min:2|max:50',
             'phone' => 'required|digits_between:8,20',
-            'contact_person' => 'required|min:2|max:20',
-            'contact_person_no' => 'required|digits_between:8,20',  
+            'email' => 'email',
+            'contact_person' => 'min:2|max:20',
+            'contact_person_no' => 'digits_between:8,20', 
             );
         $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) {
@@ -88,7 +90,7 @@ class BankController extends Controller
         $this->bankService->update($bankId, $inputData);
 
         $data['msgSuccess'] = "Bank updated successfully";
-        return Redirect::to('bank')->withErrors($data);
+        return Redirect::to('management/bank')->withErrors($data);
     }
 
     public function deleteData($id){
@@ -96,7 +98,7 @@ class BankController extends Controller
         $this->bankService->deleteData($id);
 
         $data['msgSuccess'] = "Bank deleted successfully";
-        return Redirect::to('bank')->withErrors($data);
+        return Redirect::to('management/bank')->withErrors($data);
     }
 
 }
