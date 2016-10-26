@@ -32,6 +32,7 @@ class ManagementController extends Controller
     		$data['tabId'] = '';
     	}
     	
+        $data['select'] = 'home';
     	$data['bankData'] = $this->bankService->getallData();
     	$data['brokerData'] = $this->brokerService->getallData();
     	$data['rtsData'] = $this->rtaService->getallData();

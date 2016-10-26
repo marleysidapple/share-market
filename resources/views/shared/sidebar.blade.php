@@ -27,10 +27,18 @@
         <li class="{{(\Request::route()->getName() == 'dashboard') ? 'active' : ''}}">
             <a href="{{url('home')}}"><span class="fa fa-desktop"></span> <span class="xn-text">Dashboard</span></a>
         </li>
-        
-        <li class="{{(\Request::route()->getName() == 'management') ? 'active' : ''}}">
-            <a href="{{url('management')}}"><span class="fa fa-desktop"></span> <span class="xn-text">Management</span></a>
+
+        <li class="xn-openable {{(\Request::route()->getName() == 'management') ? 'active' : ''}}">
+            <a href="index.html#"><span class="fa fa-files-o"></span> <span class="xn-text">Management</span></a>
+            <ul>
+                <li class="@if(isset($select) && $select == 'home') active @endif"><a href="{{url('management')}}"><span class="fa fa-home"></span> Home Management</a></li>
+                <li class="@if(isset($select) && $select == 'package') active @endif"><a href="{{url('package')}}"><span class="fa fa-dollar"></span> Package Management</a></li>            
+            </ul>
         </li>
+        
+  <!--       <li class="{{(\Request::route()->getName() == 'management') ? 'active' : ''}}">
+            <a href="{{url('management')}}"><span class="fa fa-desktop"></span> <span class="xn-text">Management</span></a>
+        </li> -->
 
         @if(Auth::user()->can('usergroup'))
         <li class="{{(\Request::route()->getName() == 'usergroup' || \Request::route()->getName() == 'addusergroup') ? 'active' : ''}}">
@@ -54,7 +62,7 @@
         </li>
         @endif
 
-        <li class="xn-title">Components</li>
+        <!-- <li class="xn-title">Components</li> -->
 <!--
         <li class="xn-openable">
             <a href="index.html#"><span class="fa fa-cogs"></span> <span class="xn-text">UI Kits</span></a>

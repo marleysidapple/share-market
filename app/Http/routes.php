@@ -111,65 +111,74 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
     Route::get('management/{tab?}', 'ManagementController@index')->name('management');
+
+    /* Package system routes */
+    Route::get('package', 'PackageController@index')->name('management');
+    Route::get('package/add', 'PackageController@add')->name('management');
+    Route::post('package/add', 'PackageController@store')->name('management');
+    Route::get('package/edit/{id}', 'PackageController@edit')->name('management');
+    Route::post('package/edit', 'PackageController@update')->name('management');
+    Route::get('package/delete/{id}', 'PackageController@deleteData')->name('management');
+    
     /* Bank routes */
-    Route::get('bank', 'BankController@index')->name('bank');
-    Route::get('bank/add', 'BankController@add')->name('bank');
-    Route::post('bank/add', 'BankController@store')->name('bank');
-    Route::get('bank/edit/{id}', 'BankController@edit')->name('bank');
-    Route::post('bank/edit', 'BankController@update')->name('bank');
-    Route::get('bank/delete/{id}', 'BankController@deleteData')->name('bank');
+    Route::get('bank', 'BankController@index')->name('management');
+    Route::get('bank/add', 'BankController@add')->name('management');
+    Route::post('bank/add', 'BankController@store')->name('management');
+    Route::get('bank/edit/{id}', 'BankController@edit')->name('management');
+    Route::post('bank/edit', 'BankController@update')->name('management');
+    Route::get('bank/delete/{id}', 'BankController@deleteData')->name('management');
 
     /* branch routes */
 
-    Route::get('branch/{id}', 'BranchController@index')->name('bank');
-    Route::get('branch/{id}/add', 'BranchController@add')->name('bank');
-    Route::post('branch/add', 'BranchController@store')->name('bank');
-    Route::get('branch/edit/{bid}', 'BranchController@edit')->name('bank');
-    Route::post('branch/edit', 'BranchController@update')->name('bank');
-    Route::get('branch/{id}/delete/{bid}', 'BranchController@deleteData')->name('bank');
+    Route::get('branch/{id}', 'BranchController@index')->name('management');
+    Route::get('branch/{id}/add', 'BranchController@add')->name('management');
+    Route::post('branch/add', 'BranchController@store')->name('management');
+    Route::get('branch/edit/{bid}', 'BranchController@edit')->name('management');
+    Route::post('branch/edit', 'BranchController@update')->name('management');
+    Route::get('branch/{id}/delete/{bid}', 'BranchController@deleteData')->name('management');
 
     /* broker routes */
 
-    Route::get('broker', 'BrokerController@index')->name('broker');
-    Route::get('broker/add', 'BrokerController@add')->name('broker');
-    Route::post('broker/add', 'BrokerController@store')->name('broker');
-    Route::get('broker/edit/{id}', 'BrokerController@edit')->name('broker');
-    Route::post('broker/edit', 'BrokerController@update')->name('broker');
-    Route::get('broker/delete/{id}', 'BrokerController@deleteData')->name('broker');
+    Route::get('broker', 'BrokerController@index')->name('management');
+    Route::get('broker/add', 'BrokerController@add')->name('management');
+    Route::post('broker/add', 'BrokerController@store')->name('management');
+    Route::get('broker/edit/{id}', 'BrokerController@edit')->name('management');
+    Route::post('broker/edit', 'BrokerController@update')->name('management');
+    Route::get('broker/delete/{id}', 'BrokerController@deleteData')->name('management');
 
     /* rta routes */
 
-    Route::get('rta', 'RtaController@index')->name('rta');
-    Route::get('rta/add', 'RtaController@add')->name('rta');
-    Route::post('rta/add', 'RtaController@store')->name('rta');
-    Route::get('rta/edit/{id}', 'RtaController@edit')->name('rta');
-    Route::post('rta/edit', 'RtaController@update')->name('rta');
-    Route::get('rta/delete/{id}', 'RtaController@deleteData')->name('rta');
+    Route::get('rta', 'RtaController@index')->name('management');
+    Route::get('rta/add', 'RtaController@add')->name('management');
+    Route::post('rta/add', 'RtaController@store')->name('management');
+    Route::get('rta/edit/{id}', 'RtaController@edit')->name('management');
+    Route::post('rta/edit', 'RtaController@update')->name('management');
+    Route::get('rta/delete/{id}', 'RtaController@deleteData')->name('management');
 
     /* dp routes */
 
-    Route::get('dp', 'DpController@index')->name('dp');
-    Route::get('dp/add', 'DpController@add')->name('dp');
-    Route::post('dp/add', 'DpController@store')->name('dp');
-    Route::get('dp/edit/{id}', 'DpController@edit')->name('dp');
-    Route::post('dp/edit', 'DpController@update')->name('dp');
-    Route::get('dp/delete/{id}', 'DpController@deleteData')->name('dp');
+    Route::get('dp', 'DpController@index')->name('management');
+    Route::get('dp/add', 'DpController@add')->name('management');
+    Route::post('dp/add', 'DpController@store')->name('management');
+    Route::get('dp/edit/{id}', 'DpController@edit')->name('management');
+    Route::post('dp/edit', 'DpController@update')->name('management');
+    Route::get('dp/delete/{id}', 'DpController@deleteData')->name('management');
 
     /* company routes */
 
-    Route::get('company', 'CompanyController@index')->name('company');
-    Route::get('company/add', 'CompanyController@add')->name('company');
-    Route::post('company/add', 'CompanyController@store')->name('company');
-    Route::get('company/edit/{id}', 'CompanyController@edit')->name('company');
-    Route::post('company/edit', 'CompanyController@update')->name('company');
-    Route::get('company/delete/{id}', 'CompanyController@deleteData')->name('company');
+    Route::get('company', 'CompanyController@index')->name('management');
+    Route::get('company/add', 'CompanyController@add')->name('management');
+    Route::post('company/add', 'CompanyController@store')->name('management');
+    Route::get('company/edit/{id}', 'CompanyController@edit')->name('management');
+    Route::post('company/edit', 'CompanyController@update')->name('management');
+    Route::get('company/delete/{id}', 'CompanyController@deleteData')->name('management');
 
-    Route::get('company-type', 'CompanyTypeController@index')->name('company-type');
-    Route::get('company-type/add', 'CompanyTypeController@add')->name('company-type');
-    Route::post('company-type/add', 'CompanyTypeController@store')->name('company-type');
-    Route::get('company-type/edit/{id}', 'CompanyTypeController@edit')->name('company-type');
-    Route::post('company-type/edit', 'CompanyTypeController@update')->name('company-type');
-    Route::get('company-type/delete/{id}', 'CompanyTypeController@deleteData')->name('company-type');
+    Route::get('company-type', 'CompanyTypeController@index')->name('management');
+    Route::get('company-type/add', 'CompanyTypeController@add')->name('management');
+    Route::post('company-type/add', 'CompanyTypeController@store')->name('management');
+    Route::get('company-type/edit/{id}', 'CompanyTypeController@edit')->name('management');
+    Route::post('company-type/edit', 'CompanyTypeController@update')->name('management');
+    Route::get('company-type/delete/{id}', 'CompanyTypeController@deleteData')->name('management');
 
 });
 
