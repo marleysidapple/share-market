@@ -27,6 +27,9 @@
         <li class="{{(\Request::route()->getName() == 'dashboard') ? 'active' : ''}}">
             <a href="{{url('home')}}"><span class="fa fa-desktop"></span> <span class="xn-text">Dashboard</span></a>
         </li>
+        <li class="{{(\Request::route()->getName() == 'management') ? 'active' : ''}}">
+            <a href="{{url('management')}}"><span class="fa fa-desktop"></span> <span class="xn-text">Management</span></a>
+        </li>
 
         <li class="{{(\Request::route()->getName() == 'bank') ? 'active' : ''}}">
             <a href="{{url('bank')}}"><span class="fa fa-desktop"></span> <span class="xn-text">Bank Management</span></a>

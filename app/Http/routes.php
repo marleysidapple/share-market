@@ -110,6 +110,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     });
 
+    Route::get('management', 'ManagementController@index')->name('management');
     /* Bank routes */
     Route::get('bank', 'BankController@index')->name('bank');
     Route::get('bank/add', 'BankController@add')->name('bank');
