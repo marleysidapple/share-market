@@ -12,7 +12,9 @@
     </div>
     <div class="panel-body">
     <div class="row">
+        <a href="{{URL::to('package/service')}}" class="btn btn-success btn-sm" style="margin-left:890px;">Service</a>  
         <a href="{{URL::to('package/add')}}" class="btn btn-success btn-sm pull-right">Add New</a>   
+
     </div> 
     <br />
      <div class="table-responsive">

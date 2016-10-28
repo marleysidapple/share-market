@@ -111,14 +111,6 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
     Route::get('management/{tab?}', 'ManagementController@index')->name('management');
-
-    /* Package system routes */
-    Route::get('package', 'PackageController@index')->name('management');
-    Route::get('package/add', 'PackageController@add')->name('management');
-    Route::post('package/add', 'PackageController@store')->name('management');
-    Route::get('package/edit/{id}', 'PackageController@edit')->name('management');
-    Route::post('package/edit', 'PackageController@update')->name('management');
-    Route::get('package/delete/{id}', 'PackageController@deleteData')->name('management');
     
     /* Bank routes */
     Route::get('bank', 'BankController@index')->name('management');
@@ -179,6 +171,22 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('company-type/edit/{id}', 'CompanyTypeController@edit')->name('management');
     Route::post('company-type/edit', 'CompanyTypeController@update')->name('management');
     Route::get('company-type/delete/{id}', 'CompanyTypeController@deleteData')->name('management');
+
+    /* Package system routes */
+    Route::get('package', 'PackageController@index')->name('management');
+    Route::get('package/add', 'PackageController@add')->name('management');
+    Route::post('package/add', 'PackageController@store')->name('management');
+    Route::get('package/edit/{id}', 'PackageController@edit')->name('management');
+    Route::post('package/edit', 'PackageController@update')->name('management');
+    Route::get('package/delete/{id}', 'PackageController@deleteData')->name('management');
+
+    /* Package service routes */
+    Route::get('package/service', 'PackageController@indexService')->name('management');
+    Route::get('package/service/add', 'PackageController@addService')->name('management');
+    Route::post('package/service/add', 'PackageController@storeService')->name('management');
+    Route::get('package/service/edit/{id}', 'PackageController@editService')->name('management');
+    Route::post('package/service/edit', 'PackageController@updateService')->name('management');
+    Route::get('package/service/delete/{id}', 'PackageController@deleteDataService')->name('management');
 
 });
 

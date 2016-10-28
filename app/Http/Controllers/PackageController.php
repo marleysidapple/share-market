@@ -7,10 +7,10 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Services\PackageService;
 use App\Services\PricepackageService;
+use App\Services\ServicepackageService;
 use Redirect;
 use Input;
 use Validator;
-use Config;
 
 class PackageController extends Controller
 {
@@ -19,6 +19,7 @@ class PackageController extends Controller
         // parent::__construct();
         $this->packageService = new PackageService();
         $this->pricepackageService = new PricepackageService();
+        $this->servicepackageService = new ServicepackageService();
     }
 
     public function index()
@@ -37,7 +38,7 @@ class PackageController extends Controller
 
     public function add()
     {
-        $data['listService'] = Config::get('packageservice.listService');
+        $data['listService'] = $this->servicepackageService->getAllName();
     	return view('modules.management.package-add', $data);
     }
 
@@ -59,6 +60,16 @@ class PackageController extends Controller
         $packageData['name'] = Input::get('name');
         $packageData['service'] = Input::get('service');
         $packageData['description'] = Input::get('description');
+
+        // $serviceList = array();
+        // $services = Input::get('service');
+        // if(!empty($services)){
+        //     foreach ($services as $sList) {
+        //         array_push($serviceList, array('id' => $sList));
+        //     }
+        // }
+
+        // dd($serviceList);
 
         $res = $this->packageService->add($packageData);
         if($res){
@@ -128,6 +139,75 @@ class PackageController extends Controller
 
         $data['msgSuccess'] = "Package deleted successfully";
         return Redirect::to('package')->withErrors($data);
+    }
+
+    /* service package code start */
+
+    public function indexService()
+    {
+        $data['pageData'] = $this->servicepackageService->getallData();
+        $data['select'] = 'package';
+        // dd($data);
+        return view('modules.management.service-list', $data);
+    }
+
+    public function addService()
+    {
+        $data['select'] = 'package';
+        return view('modules.management.service-add', $data);
+    }
+
+    public function storeService(Request $request){
+        // dd($request->all());
+
+        $rules = array(
+            'service_name' => 'required'
+            );
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+            return Redirect::back()->withErrors($validator)->withInput($request->all());
+        }
+
+        $res = $this->servicepackageService->add($request->except('_token'));
+
+        $data['msgSuccess'] = "New Service added successfully";
+        return Redirect::to('package/service')->withErrors($data);
+    }
+
+    public function editService($id){
+        // dd($id);
+
+        $data['pageData'] = $this->servicepackageService->getDataById($id);
+        $data['select'] = 'package';
+
+        return view('modules.management.service-edit', $data);
+    }
+
+    public function updateService(Request $request){
+
+        $rules = array(
+            'service_name' => 'required'
+            );
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return Redirect::back()->withErrors($validator)->withInput($request->all());
+        }
+
+        $id = $request->get('id');
+
+        $result = $this->servicepackageService->update($id, $request->except('_token'));
+
+        $data['msgSuccess'] = "Service updated successfully";
+        return Redirect::to('package/service')->withErrors($data);
+    }
+
+    public function deleteDataService($id){
+        // dd($id);
+        $this->servicepackageService->deleteData($id);
+
+        $data['msgSuccess'] = "Service deleted successfully";
+        return Redirect::to('package/service')->withErrors($data);
     }
 
 }

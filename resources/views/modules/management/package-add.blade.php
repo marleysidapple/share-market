@@ -18,13 +18,12 @@
 
               <div class="form-group {{ $errors->has('service') ? ' has-error' : '' }}">
               {{--*/ $oldService = old('service');/*--}}
-                  <label>Services</label>
-                  <select name="service" class="form-control">
-                    <option value="">--Choose Services--</option>
-                    @foreach($listService as $liS => $value)
-                    <option value="{{$liS}}" @if($liS==$oldService) selected @endif>{{$value}}</option>
-                    @endforeach
-                  </select>
+                  <label>Services</label><br />
+                   <!-- <input type="checkbox" name="all" @if($oldService=='all') checked @endif> All &nbsp; -->
+                  @foreach($listService as $liS)
+                  <input type="checkbox" name="service[]" value="{{$liS}}" @if($liS==$oldService) checked @endif> {{$liS}} &nbsp;
+                  @endforeach
+
                   @if ($errors->has('service'))
                       <span class="help-block">{{ $errors->first('service') }} </span>
                    @endif
