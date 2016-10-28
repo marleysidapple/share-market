@@ -23,7 +23,7 @@
                  <tr>
                      <th>S.no</th>
                      <th>Name</th>
-                     <th>Service</th>
+                     <th class="col-md-3">Service</th>
                      <th>Primary Price</th>
                      <th>Secondary Price</th>
                      <th>Action</th>

@@ -17,14 +17,19 @@
                    @endif
               </div>
 
-              <div class="form-group {{ $errors->has('service') ? ' has-error' : '' }}">
-                  <label>Services</label>
-                  <select name="service" class="form-control">
-                    <option value="">--Choose Services--</option>
-                    @foreach($listService as $liS => $value)
-                    <option value="{{$liS}}" @if($liS==$pageData->service) selected @endif>{{$value}}</option>
+               <div class="form-group {{ $errors->has('service') ? ' has-error' : '' }}">
+                  <label for="selectall">Services</label><br />
+                  <div class="chk-container">
+                    <div><input type="checkbox" id="selectall" name="allService" @if(count($serviceResult) == 0) checked @endif> All &nbsp;</div>
+                    @foreach($listService as $liS)
+                      {{--*/ $checkStatus = ''; /*--}}
+                      @foreach($relatedServiceList as $rSlist)
+                        @if($liS == $rSlist){{--*/ $checkStatus = 'checked'; /*--}}@endif
+                      @endforeach
+                    <div class="checkboxli"><input type="checkbox" class="checkbox1" name="service[]" value="{{$liS}}" {{$checkStatus}}> {{$liS}} &nbsp;</div>
                     @endforeach
-                  </select>
+                  </div>
+
                   @if ($errors->has('service'))
                       <span class="help-block">{{ $errors->first('service') }} </span>
                    @endif
@@ -63,5 +68,11 @@
   </div>
                        
                       
+                   
+@endsection
+
+@section('javascript')
+
+<script type="text/javascript" src="{{asset('js/custom.js')}}"></script>
                    
 @endsection

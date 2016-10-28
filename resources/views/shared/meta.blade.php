@@ -10,3 +10,4 @@
 <!-- CSS INCLUDE -->
 <link rel="stylesheet" type="text/css" id="theme" href="{{asset('css/theme-default.css')}}"/>
 <!-- EOF CSS INCLUDE -->
+<link rel="stylesheet" type="text/css" href="{{asset('css/custom.css')}}"/>

@@ -10,7 +10,7 @@
           {!! Form::open(array('url'=>'bank/add', 'role'=>'form', 'method'=>'POST')) !!}
               <div class="form-group {{ $errors->has('name') ? ' has-error' : '' }}">
                   <label>Name</label>
-                  <input type="text" name="name" class="form-control" value="{{old('name')}}"/>
+                  <input type="text" name="name" class="form-control" id="name" value="{{old('name')}}"/>
                   @if ($errors->has('name'))
                       <span class="help-block">{{ $errors->first('name') }} </span>
                    @endif
@@ -81,6 +81,32 @@
       </div>
   </div>
                        
-                      
+              
+                   
+@endsection
+
+@section('javascript')
+
+<!-- <script type="text/javascript" src="{{asset('js/custom.js')}}"></script> -->
+<!-- <script>
+  $("#name").keyup(function(){
+    var name = $(this).val();
+
+    $.ajax({
+        type: "POST",
+        url: "{{URL::to('bank/jsValidation')}}",
+        data : {"name" : name},
+        success: function (datas) {
+            var returnedData = JSON.parse(datas);
+            var status = returnedData.status;
+            console.log(status);
+        },
+        error: function (datas) {
+            console.log('Error:', datas);
+        }
+    });
+
+  });
+</script> -->
                    
 @endsection

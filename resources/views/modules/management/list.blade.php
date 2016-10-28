@@ -207,6 +207,7 @@
 
             <div class="tab-pane panel-body @if($tabId=='listed-company'){{'active'}}@endif" id="tab5"> 
             	<div class="row">
+            		<a href="{{URL::to('company-type')}}" class="btn btn-success btn-sm" style="margin-left:860px">Company Type</a>
 	            	<a href="{{URL::to('company/add')}}" class="btn btn-success btn-sm pull-right">Add New</a>   
 	            </div> 
 	            <br />                                       

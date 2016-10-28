@@ -38,6 +38,7 @@ class PackageController extends Controller
 
     public function add()
     {
+        $data['select'] = 'package';
         $data['listService'] = $this->servicepackageService->getAllName();
     	return view('modules.management.package-add', $data);
     }
@@ -47,7 +48,7 @@ class PackageController extends Controller
 
         $rules = array(
             'name' => 'required',
-            'service' => 'required|min:2|max:50',
+            'service' => 'required',
             'primary_price' => 'required|numeric|min:0.1',
             'secondary_price' => 'required|numeric|min:0.1' 
             );
@@ -58,18 +59,18 @@ class PackageController extends Controller
         }
 
         $packageData['name'] = Input::get('name');
-        $packageData['service'] = Input::get('service');
         $packageData['description'] = Input::get('description');
 
-        // $serviceList = array();
-        // $services = Input::get('service');
-        // if(!empty($services)){
-        //     foreach ($services as $sList) {
-        //         array_push($serviceList, array('id' => $sList));
-        //     }
-        // }
-
-        // dd($serviceList);
+        $serviceList = array();
+        $serviceData = '';
+        $services = Input::get('service');
+        if(!empty($services)){
+            foreach ($services as $sList) {
+                $serviceList[] = $sList;
+                // array_push($serviceList, array($sList));
+            }
+            $packageData['service'] = implode(", ",$serviceList);
+        }
 
         $res = $this->packageService->add($packageData);
         if($res){
@@ -92,7 +93,17 @@ class PackageController extends Controller
         $data['primaryPrice'] = $priceData->primary_price;
         $data['secondaryPrice'] = $priceData->secondary_price;
 
-        $data['listService'] = Config::get('packageservice.listService');
+        $list = array();
+        $data['listService'] = $this->servicepackageService->getAllName();
+        foreach ($data['listService'] as $value) {
+            $list[] = $value;
+        }
+
+        $serviceData = $data['pageData']->service;
+        $data['relatedServiceList'] = explode(", ",$serviceData);
+  
+        $data['serviceResult'] = array_diff_assoc($list, $data['relatedServiceList']);
+
         // dd($data);
         return view('modules.management.package-edit', $data);
     }
@@ -101,7 +112,7 @@ class PackageController extends Controller
 
         $rules = array(
             'name' => 'required',
-            'service' => 'required|min:2|max:50',
+            'service' => 'required',
             'primary_price' => 'required|numeric|min:0.1',
             'secondary_price' => 'required|numeric|min:0.1' 
             );
@@ -113,8 +124,18 @@ class PackageController extends Controller
         $id = $request->get('id');
 
         $packageData['name'] = Input::get('name');
-        $packageData['service'] = Input::get('service');
         $packageData['description'] = Input::get('description');
+
+        $serviceList = array();
+        $serviceData = '';
+        $services = Input::get('service');
+        if(!empty($services)){
+            foreach ($services as $sList) {
+                $serviceList[] = $sList;
+                // array_push($serviceList, array($sList));
+            }
+            $packageData['service'] = implode(", ",$serviceList);
+        }
 
         $result = $this->packageService->update($id, $packageData);
 

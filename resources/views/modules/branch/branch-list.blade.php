@@ -8,11 +8,12 @@
 <div class="panel panel-default">
     <div class="panel-heading">
      <h3 class="panel-title">
-        <a href="{{URL::to('management/bank')}}">Bank Management</a> -> Branch List <a href="{{URL::to('branch/'.$bankId.'/add')}}" class="btn btn-success btn-sm">Add New</a></h3>
+        <a href="{{URL::to('management/bank')}}">Bank Management</a> -> Branch List </h3>
 
     </div>
     <div class="panel-body">
      <div class="table-responsive">
+        <div class="row"><a href="{{URL::to('branch/'.$bankId.'/add')}}" class="btn btn-success btn-sm pull-right" style="margin-left:860px;">Add New</a></div><br />
          <table id="customers2" class="table datatable">
              <thead>
                  <tr>

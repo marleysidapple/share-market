@@ -17,12 +17,13 @@
               </div>
 
               <div class="form-group {{ $errors->has('service') ? ' has-error' : '' }}">
-              {{--*/ $oldService = old('service');/*--}}
-                  <label>Services</label><br />
-                   <!-- <input type="checkbox" name="all" @if($oldService=='all') checked @endif> All &nbsp; -->
-                  @foreach($listService as $liS)
-                  <input type="checkbox" name="service[]" value="{{$liS}}" @if($liS==$oldService) checked @endif> {{$liS}} &nbsp;
-                  @endforeach
+                  <label for="selectall">Services</label><br />
+                  <div class="chk-container">
+                    <div><input type="checkbox" id="selectall" name="allService" checked="checked"> All &nbsp;</div>
+                    @foreach($listService as $liS)
+                    <div class="checkboxli"><input type="checkbox" class="checkbox1" name="service[]" value="{{$liS}}"> {{$liS}} &nbsp;</div>
+                    @endforeach
+                  </div>
 
                   @if ($errors->has('service'))
                       <span class="help-block">{{ $errors->first('service') }} </span>
@@ -61,6 +62,12 @@
       </div>
   </div>
                        
-                      
+@endsection
+
+@section('javascript')
+
+<script type="text/javascript" src="{{asset('js/custom.js')}}"></script>
                    
 @endsection
+
+
