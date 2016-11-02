@@ -101,12 +101,4 @@ class BankController extends Controller
         return Redirect::to('management/bank')->withErrors($data);
     }
 
-    public function jsValidation(Request $request){
-        // dd('sdlfj');
-        // return $request->all();
-        $data['name'] = 'nothing';
-        $data['status'] = 'true';
-        return json_encode($data);
-    }
-
 }

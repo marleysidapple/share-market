@@ -7,10 +7,11 @@
   <div class="panel panel-default">
       <div class="panel-body">
           <h3>Add New Bank</h3>
-          {!! Form::open(array('url'=>'bank/add', 'role'=>'form', 'method'=>'POST')) !!}
+          {!! Form::open(array('url'=>'bank/add', 'role'=>'form', 'method'=>'POST', 'id'=>'bankForm')) !!}
               <div class="form-group {{ $errors->has('name') ? ' has-error' : '' }}">
                   <label>Name</label>
-                  <input type="text" name="name" class="form-control" id="name" value="{{old('name')}}"/>
+                  <input type="text" id="name" name="name" class="form-control" value="{{old('name')}}"/>
+                  <div class="fb-error"></div>
                   @if ($errors->has('name'))
                       <span class="help-block">{{ $errors->first('name') }} </span>
                    @endif
@@ -18,7 +19,7 @@
 
               <div class="form-group {{ $errors->has('address') ? ' has-error' : '' }}">
                   <label>Address</label>
-                  <input type="text" name="address" class="form-control" value="{{old('address')}}"/>
+                  <input type="text" id="address" name="address" class="form-control" value="{{old('address')}}"/>
                   @if ($errors->has('address'))
                       <span class="help-block">{{ $errors->first('address') }} </span>
                    @endif
@@ -26,7 +27,7 @@
 
               <div class="form-group {{ $errors->has('phone') ? ' has-error' : '' }}">
                   <label>Phone</label>
-                  <input type="text" name="phone" class="form-control" value="{{old('phone')}}"/>
+                  <input type="text" id="phone" name="phone" class="form-control" value="{{old('phone')}}"/>
                   @if ($errors->has('phone'))
                       <span class="help-block">{{ $errors->first('phone') }} </span>
                    @endif
@@ -51,7 +52,7 @@
 
               <div class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
                   <label>Email</label>
-                  <input type="text" name="email" class="form-control" value="{{old('email')}}"/>
+                  <input type="text" id="email" name="email" class="form-control" value="{{old('email')}}"/>
                   @if ($errors->has('email'))
                       <span class="help-block">{{ $errors->first('email') }} </span>
                    @endif
@@ -87,26 +88,7 @@
 
 @section('javascript')
 
-<!-- <script type="text/javascript" src="{{asset('js/custom.js')}}"></script> -->
-<!-- <script>
-  $("#name").keyup(function(){
-    var name = $(this).val();
-
-    $.ajax({
-        type: "POST",
-        url: "{{URL::to('bank/jsValidation')}}",
-        data : {"name" : name},
-        success: function (datas) {
-            var returnedData = JSON.parse(datas);
-            var status = returnedData.status;
-            console.log(status);
-        },
-        error: function (datas) {
-            console.log('Error:', datas);
-        }
-    });
-
-  });
-</script> -->
+<script type="text/javascript" src="{{asset('js/jquery.validate.js')}}"></script>
+<script src="{{asset('js/custom.jquery.validate.js')}}"></script>
                    
 @endsection

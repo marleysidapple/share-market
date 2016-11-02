@@ -1,4 +1,4 @@
-@extends('layouts.master')
+\@extends('layouts.master')
 
 @section('main-content')
                          
@@ -7,18 +7,19 @@
   <div class="panel panel-default">
       <div class="panel-body">
           <h3>Add New Company</h3>
-          {!! Form::open(array('url'=>'company/add', 'role'=>'form', 'method'=>'POST')) !!}
+          {!! Form::open(array('url'=>'company/add', 'role'=>'form', 'method'=>'POST', 'id'=>'companyForm')) !!}
               <div class="form-group {{ $errors->has('company_name') ? ' has-error' : '' }}">
                   <label>Name</label>
-                  <input type="text" name="company_name" class="form-control" value="{{old('company_name')}}"/>
+                  <input type="text" id="company_name" name="company_name" class="form-control" value="{{old('company_name')}}"/>
                   @if ($errors->has('company_name'))
                       <span class="help-block">{{ $errors->first('company_name') }} </span>
                    @endif
               </div>
 
               <div class="form-group {{ $errors->has('company_type_id') ? ' has-error' : '' }}">
-                  <label>Choose Company Type</label>
-                  <select name="company_type_id" class="form-control">
+                  <label>Company Type</label>
+                  <select id="company_type_id" name="company_type_id" class="form-control">
+                    <option value="">--select--</option>
                     @foreach($companyType as $ctData)
                     <option value="{{$ctData->id}}">{{$ctData->type}}</option>
                     @endforeach
@@ -30,15 +31,16 @@
 
               <div class="form-group {{ $errors->has('company_ticker') ? ' has-error' : '' }}">
                   <label>Company Ticker</label>
-                  <input type="text" name="company_ticker" class="form-control" value="{{old('company_ticker')}}"/>
+                  <input type="text" id="company_ticker" name="company_ticker" class="form-control" value="{{old('company_ticker')}}"/>
                   @if ($errors->has('company_ticker'))
                       <span class="help-block">{{ $errors->first('company_ticker') }} </span>
                    @endif
               </div>
 
               <div class="form-group {{ $errors->has('rta_id') ? ' has-error' : '' }}">
-                  <label>Choose RTA</label>
-                  <select name="rta_id" class="form-control">
+                  <label>RTA</label>
+                  <select id="rta_id" name="rta_id" class="form-control">
+                    <option value="">--select--</option>
                      @foreach($rtaList as $rtaData)
                     <option value="{{$rtaData->id}}">{{$rtaData->name}}</option>
                     @endforeach
@@ -58,5 +60,12 @@
   </div>
                        
                       
+                   
+@endsection
+
+@section('javascript')
+
+<script type="text/javascript" src="{{asset('js/jquery.validate.js')}}"></script>
+<script src="{{asset('js/custom.jquery.validate.js')}}"></script>
                    
 @endsection

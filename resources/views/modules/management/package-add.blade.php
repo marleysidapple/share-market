@@ -7,10 +7,10 @@
   <div class="panel panel-default">
       <div class="panel-body">
           <h3>Add New Package System</h3>
-          {!! Form::open(array('url'=>'package/add', 'role'=>'form', 'method'=>'POST')) !!}
+          {!! Form::open(array('url'=>'package/add', 'role'=>'form', 'method'=>'POST', 'id'=>'packageForm')) !!}
               <div class="form-group {{ $errors->has('name') ? ' has-error' : '' }}">
                   <label>Name</label>
-                  <input type="text" name="name" class="form-control" value="{{old('name')}}"/>
+                  <input type="text" id="name" name="name" class="form-control" value="{{old('name')}}"/>
                   @if ($errors->has('name'))
                       <span class="help-block">{{ $errors->first('name') }} </span>
                    @endif
@@ -40,7 +40,7 @@
 
               <div class="form-group {{ $errors->has('primary_price') ? ' has-error' : '' }}">
                   <label>Primary Price</label>
-                  <input type="text" name="primary_price" class="form-control" value="{{old('primary_price')}}"/>
+                  <input type="text" id="primary_price" name="primary_price" class="form-control" value="{{old('primary_price')}}"/>
                   @if ($errors->has('primary_price'))
                       <span class="help-block">{{ $errors->first('primary_price') }} </span>
                    @endif
@@ -48,7 +48,7 @@
 
               <div class="form-group {{ $errors->has('secondary_price') ? ' has-error' : '' }}">
                   <label>Secondary Price</label>
-                  <input type="text" name="secondary_price" class="form-control" value="{{old('secondary_price')}}"/>
+                  <input type="text" id="secondary_price" name="secondary_price" class="form-control" value="{{old('secondary_price')}}"/>
                   @if ($errors->has('secondary_price'))
                       <span class="help-block">{{ $errors->first('secondary_price') }} </span>
                    @endif
@@ -67,6 +67,8 @@
 @section('javascript')
 
 <script type="text/javascript" src="{{asset('js/custom.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/jquery.validate.js')}}"></script>
+<script src="{{asset('js/custom.jquery.validate.js')}}"></script>
                    
 @endsection
 

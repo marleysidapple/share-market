@@ -119,7 +119,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('bank/edit/{id}', 'BankController@edit')->name('management');
     Route::post('bank/edit', 'BankController@update')->name('management');
     Route::get('bank/delete/{id}', 'BankController@deleteData')->name('management');
-    // Route::post('bank/jsValidation', 'BankController@jsValidation')->name('management');
 
     /* branch routes */
 
@@ -166,7 +165,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('company/edit', 'CompanyController@update')->name('management');
     Route::get('company/delete/{id}', 'CompanyController@deleteData')->name('management');
 
-    // Route::get('company-type', 'CompanyTypeController@index')->name('management');
+    Route::get('company-type', 'CompanyTypeController@index')->name('management');
     Route::get('company-type/add', 'CompanyTypeController@add')->name('management');
     Route::post('company-type/add', 'CompanyTypeController@store')->name('management');
     Route::get('company-type/edit/{id}', 'CompanyTypeController@edit')->name('management');
@@ -174,7 +173,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('company-type/delete/{id}', 'CompanyTypeController@deleteData')->name('management');
 
     /* Package system routes */
-    // Route::get('package', 'PackageController@index')->name('management');
+    Route::get('package', 'PackageController@index')->name('management');
     Route::get('package/add', 'PackageController@add')->name('management');
     Route::post('package/add', 'PackageController@store')->name('management');
     Route::get('package/edit/{id}', 'PackageController@edit')->name('management');

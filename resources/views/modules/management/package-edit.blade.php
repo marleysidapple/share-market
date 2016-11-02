@@ -11,7 +11,7 @@
               <input type="hidden" name="id" value="{{$pageData->id}}">
               <div class="form-group {{ $errors->has('name') ? ' has-error' : '' }}">
                   <label>Name</label>
-                  <input type="text" name="name" class="form-control" value="{{$pageData->name}}"/>
+                  <input type="text" id="name" name="name" class="form-control" value="{{$pageData->name}}"/>
                   @if ($errors->has('name'))
                       <span class="help-block">{{ $errors->first('name') }} </span>
                    @endif
@@ -45,7 +45,7 @@
 
               <div class="form-group {{ $errors->has('primary_price') ? ' has-error' : '' }}">
                   <label>Primary Price</label>
-                  <input type="text" name="primary_price" class="form-control" value="{{$primaryPrice}}"/>
+                  <input type="text" id="primary_price" name="primary_price" class="form-control" value="{{$primaryPrice}}"/>
                   @if ($errors->has('primary_price'))
                       <span class="help-block">{{ $errors->first('primary_price') }} </span>
                    @endif
@@ -53,7 +53,7 @@
 
               <div class="form-group {{ $errors->has('secondary_price') ? ' has-error' : '' }}">
                   <label>Secondary Price</label>
-                  <input type="text" name="secondary_price" class="form-control" value="{{$secondaryPrice}}"/>
+                  <input type="text" id="secondary_price" name="secondary_price" class="form-control" value="{{$secondaryPrice}}"/>
                   @if ($errors->has('secondary_price'))
                       <span class="help-block">{{ $errors->first('secondary_price') }} </span>
                    @endif
@@ -74,5 +74,7 @@
 @section('javascript')
 
 <script type="text/javascript" src="{{asset('js/custom.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/jquery.validate.js')}}"></script>
+<script src="{{asset('js/custom.jquery.validate.js')}}"></script>
                    
 @endsection
