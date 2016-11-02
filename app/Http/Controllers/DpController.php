@@ -16,6 +16,7 @@ class DpController extends Controller
     {
         // parent::__construct();
         $this->dpService = new DpService(); 
+        $this->select = 'home';
     }
 
     public function index()
@@ -34,7 +35,8 @@ class DpController extends Controller
 
     public function add()
     {
-    	return view('modules.dp.dp-add');
+        $data['select'] = $this->select;
+    	return view('modules.dp.dp-add', $data);
     }
 
     public function store(Request $request){
@@ -61,7 +63,7 @@ class DpController extends Controller
 
     public function edit($id){
         // dd($id);
-
+        $data['select'] = $this->select;
         $data['pageData'] = $this->dpService->getDataById($id);
         // dd($data);
         return view('modules.dp.dp-edit', $data);

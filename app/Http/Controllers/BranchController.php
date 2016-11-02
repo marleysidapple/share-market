@@ -16,6 +16,7 @@ class BranchController extends Controller
     {
         // parent::__construct();
         $this->branchService = new BranchService(); 
+        $this->select = 'home';
     }
 
     public function index($bankId)
@@ -30,6 +31,7 @@ class BranchController extends Controller
     public function add($bankId)
     {
         $data['bankId'] = $bankId;
+        $data['select'] = $this->select;
     	return view('modules.branch.branch-add', $data);
     }
 
@@ -62,6 +64,7 @@ class BranchController extends Controller
         // dd($id);
 
         $data['pageData'] = $this->branchService->getDataById($id);
+        $data['select'] = $this->select;
         // dd($data);
         return view('modules.branch.branch-edit', $data);
     }

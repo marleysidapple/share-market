@@ -20,6 +20,7 @@ class PackageController extends Controller
         $this->packageService = new PackageService();
         $this->pricepackageService = new PricepackageService();
         $this->servicepackageService = new ServicepackageService();
+        $this->select = 'package';
     }
 
     public function index()
@@ -31,14 +32,14 @@ class PackageController extends Controller
         // }
 
         $data['pageData'] = $this->packageService->getallData();
-        $data['select'] = 'package';
+        $data['select'] = $this->select;
         // dd($data);
     	return view('modules.management.package-list', $data);
     }
 
     public function add()
     {
-        $data['select'] = 'package';
+        $data['select'] = $this->select;
         $data['listService'] = $this->servicepackageService->getAllName();
     	return view('modules.management.package-add', $data);
     }
@@ -88,6 +89,7 @@ class PackageController extends Controller
     public function edit($id){
         // dd($id);
 
+        $data['select'] = $this->select;
         $data['pageData'] = $this->packageService->getDataById($id);
         $priceData = $this->pricepackageService->getDataByIdStatus($id);
         $data['primaryPrice'] = $priceData->primary_price;
@@ -167,14 +169,14 @@ class PackageController extends Controller
     public function indexService()
     {
         $data['pageData'] = $this->servicepackageService->getallData();
-        $data['select'] = 'package';
+        $data['select'] = $this->select;
         // dd($data);
         return view('modules.management.service-list', $data);
     }
 
     public function addService()
     {
-        $data['select'] = 'package';
+        $data['select'] = $this->select;
         return view('modules.management.service-add', $data);
     }
 
@@ -200,7 +202,7 @@ class PackageController extends Controller
         // dd($id);
 
         $data['pageData'] = $this->servicepackageService->getDataById($id);
-        $data['select'] = 'package';
+        $data['select'] = $this->select;
 
         return view('modules.management.service-edit', $data);
     }

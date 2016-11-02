@@ -16,6 +16,7 @@ class BankController extends Controller
     {
         // parent::__construct();
         $this->bankService = new BankService(); 
+        $this->select = 'home';
     }
 
     public function index()
@@ -34,7 +35,8 @@ class BankController extends Controller
 
     public function add()
     {
-    	return view('modules.bank.add');
+        $data['select'] = $this->select;
+    	return view('modules.bank.add', $data);
     }
 
     public function store(Request $request){
@@ -62,7 +64,7 @@ class BankController extends Controller
 
     public function edit($id){
         // dd($id);
-
+        $data['select'] = $this->select;
         $data['pageData'] = $this->bankService->getDataById($id);
         // dd($data);
         return view('modules.bank.edit', $data);

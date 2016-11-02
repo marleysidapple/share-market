@@ -20,6 +20,7 @@ class CompanyController extends Controller
         $this->companyService = new CompanyService(); 
         $this->companyTypeService = new CompanyTypeService(); 
         $this->rtaService = new RtaService(); 
+        $this->select = 'home';
     }
 
     public function index()
@@ -40,6 +41,7 @@ class CompanyController extends Controller
     {
         $data['companyType'] = $this->companyTypeService->getallData();
         $data['rtaList'] = $this->rtaService->getallData();
+        $data['select'] = $this->select;
         // dd($data);
     	return view('modules.company.company-add', $data);
     }
@@ -71,6 +73,7 @@ class CompanyController extends Controller
         $data['pageData'] = $this->companyService->getDataById($id);
         $data['companyType'] = $this->companyTypeService->getallData();
         $data['rtaList'] = $this->rtaService->getallData();
+        $data['select'] = $this->select;
         // dd($data);
         return view('modules.company.company-edit', $data);
     }
