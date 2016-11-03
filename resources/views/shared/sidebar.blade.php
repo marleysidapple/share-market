@@ -27,7 +27,6 @@
             <a href="{{url('home')}}"><span class="fa fa-desktop"></span> <span class="xn-text">Dashboard</span></a>
         </li>
 
-<<<<<<< HEAD
 
 
 
@@ -70,7 +69,6 @@
         </li>
         @endif
         
-=======
         <li class="xn-openable {{(\Request::route()->getName() == 'management') ? 'active' : ''}}">
             <a href="index.html#"><span class="fa fa-files-o"></span> <span class="xn-text">Management</span></a>
             <ul>
@@ -82,7 +80,7 @@
   <!--       <li class="{{(\Request::route()->getName() == 'management') ? 'active' : ''}}">
             <a href="{{url('management')}}"><span class="fa fa-desktop"></span> <span class="xn-text">Management</span></a>
         </li> -->
->>>>>>> 0cab9c056deb49ba004bc5696b4409fada0e5b36
+
 
         @if(Auth::user()->can('usergroup'))
         <li class="{{(\Request::route()->getName() == 'usergroup' || \Request::route()->getName() == 'addusergroup') ? 'active' : ''}}">
@@ -119,15 +117,14 @@
             </li>
         @endif
 
-<<<<<<< HEAD
+
         <li class="xn-title">Components</li>
           @if(Auth::user()->roles()->first()->name == 'superadmin' || Auth::user()->can('customerlist'))
             <li class="{{(\Request::route()->getName() == 'customerlist' || \Request::route()->getName() == 'addcustomer')   ? 'active' : ''}}">
                 <a href="{{url('home/customer/list')}}"><span class="fa fa-user"></span>Customer Management</a>
             </li>
         @endif
-       
-=======
+
         <!-- <li class="xn-title">Components</li> -->
 <!--
         <li class="xn-openable">
@@ -210,6 +207,6 @@
             </ul>
         </li>
 -->
->>>>>>> 0cab9c056deb49ba004bc5696b4409fada0e5b36
+
     </ul>
     <!-- END X-NAVIGATION -->
