@@ -130,8 +130,8 @@ class CustomerController extends Controller
         $this->storeAddressDetail($customer, $request);
         $this->storeCitizenshipDetail($customer, $destinationPath, $request);
         $this->storeOccupationDetail($customer, $request);
-        $this->storeDmatDetail($customer, $request);
-        $this->storeBankDetail($customer, $request);
+       // $this->storeDmatDetail($customer, $request);
+       // $this->storeBankDetail($customer, $request);
 
         return redirect()->back()->with('success', 'New Customer added successfully');
 
