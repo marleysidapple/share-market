@@ -25,10 +25,51 @@ span.required{
 
 
 </style>
- <form action="{{url('home/customer/store')}}" method="post" enctype="multipart/form-data">
+ <form action="{{url('home/customer/store')}}" method="post" enctype="multipart/form-data" id="customer">
  {!! csrf_field() !!}
  	 <div class="panel panel-default">
         <div class="panel-body">
+
+        <!--package and service detail-->
+        <h4>Package detail</h4>
+	        <hr/> 	
+	        <div class="row personal">
+			 	
+			 	<div class="col-sm-12">
+			 		  <div class="form-group {{ $errors->has('package') ? ' has-error' : '' }}">
+			              <label>Choose Package</label>
+			              <select class="form-control select" name="package">
+			              	<option value="">Select Package</option>
+			              @foreach($packages as $key => $val)
+			              	<option value="{{$val->id}}">{{$val->name}}</option>
+			              @endforeach
+			              </select>
+			              @if ($errors->has('package'))<span class="help-block">{{ $errors->first('package') }} </span>@endif
+			          </div>
+			 	</div>
+			 	 	
+			</div>
+
+
+			<div class="row personal">
+			 	<div class="col-sm-12">
+			 		  <div class="form-group {{ $errors->has('service') ? ' has-error' : '' }}">
+			              <label>Select Service</label>
+			              @foreach($service as $key => $val)
+			              <div class="form-group">
+			              <input type="checkbox" name="service[]" value="{{$val->id}}"/>&nbsp; {{$val->service_name}}<br/>
+			              </div>
+			              @endforeach
+			              @if ($errors->has('service'))<span class="help-block">{{ $errors->first('service') }} </span>@endif
+			          </div>
+			 	</div>
+			 	 	
+			</div>
+
+
+		
+        <!--package and service detail-->
+
 	        <h4>Customer Detail - Client Profile</h4>
 	        <hr/> 	
 	        <div class="row personal">
@@ -717,6 +758,25 @@ span.required{
       dateFormat: 'yy-mm-dd'
     });
   });
+
+
+   $("#customer").validate({
+   rules: {
+     // no quoting necessary
+     name: "required",
+     zone: "required",
+     district: "required",
+     vdc_municipality: "required",
+     ward: "required",
+     address: "required",
+     issuedistrict: "required",
+     citizenshipno: "required",
+     issuedate: "required",
+     scancitizenshipcopy: "required",
+     password: "required"
+
+   }
+ });
  
 </script>
 @endsection

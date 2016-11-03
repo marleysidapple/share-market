@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCustomerCitizenshipTable extends Migration
+class CreateCustomerContactTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,17 +12,14 @@ class CreateCustomerCitizenshipTable extends Migration
      */
     public function up()
     {
-        Schema::create('customer_citizenship', function (Blueprint $table) {
+        Schema::create('customer_contact', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('customer_id')->unsigned();
-            $table->string('citizenshipno');
-            $table->string('issuedate');
-            $table->integer('issuedistrict')->unsigned();
-            $table->string('filename');
-            $table->timestamps();
-
+            $table->string('email')->unique();
+            $table->string('mobile');
+            $table->string('home_contact');
             $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
-            $table->foreign('issuedistrict')->references('id')->on('district')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 
@@ -33,6 +30,6 @@ class CreateCustomerCitizenshipTable extends Migration
      */
     public function down()
     {
-        Schema::drop('customer_citizenship');
+        Schema::drop('customer_contact');
     }
 }

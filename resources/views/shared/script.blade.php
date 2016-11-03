@@ -30,6 +30,7 @@
     <script type="text/javascript" src="{{asset('js/plugins/moment.min.js')}}"></script>
      <script type="text/javascript" src="{{asset('js/plugins/bootstrap/bootstrap-select.js')}}"></script>
      <script type="text/javascript" src="{{asset('js/form-helper.min.js')}}"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/jquery.validate.min.js"></script>
     <!-- END THIS PAGE PLUGINS-->
 
     <!-- START TEMPLATE -->

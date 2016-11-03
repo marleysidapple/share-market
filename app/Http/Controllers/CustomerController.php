@@ -27,6 +27,9 @@ use App\Role;
 use App\Rta;
 use App\User;
 use App\Username;
+use App\Servicepackage;
+use App\Pricepackage;
+use App\Packagesystem;
 use App\Zone;
 use Illuminate\Http\Request;
 
@@ -57,6 +60,8 @@ class CustomerController extends Controller
         $bank     = Bank::all();
         $zone     = Zone::all();
         $district = District::OrderBy('name', 'asc')->get();
+        $packages = Packagesystem::all();
+        $service  = Servicepackage::all();
 
         $user = User::OrderBy('id', 'desc')->select('username')->first();
 
@@ -75,7 +80,7 @@ class CustomerController extends Controller
          */
         $username = Username::first();
         $username = $username->prefix . $username->year . $final;
-        return view('modules.customer.add', compact(array('bank', 'username', 'zone', 'district')));
+        return view('modules.customer.add', compact(array('bank', 'username', 'zone', 'district', 'packages', 'service')));
     }
 
     /*
