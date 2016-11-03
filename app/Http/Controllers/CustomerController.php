@@ -9,7 +9,11 @@ use App\Broker;
 use App\Citizenship;
 use App\Customer;
 use App\CustomerBank;
+use App\Customercontact;
 use App\Customerdmat;
+use App\Customerpackage;
+use App\Customerreference;
+use App\Customerservice;
 use App\District;
 use App\Dptable;
 use App\Http\Requests\AddDmatRequest;
@@ -17,19 +21,18 @@ use App\Http\Requests\AddNewBankRequest;
 use App\Http\Requests\CustomerRequest;
 use App\Http\Requests\UpdateBankRequest;
 use App\Http\Requests\UpdateCitizenshipRequest;
+use App\Http\Requests\UpdateLoginRequest;
 use App\Http\Requests\UpdatePermanentAddressRequest;
 use App\Http\Requests\UpdatePersonalDetailRequest;
-use App\Http\Requests\UpdateTemporaryAddressRequest;
 use App\Http\Requests\UpdateProfessionRequest;
-use App\Http\Requests\UpdateLoginRequest;
+use App\Http\Requests\UpdateTemporaryAddressRequest;
 use App\Occupation;
+use App\Packagesystem;
 use App\Role;
 use App\Rta;
+use App\Servicepackage;
 use App\User;
 use App\Username;
-use App\Servicepackage;
-use App\Pricepackage;
-use App\Packagesystem;
 use App\Zone;
 use Illuminate\Http\Request;
 
@@ -124,22 +127,58 @@ class CustomerController extends Controller
         }
 
         $customer = Customer::create([
-            'user_id'     => $user->id,
-            'gender'      => $request->gender,
-            'dateofbirth' => $request->dateofbirth,
-            'mobile'      => $request->mobile,
-            'photo'       => $destinationPath . '/' . $fileName,
-            'status'      => 1,
+            'user_id'           => $user->id,
+            'gender'            => $request->gender,
+            'dateofbirth'       => $request->dateofbirth,
+            'fathername'        => $request->fathername,
+            'gfathername'       => $request->grandfathername,
+            'husband_wife_name' => $request->husband_wife_name,
+            'photo'             => $destinationPath . '/' . $fileName,
+            'status'            => 1,
         ]);
 
+        $this->storePackage($customer, $request);
+        $this->storeService($customer, $request);
+        $this->storeContactDetail($customer, $request);
         $this->storeAddressDetail($customer, $request);
         $this->storeCitizenshipDetail($customer, $destinationPath, $request);
         $this->storeOccupationDetail($customer, $request);
-       // $this->storeDmatDetail($customer, $request);
-       // $this->storeBankDetail($customer, $request);
+        $this->storeReference($customer, $request);
+        // $this->storeDmatDetail($customer, $request);
+        // $this->storeBankDetail($customer, $request);
 
         return redirect()->back()->with('success', 'New Customer added successfully');
 
+    }
+
+    public function storePackage($customer, $request)
+    {
+        $package = Customerpackage::create([
+            'customer_id' => $customer->id,
+            'package_id'  => $request->package,
+        ]);
+    }
+
+    public function storeService($customer, $request)
+    {
+        if (count($request->service) != "0") {
+            foreach ($request->service as $key => $val) {
+                $cust_service              = new Customerservice;
+                $cust_service->customer_id = $customer->id;
+                $cust_service->service_id  = $val;
+                $cust_service->save();
+            }
+        }
+    }
+
+    public function storeContactDetail($customer, $request)
+    {
+        $cont = Customercontact::create([
+            'customer_id'  => $customer->id,
+            'email'        => $request->email,
+            'mobile'       => $request->mobile,
+            'home_contact' => $request->homeno,
+        ]);
     }
 
     public function storeAddressDetail($customer, $request)
@@ -151,16 +190,13 @@ class CustomerController extends Controller
             'district_id'       => $request->district,
             'vdc_municipality'  => $request->vdc_municipality,
             'ward'              => $request->ward,
-            'tole'              => $request->tole,
-            'tel'               => $request->tel,
-            'houseno'           => $request->houseno,
+            'street'            => $request->address,
+
             'tzone_id'          => $request->tzone,
             'tdistrict_id'      => $request->tdistrict,
             'tvdc_municipality' => $request->tvdc_municipality,
             'tward'             => $request->tward,
-            'ttole'             => $request->ttole,
-            'thouseno'          => $request->thouseno,
-            'ttel'              => $request->ttel,
+            'tstreet'           => $request->taddress,
         ]);
     }
 
@@ -172,14 +208,11 @@ class CustomerController extends Controller
             $request->file('scancitizenshipcopy')->move($destinationPath, $fileName);
         }
         $citizenship = Citizenship::create([
-            'customer_id'       => $customer->id,
-            'citizenshipno'     => $request->citizenshipno,
-            'issuedate'         => $request->issuedate,
-            'issuedistrict'     => $request->issuedistrict,
-            'fathername'        => $request->fathername,
-            'gfathername'       => $request->grandfathername,
-            'husband_wife_name' => $request->husband_wife_name,
-            'filename'          => $destinationPath . '/' . $fileName,
+            'customer_id'   => $customer->id,
+            'citizenshipno' => $request->citizenshipno,
+            'issuedate'     => $request->issuedate,
+            'issuedistrict' => $request->issuedistrict,
+            'filename'      => $destinationPath . '/' . $fileName,
         ]);
     }
 
@@ -206,8 +239,6 @@ class CustomerController extends Controller
             'designation' => $request->designation,
             'name'        => $request->organisation,
             'address'     => $request->address,
-            'pan'         => $request->pan,
-            'income'      => $request->income,
             'contact'     => $request->contact,
 
         ]);
@@ -223,6 +254,19 @@ class CustomerController extends Controller
             $dmat->accountnumber      = $val['accno'];
             $dmat->save();
         }
+    }
+
+    public function storeReference($customer, $request)
+    {
+        $ref = Customerreference::create([
+            'customer_id'      => $customer->id,
+            'reference_person' => $request->reference,
+            'mainfocus'        => $request->focus,
+            'client_type'      => $request->clienttype,
+            'pan'              => $request->pan,
+            'income'           => $request->income,
+
+        ]);
     }
 
     /*
@@ -624,16 +668,13 @@ class CustomerController extends Controller
 
         $profession->save();
 
-
         return redirect()->back()->with('success', 'Profession details updated successfully');
     }
 
-
-
     /*
-    * editing login detail
-    * rendering view
-    */
+     * editing login detail
+     * rendering view
+     */
     public function editLogin($id)
     {
         $customer = Customer::find($id);
@@ -641,16 +682,15 @@ class CustomerController extends Controller
 
     }
 
-
     /*
-    * updating login detail
-    * save to database
-    */
+     * updating login detail
+     * save to database
+     */
     public function updateLoginDetail(UpdateLoginRequest $request, $id)
     {
         $user = User::find($id);
 
-        if ($request->password != ""){
+        if ($request->password != "") {
             $user->password = \bcrypt($request->password);
         }
 

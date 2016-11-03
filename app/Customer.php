@@ -9,12 +9,17 @@ class Customer extends Model
     protected $table = 'customers';
 
 
-    protected $fillable = array('user_id', 'gender', 'dateofbirth', 'mobile', 'photo', 'status');
+    protected $fillable = array('user_id', 'gender', 'fathername', 'gfathername', 'husband_wife_name', 'dateofbirth', 'photo', 'status');
 
 
     public function userdetail()
     {
         return $this->belongsTo('App\User', 'user_id');
+    }
+
+    public function contact()
+    {
+        return $this->hasOne('App\Customercontact', 'customer_id');
     }
 
     public function address()

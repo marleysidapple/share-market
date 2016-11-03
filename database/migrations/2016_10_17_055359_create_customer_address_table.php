@@ -19,17 +19,13 @@ class CreateCustomerAddressTable extends Migration
             $table->integer('district_id')->unsigned();
             $table->string('vdc_municipality');
             $table->string('ward');
-            $table->string('houseno');
-            $table->string('tole');
-            $table->string('tel');
+            $table->string('street');
 
             $table->integer('tzone_id')->unsigned();
             $table->integer('tdistrict_id')->unsigned();
             $table->string('tvdc_municipality');
             $table->string('tward');
-            $table->string('thouseno');
-            $table->string('ttole');
-            $table->string('ttel');
+            $table->string('tstreet');
             $table->timestamps();
 
             $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
