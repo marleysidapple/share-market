@@ -6,19 +6,19 @@
   {!!csrf_field()!!}
   <div class="panel panel-default">
       <div class="panel-body">
-          <h3>Add New Company Type</h3>
-          {!! Form::open(array('url'=>'company-type/add', 'role'=>'form', 'method'=>'POST', 'id'=>'companytypeForm')) !!}
-              <div class="form-group {{ $errors->has('type') ? ' has-error' : '' }}">
+          <h3>Add New Package System</h3>
+          {!! Form::open(array('url'=>'package/service/add', 'role'=>'form', 'method'=>'POST', 'id'=>'servicePackageForm')) !!}
+              <div class="form-group {{ $errors->has('service_name') ? ' has-error' : '' }}">
                   <label>Name</label>
-                  <input type="text" id="type" name="type" class="form-control" value="{{old('type')}}"/>
-                  @if ($errors->has('type'))
-                      <span class="help-block">{{ $errors->first('type') }} </span>
+                  <input type="text" id="service_name" name="service_name" class="form-control" value="{{old('service_name')}}"/>
+                  @if ($errors->has('service_name'))
+                      <span class="help-block">{{ $errors->first('service_name') }} </span>
                    @endif
               </div>
 
               <div class="button pull-left">
                   <button type="submit" class="btn btn-primary btn-sm">Add</button>
-                  <a href="{{URL::to('company-type')}}" class="btn btn-default btn-sm">Cancel</a>
+                  <a href="{{URL::to('package/service')}}" class="btn btn-default btn-sm">Cancel</a>
               </div>
           {!! Form::close() !!}
       </div>

@@ -16,6 +16,7 @@ class BrokerController extends Controller
     {
         // parent::__construct();
         $this->brokerService = new BrokerService(); 
+        $this->select = 'home';
     }
 
     public function index()
@@ -34,7 +35,8 @@ class BrokerController extends Controller
 
     public function add()
     {
-    	return view('modules.broker.broker-add');
+        $data['select'] = $this->select;
+    	return view('modules.broker.broker-add', $data);
     }
 
     public function store(Request $request){
@@ -43,10 +45,11 @@ class BrokerController extends Controller
         $rules = array(
             'name' => 'required',
             'address' => 'required|min:2|max:50',
+            'email' => 'email',
             'broker_no' => 'required',
             'phone' => 'required|digits_between:8,20',
-            'contact_person' => 'required|min:2|max:20',
-            'contact_person_no' => 'required|digits_between:8,20',  
+            'contact_person' => 'min:2|max:20',
+            'contact_person_no' => 'digits_between:8,20',  
             );
         $validator = Validator::make($request->all(), $rules);
 
@@ -57,12 +60,12 @@ class BrokerController extends Controller
         $res = $this->brokerService->add($request->except('_token'));
 
         $data['msgSuccess'] = "New Broker added successfully";
-        return Redirect::to('broker')->withErrors($data);
+        return Redirect::to('management/broker')->withErrors($data);
     }
 
     public function edit($id){
         // dd($id);
-
+        $data['select'] = $this->select;
         $data['pageData'] = $this->brokerService->getDataById($id);
         // dd($data);
         return view('modules.broker.broker-edit', $data);
@@ -73,10 +76,11 @@ class BrokerController extends Controller
         $rules = array(
             'name' => 'required',
             'address' => 'required|min:2|max:50',
+            'email' => 'email',
             'broker_no' => 'required',
             'phone' => 'required|digits_between:8,20',
-            'contact_person' => 'required|min:2|max:20',
-            'contact_person_no' => 'required|digits_between:8,20',  
+            'contact_person' => 'min:2|max:20',
+            'contact_person_no' => 'digits_between:8,20',  
             );
         $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) {
@@ -90,7 +94,7 @@ class BrokerController extends Controller
         $this->brokerService->update($brokerId, $inputData);
 
         $data['msgSuccess'] = "Broker updated successfully";
-        return Redirect::to('broker')->withErrors($data);
+        return Redirect::to('management/broker')->withErrors($data);
     }
 
     public function deleteData($id){
@@ -98,7 +102,7 @@ class BrokerController extends Controller
         $this->brokerService->deleteData($id);
 
         $data['msgSuccess'] = "Broker deleted successfully";
-        return Redirect::to('broker')->withErrors($data);
+        return Redirect::to('management/broker')->withErrors($data);
     }
 
 }

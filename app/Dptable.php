@@ -9,7 +9,7 @@ class Dptable extends Model
 {
 	protected $table = 'dp';
 
-  	protected $fillable = array('name', 'dp_id', 'address', 'phone');
+  	protected $fillable = array('name', 'dp_id', 'address', 'phone', 'email');
 
 }
 

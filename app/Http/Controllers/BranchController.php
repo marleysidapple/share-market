@@ -14,8 +14,13 @@ class BranchController extends Controller
     public function __construct()
     {
         // parent::__construct();
+<<<<<<< HEAD
         $this->branchService = new BranchService();
         $this->middleware('able');
+=======
+        $this->branchService = new BranchService(); 
+        $this->select = 'home';
+>>>>>>> 0cab9c056deb49ba004bc5696b4409fada0e5b36
     }
 
     public function index($bankId)
@@ -30,7 +35,12 @@ class BranchController extends Controller
     public function add($bankId)
     {
         $data['bankId'] = $bankId;
+<<<<<<< HEAD
         return view('modules.branch.branch-add', $data);
+=======
+        $data['select'] = $this->select;
+    	return view('modules.branch.branch-add', $data);
+>>>>>>> 0cab9c056deb49ba004bc5696b4409fada0e5b36
     }
 
     public function store(Request $request)
@@ -38,11 +48,20 @@ class BranchController extends Controller
         // dd($request->all());
 
         $rules = array(
+<<<<<<< HEAD
             'address'           => 'required|min:2|max:50',
             'phone'             => 'required|digits_between:8,20',
             'contact_person'    => 'required|min:2|max:20',
             'contact_person_no' => 'required|digits_between:8,20',
         );
+=======
+            'address' => 'required|min:2|max:50',
+            'phone' => 'required|digits_between:8,20',
+            'email' => 'email',
+            'contact_person' => 'min:2|max:20',
+            'contact_person_no' => 'digits_between:8,20',  
+            );
+>>>>>>> 0cab9c056deb49ba004bc5696b4409fada0e5b36
         $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) {
             return Redirect::back()->withErrors($validator)->withInput($request->all());
@@ -62,6 +81,7 @@ class BranchController extends Controller
         // dd($id);
 
         $data['pageData'] = $this->branchService->getDataById($id);
+        $data['select'] = $this->select;
         // dd($data);
         return view('modules.branch.branch-edit', $data);
     }
@@ -70,11 +90,20 @@ class BranchController extends Controller
     {
 
         $rules = array(
+<<<<<<< HEAD
             'address'           => 'required|min:2|max:50',
             'phone'             => 'required|digits_between:8,20',
             'contact_person'    => 'required|min:2|max:20',
             'contact_person_no' => 'required|digits_between:8,20',
         );
+=======
+            'address' => 'required|min:2|max:50',
+            'phone' => 'required|digits_between:8,20',
+            'email' => 'email',
+            'contact_person' => 'min:2|max:20',
+            'contact_person_no' => 'digits_between:8,20',   
+            );
+>>>>>>> 0cab9c056deb49ba004bc5696b4409fada0e5b36
         $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) {
             return Redirect::back()->withErrors($validator)->withInput($request->all());
