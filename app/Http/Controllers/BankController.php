@@ -12,8 +12,11 @@ class BankController extends Controller
     public function __construct()
     {
         // parent::__construct();
+
         $this->bankService = new BankService();
         $this->middleware('able');
+        $this->select = 'home';
+
     }
 
     public function index()
@@ -32,7 +35,9 @@ class BankController extends Controller
 
     public function add()
     {
-        return view('modules.bank.add');
+
+        $data['select'] = $this->select;
+    	return view('modules.bank.add', $data);
     }
 
     public function store(Request $request)
@@ -40,12 +45,14 @@ class BankController extends Controller
         // dd($request->all());
 
         $rules = array(
+
             'name'              => 'required',
             'address'           => 'required|min:2|max:50',
             'phone'             => 'required|digits_between:8,20',
             'contact_person'    => 'required|min:2|max:20',
             'contact_person_no' => 'required|digits_between:8,20',
         );
+
         $validator = Validator::make($request->all(), $rules);
 
         if ($validator->fails()) {
@@ -53,15 +60,14 @@ class BankController extends Controller
         }
 
         $res = $this->bankService->add($request->except('_token'));
-
         $data['msgSuccess'] = "New Bank added successfully";
-        return Redirect::to('home/bank')->withErrors($data);
+        return Redirect::to('management/bank')->withErrors($data);
     }
 
     public function edit($id)
     {
         // dd($id);
-
+        $data['select'] = $this->select;
         $data['pageData'] = $this->bankService->getDataById($id);
         // dd($data);
         return view('modules.bank.edit', $data);
@@ -71,12 +77,13 @@ class BankController extends Controller
     {
 
         $rules = array(
-            'name'              => 'required',
-            'address'           => 'required|min:2|max:50',
-            'phone'             => 'required|digits_between:8,20',
-            'contact_person'    => 'required|min:2|max:20',
-            'contact_person_no' => 'required|digits_between:8,20',
-        );
+            'name' => 'required',
+            'address' => 'required|min:2|max:50',
+            'phone' => 'required|digits_between:8,20',
+            'email' => 'email',
+            'contact_person' => 'min:2|max:20',
+            'contact_person_no' => 'digits_between:8,20', 
+            );
         $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) {
             return Redirect::back()->withErrors($validator)->withInput($request->all());
@@ -89,7 +96,7 @@ class BankController extends Controller
         $this->bankService->update($bankId, $inputData);
 
         $data['msgSuccess'] = "Bank updated successfully";
-        return Redirect::to('home/bank')->withErrors($data);
+        return Redirect::to('management/bank')->withErrors($data);
     }
 
     public function deleteData($id)
@@ -98,7 +105,7 @@ class BankController extends Controller
         $this->bankService->deleteData($id);
 
         $data['msgSuccess'] = "Bank deleted successfully";
-        return Redirect::to('home/bank')->withErrors($data);
+        return Redirect::to('management/bank')->withErrors($data);
     }
 
 }

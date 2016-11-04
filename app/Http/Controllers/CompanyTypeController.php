@@ -16,6 +16,7 @@ class CompanyTypeController extends Controller
     {
         // parent::__construct();
         $this->companyTypeService = new CompanyTypeService(); 
+        $this->select = 'home';
     }
 
     public function index()
@@ -35,7 +36,8 @@ class CompanyTypeController extends Controller
     public function add()
     {
         // dd($data);
-    	return view('modules.company.type-add');
+        $data['select'] = $this->select;
+    	return view('modules.company.type-add', $data);
     }
 
     public function store(Request $request){
@@ -58,7 +60,7 @@ class CompanyTypeController extends Controller
 
     public function edit($id){
         // dd($id);
-
+        $data['select'] = $this->select;
         $data['pageData'] = $this->companyTypeService->getDataById($id);
         // dd($data);
         return view('modules.company.type-edit', $data);

@@ -18,8 +18,6 @@ class CreateCustomerOccupation extends Migration
             $table->string('designation');
             $table->string('name');
             $table->string('address');
-            $table->string('pan');
-            $table->string('income');
             $table->string('contact');
             $table->timestamps();
 

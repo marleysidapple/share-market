@@ -1,0 +1,15 @@
+.chk-container div{
+	font-size: 14px;
+	font-weight: 300;
+	margin-left: 20px;
+}
+
+.chk-container div input{
+	display: inline-block;
+	margin-top: -2px;
+	margin-right: 5px;
+}
+
+label span {
+	color: red;
+}

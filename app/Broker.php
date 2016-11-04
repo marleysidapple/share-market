@@ -9,7 +9,7 @@ class Broker extends Model
 {
 	protected $table = 'brokers';
 
-  	protected $fillable = array('name', 'address', 'broker_no', 'phone', 'contact_person', 'contact_person_no');
+  	protected $fillable = array('name', 'address','email', 'broker_no', 'phone', 'contact_person', 'contact_person_no');
 
 }
 

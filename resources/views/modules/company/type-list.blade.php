@@ -8,12 +8,12 @@
 <div class="panel panel-default">
     <div class="panel-heading">
      <h3 class="panel-title">
-        <a href="{{URL::to('company')}}">Company Management</a> -> 
-        Company Type <a href="{{URL::to('company-type/add')}}" class="btn btn-success btn-sm">Add New</a></h3>
+        <a href="{{URL::to('management/listed-company')}}">Company Management</a> -> Company Type </h3>
 
     </div>
     <div class="panel-body">
      <div class="table-responsive">
+     <div class="row"><a href="{{URL::to('company-type/add')}}" class="btn btn-success btn-sm pull-right">Add New</a></div><br />
          <table id="customers2" class="table datatable">
              <thead>
                  <tr>
