@@ -35,7 +35,7 @@ span.required{
 	        <hr/> 	
 	        <div class="row personal">
 			 	
-			 	<div class="col-sm-12">
+			 	<div class="col-sm-6">
 			 		  <div class="form-group {{ $errors->has('package') ? ' has-error' : '' }}">
 			              <label>Choose Package</label>
 			              <select class="form-control select" name="package">
@@ -48,21 +48,39 @@ span.required{
 			          </div>
 			 	</div>
 			 	 	
-			</div>
 
-
-			<div class="row personal">
-			 	<div class="col-sm-12">
-			 		  <div class="form-group {{ $errors->has('service') ? ' has-error' : '' }}">
-			              <label>Select Service</label>
-			              @foreach($service as $key => $val)
-			              <div class="form-group">
-			              <input type="checkbox" name="service[]" value="{{$val->id}}"/>&nbsp; {{$val->service_name}}<br/>
-			              </div>
-			              @endforeach
-			              @if ($errors->has('service'))<span class="help-block">{{ $errors->first('service') }} </span>@endif
-			          </div>
+			 	<div class="col-sm-6">
+				 	<div class="form-group">
+				 		<label>Choose Services</label>
+				 		<div class="form-group">
+				 		<table class="table table bordered">
+				 			@foreach($service as $key => $val)
+				 				<tr>
+				 					<td>{{$val->service_name}}</td>
+				 					<td><input type="checkbox" name="service[]" value="{{$val->id}}"/></td>
+				 				</tr>
+				 			@endforeach
+				 		</table>
+				 		<!--  @foreach($service as $key => $val)
+					 		<div class="col-sm-4">
+					 			<input type="checkbox" name="service[]" value="{{$val->id}}"/>&nbsp; {{$val->service_name}}<br/>
+					 		</div>
+					 	@endforeach -->
+					 	</div>
+				 	</div>
 			 	</div>
+
+
+			 	<!-- <div class="col-sm-6">
+			 	   <label>Select Service</label>
+			 	 	@foreach($service as $key => $val)
+			            <div class="form-group col-sm-2">
+			              <input type="checkbox" name="service[]" value="{{$val->id}}"/>&nbsp; {{$val->service_name}}<br/>
+			            </div>
+			          </div>
+			           @if ($errors->has('service'))<span class="help-block">{{ $errors->first('service') }} </span>@endif
+			        @endforeach
+			 	</div> -->
 			 	 	
 			</div>
 
@@ -144,7 +162,7 @@ span.required{
 			 <h4>Contact Info</h4>
 	        <hr/> 	
 	        <div class="row personal">
-	        		<div class="col-sm-2">
+	        		<div class="col-sm-4">
 			 		  <div class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
 			              <label>Email</label>
 			              <input type="text" name="email" class="form-control" value="{{old('email')}}" placeholder="Email address" />
@@ -152,7 +170,7 @@ span.required{
 			          </div>
 			 		</div>
 
-			 	 <div class="col-sm-2">
+			 	 <div class="col-sm-4">
 			 		  <div class="form-group {{ $errors->has('mobile') ? ' has-error' : '' }}">
 			              <label>Mobile No.</label>
 			              <input type="text" name="mobile" class="form-control" value="{{old('mobile')}}"/>
@@ -160,7 +178,7 @@ span.required{
 			          </div>
 			 	</div>
 
-			 	 <div class="col-sm-2">
+			 	 <div class="col-sm-4">
 			 		  <div class="form-group {{ $errors->has('homeno') ? ' has-error' : '' }}">
 			              <label>Home No.</label>
 			              <input type="text" name="homeno" class="form-control" value="{{old('homeno')}}"/>
@@ -290,7 +308,7 @@ span.required{
 			<br/>
 			<h4>Citizenship Details</h4><hr/>
 			<div class="row personal">
-			 	<div class="col-sm-2">
+			 	<div class="col-sm-3">
 			 		   <div class="form-group {{ $errors->has('issuedistrict') ? ' has-error' : '' }}">
 			              <label>Citizenship Issued Place <span class="required">*</span></label>
 			             <select class="form-control" name="issuedistrict">
@@ -304,7 +322,7 @@ span.required{
 			 	</div>
 
 
-			 	<div class="col-sm-2">
+			 	<div class="col-sm-3">
 			 		  <div class="form-group {{ $errors->has('citizenshipno') ? ' has-error' : '' }}">
 			              <label>Citizenship no. <span class="required">*</span></label>
 			              <input type="text" name="citizenshipno" class="form-control" value="{{old('citizenshipno')}}"/>
@@ -313,7 +331,7 @@ span.required{
 			 	</div>
 
 
-			 	<div class="col-sm-2">
+			 	<div class="col-sm-3">
 			 		  <div class="form-group {{ $errors->has('issuedate') ? ' has-error' : '' }}">
 			              <label>Issued Date. <span class="required">*</span></label>
 			              <input type="text" name="issuedate" id="issuedate" class="form-control" value="{{old('issuedate')}}"/>
@@ -321,7 +339,7 @@ span.required{
 			          </div>
 			 	</div>
 
-			  	<div class="col-sm-2">
+			  	<div class="col-sm-3">
 			 		  <div class="form-group {{ $errors->has('scancitizenshipcopy') ? ' has-error' : '' }}">
 			              <label>Scanned copy of citizenship <span class="required">*</span></label>
 			              <input type="file" name="scancitizenshipcopy" class="form-control" value="{{old('scancitizenshipcopy')}}"/>
@@ -392,7 +410,7 @@ span.required{
 			<div class="row personal">
 			 
 
-			 	<div class="col-sm-2">
+			 	<div class="col-sm-3">
 			 		  <div class="form-group {{ $errors->has('organisation') ? ' has-error' : '' }}">
 			              <label>Organisation Name</label>
 			              <input type="text" name="organisation" class="form-control" value="{{old('organisation')}}"/>
@@ -400,7 +418,7 @@ span.required{
 			          </div>
 			 	</div>
 
-			 	<div class="col-sm-2">
+			 	<div class="col-sm-3">
 			 		  <div class="form-group {{ $errors->has('designation') ? ' has-error' : '' }}">
 			              <label>Designation</label>
 			              <input type="text" name="designation" class="form-control" value="{{old('designation')}}"/>
@@ -409,7 +427,7 @@ span.required{
 			 	</div>
 
 
-			  	<div class="col-sm-2">
+			  	<div class="col-sm-3">
 			 		  <div class="form-group {{ $errors->has('address') ? ' has-error' : '' }}">
 			              <label>Organisation Address</label>
 			              <input type="text" name="address" class="form-control" value="{{old('address')}}"/>
@@ -417,7 +435,7 @@ span.required{
 			          </div>
 			 	</div>
 
-			 	<div class="col-sm-2">
+			 	<div class="col-sm-3">
 			 		  <div class="form-group {{ $errors->has('contact') ? ' has-error' : '' }}">
 			              <label>Contact No.</label>
 			              <input type="text" name="contact" class="form-control" value="{{old('contact')}}"/>
