@@ -37,11 +37,9 @@
         @endif
 
           @if(Auth::user()->roles()->first()->name == 'superadmin')
-<<<<<<< HEAD
+
           <li class="xn-openable">
-=======
            <!-- <li class="xn-openable">
->>>>>>> 7e4865fb0bb84680675a55f7d2bcfc286148e6fc
                 <a href="#"><span class="fa fa-cogs"></span> <span class="xn-text">DMAT Registrars</span></a>
                 <ul>
                       @if(Auth::user()->roles()->first()->name == 'superadmin' || Auth::user()->can('listbroker'))
