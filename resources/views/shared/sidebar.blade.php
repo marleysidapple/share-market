@@ -37,7 +37,7 @@
         @endif
 
           @if(Auth::user()->roles()->first()->name == 'superadmin')
-            <li class="xn-openable">
+           <!-- <li class="xn-openable">
                 <a href="#"><span class="fa fa-cogs"></span> <span class="xn-text">DMAT Registrars</span></a>
                 <ul>
                       @if(Auth::user()->roles()->first()->name == 'superadmin' || Auth::user()->can('listbroker'))
@@ -58,15 +58,15 @@
                         </li>
                      @endif
                 </ul>
-            </li>
+            </li>-->
         @endif
 
       
 
          @if(Auth::user()->roles()->first()->name == 'superadmin' || Auth::user()->can('listcompany'))
-        <li class="{{(\Request::route()->getName() == 'listcompany') ? 'active' : ''}}">
+       <!-- <li class="{{(\Request::route()->getName() == 'listcompany') ? 'active' : ''}}">
             <a href="{{url('company')}}"><span class="fa fa-building-o"></span> <span class="xn-text">Company Management</span></a>
-        </li>
+        </li>-->
         @endif
         
         <li class="xn-openable {{(\Request::route()->getName() == 'management') ? 'active' : ''}}">
