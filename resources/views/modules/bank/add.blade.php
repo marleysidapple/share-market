@@ -7,11 +7,7 @@
   <div class="panel panel-default">
       <div class="panel-body">
           <h3>Add New Bank</h3>
-<<<<<<< HEAD
-          {!! Form::open(array('url'=>'home/bank/add', 'role'=>'form', 'method'=>'POST')) !!}
-=======
           {!! Form::open(array('url'=>'bank/add', 'role'=>'form', 'method'=>'POST', 'id'=>'bankForm')) !!}
->>>>>>> 0cab9c056deb49ba004bc5696b4409fada0e5b36
               <div class="form-group {{ $errors->has('name') ? ' has-error' : '' }}">
                   <label>Name</label>
                   <input type="text" id="name" name="name" class="form-control" value="{{old('name')}}"/>

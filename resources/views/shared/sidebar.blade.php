@@ -37,6 +37,8 @@
         @endif
 
           @if(Auth::user()->roles()->first()->name == 'superadmin')
+
+          <li class="xn-openable">
            <!-- <li class="xn-openable">
                 <a href="#"><span class="fa fa-cogs"></span> <span class="xn-text">DMAT Registrars</span></a>
                 <ul>

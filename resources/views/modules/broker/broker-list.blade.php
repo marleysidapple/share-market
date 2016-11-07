@@ -4,7 +4,7 @@
 
 
  @include('errors.errors')
-  
+
 <div class="panel panel-default">
     <div class="panel-heading">
      <h3 class="panel-title">Broker Management <a href="{{URL::to('broker/add')}}" class="btn btn-success btn-sm">Add New</a></h3>
@@ -12,7 +12,7 @@
     </div>
     <div class="panel-body">
      <div class="table-responsive">
-         <table id="customers2" class="table datatable">
+        <table id="customers2" class="table datatable">
              <thead>
                  <tr>
                      <th>S.no</th>
