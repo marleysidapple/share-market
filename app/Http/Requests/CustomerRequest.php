@@ -25,17 +25,19 @@ class CustomerRequest extends Request
     {
         return [
             'name'                 => 'required',
-            'email'                => 'required',
             'gender'               => 'required',
-            'mobile'               => 'required',
             'profilephoto'         => 'mimes:jpg,jpeg,png',
             
             'zone'                 => 'required',
             'district'             => 'required',
             'vdc_municipality'     => 'required',
             'ward'                 => 'required',
+            'street'               => 'required',
             
-            'scancitizenshipcopy'  => 'mimes:jpg,jpeg,png',
+            'citizenshipno'        => 'required',
+            'issuedate'            => 'required',
+            'issuedistrict'        => 'required',
+            'scancitizenshipcopy'  => 'required|mimes:jpg,jpeg,png',
            /* 'customer.*.bank'      => 'required',
             'customer.*.branch'    => 'required',
             'customer.*.accountno' => 'required',
