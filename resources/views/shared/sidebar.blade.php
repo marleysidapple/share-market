@@ -27,11 +27,23 @@
             <a href="{{url('home')}}"><span class="fa fa-desktop"></span> <span class="xn-text">Dashboard</span></a>
         </li>
 
-          @if(Auth::user()->roles()->first()->name == 'superadmin' || Auth::user()->can('customerlist'))
-            <li class="{{(\Request::route()->getName() == 'customerlist' || \Request::route()->getName() == 'addcustomer')   ? 'active' : ''}}">
-                <a href="{{url('home/customer/list')}}"><span class="fa fa-user"></span>Customer Management</a>
-            </li>
-        @endif
+          <li class="xn-openable {{(\Request::route()->getName() == 'customerlist') ? 'active' : ''}}">
+            <a href="index.html#"><span class="fa fa-user"></span> <span class="xn-text">Customers</span></a>
+            <ul>
+              @if(Auth::user()->roles()->first()->name == 'superadmin' || Auth::user()->can('customerlist'))
+                <li class="{{(\Request::route()->getName() == 'customerlist' || \Request::route()->getName() == 'addcustomer')   ? 'active' : ''}}">
+                    <a href="{{url('home/customer/list')}}"><span class="fa fa-user"></span>List All</a>
+                </li>
+             @endif
+
+               @if(Auth::user()->roles()->first()->name == 'superadmin' || Auth::user()->can('addcustomer'))
+                <li class="{{(\Request::route()->getName() == 'addcustomer')   ? 'active' : ''}}">
+                    <a href="{{url('home/customer/add')}}"><span class="fa fa-plus"></span>Add New</a>
+                </li>
+             @endif
+            </ul>
+        </li>
+     
 
 
 
@@ -39,10 +51,24 @@
 
        
         <li class="xn-openable {{(\Request::route()->getName() == 'management') ? 'active' : ''}}">
-            <a href="index.html#"><span class="fa fa-files-o"></span> <span class="xn-text">Settings</span></a>
+            <a href="index.html#"><span class="fa fa-cogs"></span> <span class="xn-text">Parameters</span></a>
             <ul>
 
-                 @if(Auth::user()->roles()->first()->name == 'superadmin' || Auth::user()->can('listbank'))
+
+                 @if(Auth::user()->roles()->first()->name == 'superadmin' || Auth::user()->can('users'))
+                    <li class="{{(\Request::route()->getName() == 'users' || \Request::route()->getName() == 'adduser')   ? 'active' : ''}}">
+                        <a href="{{url('home/users')}}"><span class="fa fa-user"></span>Users</a>
+                    </li>
+                @endif
+
+
+                @if(Auth::user()->roles()->first()->name == 'superadmin' || Auth::user()->can('usergroup'))
+                    <li class="{{(\Request::route()->getName() == 'usergroup' || \Request::route()->getName() == 'addusergroup') ? 'active' : ''}}">
+                       <a href="{{url('home/usergroup')}}"><span class="fa fa-users"></span>User Groups</a>
+                    </li>
+                @endif
+
+                @if(Auth::user()->roles()->first()->name == 'superadmin' || Auth::user()->can('listbank'))
                     <li class="{{(\Request::route()->getName() == 'listbank') ? 'active' : ''}}">
                         <a href="{{url('home/bank')}}"><span class="fa fa-bank"></span> <span class="xn-text">Bank Management</span></a>
                     </li>
@@ -50,22 +76,12 @@
 
                 <li class="@if(isset($select) && $select == 'home') active @endif"><a href="{{url('management')}}"><span class="fa fa-home"></span> Home Management</a></li>
                 <li class="@if(isset($select) && $select == 'package') active @endif"><a href="{{url('package')}}"><span class="fa fa-dollar"></span> Package Management</a></li>        
-                @if(Auth::user()->roles()->first()->name == 'superadmin' || Auth::user()->can('usergroup'))
-                    <li class="{{(\Request::route()->getName() == 'usergroup' || \Request::route()->getName() == 'addusergroup') ? 'active' : ''}}">
-                       <a href="{{url('home/usergroup')}}"><span class="fa fa-users"></span>Manage User Groups</a>
-                    </li>
-                @endif
-                  @if(Auth::user()->roles()->first()->name == 'superadmin' || Auth::user()->can('users'))
-                    <li class="{{(\Request::route()->getName() == 'users' || \Request::route()->getName() == 'adduser')   ? 'active' : ''}}">
-                        <a href="{{url('home/users')}}"><span class="fa fa-user"></span>Manage Users</a>
-                    </li>
-                @endif
 
-                @if(Auth::user()->roles()->first()->name == 'superadmin' || Auth::user()->can('usernamesetting'))
+            <!--     @if(Auth::user()->roles()->first()->name == 'superadmin' || Auth::user()->can('usernamesetting'))
                     <li class="{{(\Request::route()->getName() == 'usernamesetting')   ? 'active' : ''}}">
                         <a href="{{url('home/usernamesetting')}}"><span class="fa fa-cogs"></span>Username Setting</a>
                     </li>
-                @endif
+                @endif -->
 
 
 
@@ -82,6 +98,9 @@
         
 
 
+         <li class="{{(\Request::route()->getName() == 'setting') ? 'active' : ''}}">
+            <a href="{{url('home/usernamesetting')}}"><span class="fa fa-cogs"></span> <span class="xn-text">Setting</span></a>
+        </li>
 
      
       
