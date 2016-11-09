@@ -51,7 +51,7 @@ span.required{
 
 			 	<div class="col-sm-6">
 				 	<div class="form-group">
-				 		<label>Choose Services</label>
+				 		<label>Focus Services</label>
 				 		<div class="form-group">
 				 		<table class="table table bordered">
 				 			@foreach($service as $key => $val)
@@ -91,7 +91,7 @@ span.required{
 	        <h4>Customer Detail - Client Profile</h4>
 	        <hr/> 	
 	        <div class="row personal">
-			 	<div class="col-sm-2">
+			 	<div class="col-sm-3">
 			 		  <div class="form-group {{ $errors->has('name') ? ' has-error' : '' }}">
 			              <label>Full Name<span class="required">&nbsp;*</span></label>
 			              <input type="text" name="name" class="form-control" value="{{old('name')}}" placeholder="Full name" />
@@ -100,7 +100,7 @@ span.required{
 			 	</div>
 
 
-			 	<div class="col-sm-2">
+			 	<div class="col-sm-3">
 			 		  <div class="form-group {{ $errors->has('gender') ? ' has-error' : '' }}">
 			              <label>Gender</label>
 			              <select class="form-control select" name="gender">
@@ -112,7 +112,7 @@ span.required{
 			          </div>
 			 	</div>
 			 	
-			 	<div class="col-sm-2">
+			 	<div class="col-sm-3">
 			 		  <div class="form-group {{ $errors->has('dateofbirth') ? ' has-error' : '' }}">
 			              <label>Date Of Birth</label>
 			              <input type="text" name="dateofbirth" class="form-control" id="dob" value="{{old('dateofbirth')}}" placeholder="Date of birth" />
@@ -121,15 +121,19 @@ span.required{
 			 	</div>
 
 
-			 	<div class="col-sm-2">
+			 	<div class="col-sm-3">
 			 		  <div class="form-group {{ $errors->has('fathername') ? ' has-error' : '' }}">
 			              <label>Father's name</label>
 			              <input type="text" name="fathername" class="form-control" value="{{old('fathername')}}"/>
 			              @if ($errors->has('fathername'))<span class="help-block">{{ $errors->first('fathername') }} </span>@endif
 			          </div>
 			 	</div>
+			 </div>
 
-			 	<div class="col-sm-2">
+
+			 <div class="row personal">
+
+			 	<div class="col-sm-3">
 			 		  <div class="form-group {{ $errors->has('grandfathername') ? ' has-error' : '' }}">
 			              <label>Grand Father's name</label>
 			              <input type="text" name="grandfathername" class="form-control" value="{{old('grandfathername')}}"/>
@@ -137,7 +141,7 @@ span.required{
 			          </div>
 			 	</div>
 
-			 	<div class="col-sm-2">
+			 	<div class="col-sm-3">
 			 		  <div class="form-group {{ $errors->has('husband_wife_name') ? ' has-error' : '' }}">
 			              <label>Husband/Wife's Name</label>
 			              <input type="text" name="husband_wife_name" class="form-control" value="{{old('husband_wife_name')}}"/>
@@ -153,8 +157,8 @@ span.required{
 			              @if ($errors->has('profilephoto'))<span class="help-block">{{ $errors->first('profilephoto') }} </span>@endif
 			          </div>
 			 	</div>
-
 			</div>
+			
 
 
 
@@ -162,7 +166,7 @@ span.required{
 			 <h4>Contact Info</h4>
 	        <hr/> 	
 	        <div class="row personal">
-	        		<div class="col-sm-4">
+	        		<div class="col-sm-3">
 			 		  <div class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
 			              <label>Email</label>
 			              <input type="text" name="email" class="form-control" value="{{old('email')}}" placeholder="Email address" />
@@ -170,7 +174,7 @@ span.required{
 			          </div>
 			 		</div>
 
-			 	 <div class="col-sm-4">
+			 	 <div class="col-sm-3">
 			 		  <div class="form-group {{ $errors->has('mobile') ? ' has-error' : '' }}">
 			              <label>Mobile No.</label>
 			              <input type="text" name="mobile" class="form-control" value="{{old('mobile')}}"/>
@@ -178,7 +182,7 @@ span.required{
 			          </div>
 			 	</div>
 
-			 	 <div class="col-sm-4">
+			 	 <div class="col-sm-3">
 			 		  <div class="form-group {{ $errors->has('homeno') ? ' has-error' : '' }}">
 			              <label>Home No.</label>
 			              <input type="text" name="homeno" class="form-control" value="{{old('homeno')}}"/>

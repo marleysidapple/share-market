@@ -108,12 +108,12 @@ class dashboardController extends Controller
         if (!is_null($id)) {
             $username         = Username::find($id);
             $username->prefix = $request->prefix;
-            $username->year   = $request->year;
+            $username->year   = date('Y');
             $username->save();
         } else {
             $username = Username::create([
                 'prefix' => $request->prefix,
-                'year'   => $request->year,
+                'year'   => date('Y'),
             ]);
         }
 
