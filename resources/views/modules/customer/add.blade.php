@@ -563,7 +563,7 @@ span.required{
 		 
 			 <div class=" col-sm-2 form-group {{ $errors->has('password') ? ' has-error' : '' }}">
                 <label>Password</label>
-                <input type="password" name="password" class="form-control" value="{{old('password')}}"/>
+                <input type="password" name="password" class="form-control" value="{{$username}}" readonly/>
                 @if ($errors->has('password'))<span class="help-block">{{ $errors->first('password') }} </span>@endif
 			 </div>
 		
