@@ -12,6 +12,7 @@
                                         <div class="form-group {{ $errors->has('issuedistrict') ? ' has-error' : '' }}">
                                             <label>Citizenship Issued Place</label>
                                             <select class="form-control issuedistrict" name="issuedistrict">
+                                                  <option value="">Select District</option>
                                                 @foreach($district as $key => $val)
                                                   <option value="{{$val->id}}" {{(!empty($customer->citizen->issuedistrict) && $customer->citizen->issuedistrict == $val->id) ? 'selected' : ''}}>{{$val->name}}</option>
                                                 @endforeach
