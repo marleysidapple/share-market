@@ -67,9 +67,15 @@ class dashboardController extends Controller
      * assigning permission
      * rendering view
      */
-    public function assignPermission()
+    public function assignPermission($id = null)
     {
-        $roles      = Role::where('name', '!=', 'superadmin')->get();
+        if (!is_null($id)) {
+            $roles = Role::where('name', '!=', 'superadmin')
+                ->where('id', $id)
+                ->get();
+        } else {
+            $roles = Role::where('name', '!=', 'superadmin')->get();
+        }
         $permission = Permission::all();
         return view('modules.permission.assign', compact('roles', 'permission'));
     }

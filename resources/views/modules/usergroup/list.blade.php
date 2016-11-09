@@ -50,7 +50,7 @@
                                                   <td>{{$value->name}}</td>
                                                   <td>{{$value->display_name}}</td>
                                                   <td>{{$value->description}}</td>
-                                                  <td><a href="{{url('home/usergroup/edit/'.$value->id)}}" class="btn btn-warning btn-sm">Edit</a>&nbsp; <a href="" class="btn btn-danger btn-sm disabled">Delete</a></td>
+                                                  <td><a href="{{url('home/usergroup/edit/'.$value->id)}}" class="btn btn-warning btn-sm">Edit</a>&nbsp; <a href="" class="btn btn-danger btn-sm disabled">Delete</a>&nbsp;@if($value->name != 'superadmin')<a href="{{url('home/permissions/'.$value->id)}}" class="btn btn-success btn-sm">Assign Permission</a>@endif</td>
                                                 </tr>
                                             @endforeach
                                          </tbody>

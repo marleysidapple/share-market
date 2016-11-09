@@ -94,7 +94,7 @@ Route::group(['middleware' => 'auth'], function () {
          * assigning permission
          * get route
          */
-        Route::get('permissions', 'dashboardController@assignPermission')->name('assignpermission');
+        Route::get('permissions/{id?}', 'dashboardController@assignPermission')->name('assignpermission');
 
         /*
          * ajax route

@@ -35,37 +35,7 @@
 
 
 
-
-       
-
-          @if(Auth::user()->roles()->first()->name == 'superadmin')
-
-          <li class="xn-openable">
-           <!-- <li class="xn-openable">
-                <a href="#"><span class="fa fa-cogs"></span> <span class="xn-text">DMAT Registrars</span></a>
-                <ul>
-                      @if(Auth::user()->roles()->first()->name == 'superadmin' || Auth::user()->can('listbroker'))
-                        <li class="{{(\Request::route()->getName() == 'listbroker') ? 'active' : ''}}">
-                            <a href="{{url('broker')}}"><span class="fa fa-exchange"></span> <span class="xn-text">Broker Management</span></a>
-                        </li>
-                      @endif
-
-                      @if(Auth::user()->roles()->first()->name == 'superadmin' || Auth::user()->can('listrta'))
-                        <li class="{{(\Request::route()->getName() == 'listrta') ? 'active' : ''}}">
-                            <a href="{{url('rta')}}"><span class="fa fa-database"></span> <span class="xn-text">RTA Management</span></a>
-                        </li>
-                      @endif
-
-                      @if(Auth::user()->roles()->first()->name == 'superadmin' || Auth::user()->can('listdp'))
-                        <li class="{{(\Request::route()->getName() == 'listdp') ? 'active' : ''}}">
-                            <a href="{{url('dp')}}"><span class="fa fa-anchor"></span> <span class="xn-text">DP Management</span></a>
-                        </li>
-                     @endif
-                </ul>
-            </li>-->
-        @endif
-
-      
+  
 
        
         <li class="xn-openable {{(\Request::route()->getName() == 'management') ? 'active' : ''}}">
@@ -110,12 +80,7 @@
             </ul>
         </li>
         
-  <!--       <li class="{{(\Request::route()->getName() == 'management') ? 'active' : ''}}">
-            <a href="{{url('management')}}"><span class="fa fa-desktop"></span> <span class="xn-text">Management</span></a>
-        </li> -->
 
-
-      
 
 
      
