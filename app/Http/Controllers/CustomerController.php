@@ -105,7 +105,7 @@ class CustomerController extends Controller
             'name'     => $request->name,
             'email'    => $request->email,
             'username' => $request->username,
-            'password' => \bcrypt($request->password),
+            'password' => \bcrypt($request->username),
         ]);
 
         $roles = Role::where('name', 'user')->first();

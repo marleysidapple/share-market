@@ -7,16 +7,16 @@
                             {!!csrf_field()!!}
                             <div class="panel panel-default">
                                 <div class="panel-body">
-                                    <h3>Edit Login Detail</h3>
+                                    <h3>Change Password</h3>
                                     <form role="form">
-                                        <div class="form-group {{ $errors->has('username') ? ' has-error' : '' }}">
+                                        <!-- <div class="form-group {{ $errors->has('username') ? ' has-error' : '' }}">
                                             <label>Username</label>
                                             <input type="text" username="username" class="form-control" value="{{$customer->userdetail->username}}" readonly/>
                                             @if ($errors->has('username'))
                                                 <span class="help-block">{{ $errors->first('username') }} </span>
                                              @endif
-                                        </div>
-
+                                        </div> -->
+                                          <input type="hidden" username="username" class="form-control" value="{{$customer->userdetail->username}}" readonly/>
 
                                         <div class="form-group {{ $errors->has('password') ? ' has-error' : '' }}">
                                             <label>Password</label>

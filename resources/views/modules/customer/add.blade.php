@@ -549,7 +549,7 @@ span.required{
 		<!--End of DMAT Detail-->
 
 		 <!--login details-->
-		 <br/>
+<!-- 		 <br/>
 		 <h4 style="margin-top:5px;">Login Credentials</h4>
 		 <hr/>
 
@@ -566,7 +566,8 @@ span.required{
                 <input type="password" name="password" class="form-control" value="{{$username}}" readonly/>
                 @if ($errors->has('password'))<span class="help-block">{{ $errors->first('password') }} </span>@endif
 			 </div>
-		
+		 -->
+		   <input type="hidden" name="username" class="form-control" value="{{$username}}"/>
 
 		<div class="clearfix"></div><br/>
 		<button type="submit" class="btn btn-primary btn-sm">Submit</button>

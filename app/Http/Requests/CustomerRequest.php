@@ -38,15 +38,6 @@ class CustomerRequest extends Request
             'issuedate'            => 'required',
             'issuedistrict'        => 'required',
             'scancitizenshipcopy'  => 'required|mimes:jpg,jpeg,png',
-           /* 'customer.*.bank'      => 'required',
-            'customer.*.branch'    => 'required',
-            'customer.*.accountno' => 'required',
-            'customer.*.accname'   => 'required',
-            'organisation'         => 'required',
-            'designation'          => 'required',
-            'address'              => 'required',
-            'contact'              => 'required',*/
-            'password'             => 'required',
         ];
     }
 

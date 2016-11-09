@@ -26,7 +26,7 @@
                                     <a href="{{url('home/customer/'.$customer->id.'/dmat')}}" class="list-group-item {{(\Request::route()->getName() == 'editdmataccountdetail') ? 'active' : ''}}"><span class="fa fa-bank"></span> DMAT Detail</a>
                                     <a href="{{url('home/customer/'.$customer->id.'/profession')}}" class="list-group-item {{(\Request::route()->getName() == 'editprofession') ? 'active' : ''}}"><span class="fa fa-briefcase"></span> Occupation Detail</a>
                                      <a href="{{url('home/customer/'.$customer->id.'/otherinfo')}}" class="list-group-item {{(\Request::route()->getName() == 'otherinfo') ? 'active' : ''}}"><span class="fa fa-briefcase"></span>Other Information</a>
-                                    <a href="{{url('home/customer/'.$customer->id.'/login')}}" class="list-group-item {{(\Request::route()->getName() == 'editloginthroughprofile') ? 'active' : ''}}"><span class="fa fa-cog"></span> Login Detail</a>
+                                    <a href="{{url('home/customer/'.$customer->id.'/login')}}" class="list-group-item {{(\Request::route()->getName() == 'editloginthroughprofile') ? 'active' : ''}}"><span class="fa fa-cog"></span>Change Password</a>
                                 </div>
                             </div>                            
                             
