@@ -5,7 +5,7 @@ namespace App;
 use Zizaco\Entrust\EntrustRole;
 use Illuminate\Database\Eloquent\Model;
 
-class Rta extends Model
+class Rts extends Model
 {
 	protected $table = 'rta';
 

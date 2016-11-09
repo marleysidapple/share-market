@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\BranchService;
+use App\Services\BankService;
 use Illuminate\Http\Request;
 use Redirect;
 use Validator;
@@ -15,14 +16,22 @@ class BranchController extends Controller
     {
         // parent::__construct();
         $this->branchService = new BranchService(); 
+        $this->bankService = new BankService(); 
         $this->middleware('able');
         $this->select = 'home';
+        $this->tabId = 'bank';
+        $this->subTabId = 'branch';
     }
 
     public function index($bankId)
     {
+        $data['select'] = $this->select;
+        $data['tabId'] = $this->tabId;
+        $data['subTabId'] = $this->subTabId;
+
         $data['bankId']   = $bankId;
         $data['pageData'] = $this->branchService->getallData($bankId);
+        $data['bankDetails'] = $this->bankService->getDataById($bankId);
 
         // dd($data);
         return view('modules.branch.branch-list', $data);
@@ -30,7 +39,12 @@ class BranchController extends Controller
 
     public function add($bankId)
     {
+        $data['select'] = $this->select;
+        $data['tabId'] = $this->tabId;
+        $data['subTabId'] = $this->subTabId;
+
         $data['bankId'] = $bankId;
+        $data['bankDetails'] = $this->bankService->getDataById($bankId);
         return view('modules.branch.branch-add', $data);
     }
 
@@ -55,14 +69,18 @@ class BranchController extends Controller
         $data['msgSuccess'] = "New Branch added successfully";
 
         // dd($data);
-        return Redirect::to('home/branch/' . $bankId)->withErrors($data);
+        return Redirect::to('branch/' . $bankId)->withErrors($data);
     }
 
-    public function edit($id)
+    public function edit($bankId, $id)
     {
         // dd($id);
+        $data['select'] = $this->select;
+        $data['tabId'] = $this->tabId;
+        $data['subTabId'] = $this->subTabId;
 
         $data['pageData'] = $this->branchService->getDataById($id);
+        $data['bankDetails'] = $this->bankService->getDataById($bankId);
         // dd($data);
         return view('modules.branch.branch-edit', $data);
     }
@@ -89,7 +107,7 @@ class BranchController extends Controller
 
         $data['msgSuccess'] = "Branch updated successfully";
         // dd($data);
-        return Redirect::to('home/branch/' . $bankId)->withErrors($data);
+        return Redirect::to('branch/' . $bankId)->withErrors($data);
     }
 
     public function deleteData($bankId, $branchId)
@@ -97,7 +115,7 @@ class BranchController extends Controller
 
         $this->branchService->deleteData($branchId);
         $data['msgSuccess'] = "Branch deleted successfully";
-        return Redirect::to('home/branch/' . $bankId)->withErrors($data);
+        return Redirect::to('branch/' . $bankId)->withErrors($data);
     }
 
 }

@@ -16,7 +16,7 @@ class Company extends Model
   	}
 
   	public function companyRta(){
-  		return Company::belongsTo('App\Rta', 'rta_id', 'id');
+  		return Company::belongsTo('App\Rts', 'rta_id', 'id');
   	}
 
 }

@@ -16,7 +16,7 @@ class BankController extends Controller
         $this->bankService = new BankService();
         $this->middleware('able');
         $this->select = 'home';
-
+        $this->tabId = 'bank';
     }
 
     public function index()
@@ -37,6 +37,7 @@ class BankController extends Controller
     {
 
         $data['select'] = $this->select;
+        $data['tabId'] = $this->tabId;
     	return view('modules.bank.add', $data);
     }
 
@@ -49,8 +50,9 @@ class BankController extends Controller
             'name'              => 'required',
             'address'           => 'required|min:2|max:50',
             'phone'             => 'required|digits_between:8,20',
-            'contact_person'    => 'required|min:2|max:20',
-            'contact_person_no' => 'required|digits_between:8,20',
+            'email'             => 'email',
+            'contact_person'    => 'min:2|max:20',
+            'contact_person_no' => 'digits_between:8,20',
         );
 
         $validator = Validator::make($request->all(), $rules);
@@ -68,6 +70,7 @@ class BankController extends Controller
     {
         // dd($id);
         $data['select'] = $this->select;
+        $data['tabId'] = $this->tabId;
         $data['pageData'] = $this->bankService->getDataById($id);
         // dd($data);
         return view('modules.bank.edit', $data);

@@ -5,18 +5,19 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Services\RtaService;
+use App\Services\RtsService;
 use Redirect;
 use Input;
 use Validator;
 
-class RtaController extends Controller
+class RtsController extends Controller
 {
     public function __construct()
     {
         // parent::__construct();
-        $this->rtaService = new RtaService(); 
+        $this->rtsService = new RtsService(); 
         $this->select = 'home';
+        $this->tabId = 'rts';
     }
 
     public function index()
@@ -27,7 +28,7 @@ class RtaController extends Controller
         //     $data['page'] = 0;
         // }
 
-        $data['pageData'] = $this->rtaService->getallData();
+        $data['pageData'] = $this->rtsService->getallData();
 
         // dd($data);
     	return view('modules.rta.rta-list', $data);
@@ -36,6 +37,7 @@ class RtaController extends Controller
     public function add()
     {
         $data['select'] = $this->select;
+        $data['tabId'] = $this->tabId;
     	return view('modules.rta.rta-add', $data);
     }
 
@@ -55,16 +57,17 @@ class RtaController extends Controller
             return Redirect::back()->withErrors($validator)->withInput($request->all());
         }
 
-        $res = $this->rtaService->add($request->except('_token'));
+        $res = $this->rtsService->add($request->except('_token'));
 
-        $data['msgSuccess'] = "New New Registrar and Transfer Agent (RTA) added successfully";
+        $data['msgSuccess'] = "New RTS added successfully";
         return Redirect::to('management/rts')->withErrors($data);
     }
 
     public function edit($id){
         // dd($id);
         $data['select'] = $this->select;
-        $data['pageData'] = $this->rtaService->getDataById($id);
+        $data['tabId'] = $this->tabId;
+        $data['pageData'] = $this->rtsService->getDataById($id);
         // dd($data);
         return view('modules.rta.rta-edit', $data);
     }
@@ -87,17 +90,17 @@ class RtaController extends Controller
         $inputData = $request->except('_token', 'id');
 
         // dd($inputData);
-        $this->rtaService->update($brokerId, $inputData);
+        $this->rtsService->update($brokerId, $inputData);
 
-        $data['msgSuccess'] = "New Registrar and Transfer Agent (RTA) updated successfully";
+        $data['msgSuccess'] = "New RTS updated successfully";
         return Redirect::to('management/rts')->withErrors($data);
     }
 
     public function deleteData($id){
         // dd($id);
-        $this->rtaService->deleteData($id);
+        $this->rtsService->deleteData($id);
 
-        $data['msgSuccess'] = "New Registrar and Transfer Agent (RTA) deleted successfully";
+        $data['msgSuccess'] = "New RTS deleted successfully";
         return Redirect::to('management/rts')->withErrors($data);
     }
 

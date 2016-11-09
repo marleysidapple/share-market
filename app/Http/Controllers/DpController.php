@@ -17,6 +17,7 @@ class DpController extends Controller
         // parent::__construct();
         $this->dpService = new DpService(); 
         $this->select = 'home';
+        $this->tabId = 'dp';
     }
 
     public function index()
@@ -36,6 +37,7 @@ class DpController extends Controller
     public function add()
     {
         $data['select'] = $this->select;
+        $data['tabId'] = $this->tabId;
     	return view('modules.dp.dp-add', $data);
     }
 
@@ -44,7 +46,7 @@ class DpController extends Controller
 
         $rules = array(
             'name' => 'required',
-            'dp_id' => 'required|digits:8',
+            'dp_id' => 'required|size:8',
             'address' => 'min:2|max:50',
             'phone' => 'digits_between:8,20',
             'email' => 'email'
@@ -64,6 +66,7 @@ class DpController extends Controller
     public function edit($id){
         // dd($id);
         $data['select'] = $this->select;
+        $data['tabId'] = $this->tabId;
         $data['pageData'] = $this->dpService->getDataById($id);
         // dd($data);
         return view('modules.dp.dp-edit', $data);
@@ -73,7 +76,7 @@ class DpController extends Controller
 
         $rules = array(
             'name' => 'required',
-            'dp_id' => 'required',
+            'dp_id' => 'required|size:8',
             'address' => 'min:2|max:50',
             'phone' => 'digits_between:8,20',
             'email' => 'email'

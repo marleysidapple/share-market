@@ -17,6 +17,7 @@ class BrokerController extends Controller
         // parent::__construct();
         $this->brokerService = new BrokerService(); 
         $this->select = 'home';
+        $this->tabId = 'broker';
     }
 
     public function index()
@@ -36,6 +37,7 @@ class BrokerController extends Controller
     public function add()
     {
         $data['select'] = $this->select;
+        $data['tabId'] = $this->tabId;
     	return view('modules.broker.broker-add', $data);
     }
 
@@ -66,6 +68,7 @@ class BrokerController extends Controller
     public function edit($id){
         // dd($id);
         $data['select'] = $this->select;
+        $data['tabId'] = $this->tabId;
         $data['pageData'] = $this->brokerService->getDataById($id);
         // dd($data);
         return view('modules.broker.broker-edit', $data);

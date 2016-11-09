@@ -119,7 +119,7 @@
 
             <div class="tab-pane panel-body @if($tabId=='rts'){{'active'}}@endif" id="tab3">   
             	<div class="row">
-	            	<a href="{{URL::to('rta/add')}}" class="btn btn-success btn-sm pull-right">Add New</a>   
+	            	<a href="{{URL::to('rts/add')}}" class="btn btn-success btn-sm pull-right">Add New</a>   
 	            </div> 
 	            <br />                                     
                 <div class="table-responsive">
@@ -150,8 +150,8 @@
 		                    <td>{{$pData->email}}</td>
 		                    <td>{{$pData->phone}}</td>
 		                    <td>{{$pData->contact_person}}</td>
-		                    <td><a href="{{URL::to('rta/edit/'.$pData->id)}}" class="btn btn-warning btn-sm">Edit</a>&nbsp; 
-		                        <a href="javascript:void(0)" data-toggle="modal" data-target="#confirm-delete" data-href="{{URL::to('/rta/delete/'.$pData->id)}}" class="btn btn-danger btn-sm">Delete</a>&nbsp; 
+		                    <td><a href="{{URL::to('rts/edit/'.$pData->id)}}" class="btn btn-warning btn-sm">Edit</a>&nbsp; 
+		                        <a href="javascript:void(0)" data-toggle="modal" data-target="#confirm-delete" data-href="{{URL::to('/rts/delete/'.$pData->id)}}" class="btn btn-danger btn-sm">Delete</a>&nbsp; 
 		                    </td>
 		                </tr>
 		                @endforeach
@@ -219,7 +219,7 @@
 		                     <th>Name</th>
 		                     <th>Type</th>
 		                     <th>Company Ticker</th>
-		                     <th>RTA</th>
+		                     <th>RTS</th>
 		                     <th>Action</th>
 		                 </tr>
 		             </thead>
@@ -236,7 +236,7 @@
 		                <tr>
 		                    <td>{{$start}}</td>
 		                    <td>{{$pData->company_name}}</td>
-		                <td>{{$pData->companyComtype->type}}</td>
+		                	<td>{{$pData->companyComtype->type}}</td>
 		                    <td>{{$pData->company_ticker}}</td>
 		                    <td>{{$pData->companyRta->name}}</td>
 		                    <td><a href="{{URL::to('company/edit/'.$pData->id)}}" class="btn btn-warning btn-sm">Edit</a>&nbsp; 

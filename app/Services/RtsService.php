@@ -2,17 +2,17 @@
 
 namespace App\Services;
 
-use App\Rta;
+use App\Rts;
 use Config;
 use URL;
 use Input;
 
-class RtaService 
+class RtsService 
 { 
 
     public function __construct() {
 
-        $this->model = new Rta();
+        $this->model = new Rts();
     }
 
     public function add($request){

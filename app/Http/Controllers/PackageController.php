@@ -11,6 +11,7 @@ use App\Services\ServicepackageService;
 use Redirect;
 use Input;
 use Validator;
+use Config;
 
 class PackageController extends Controller
 {
@@ -40,7 +41,8 @@ class PackageController extends Controller
     public function add()
     {
         $data['select'] = $this->select;
-        $data['listService'] = $this->servicepackageService->getAllName();
+        // $data['listService'] = $this->servicepackageService->getAllName();
+        $data['listService'] = Config::get('packageservice.listService');
     	return view('modules.management.package-add', $data);
     }
 
@@ -96,7 +98,7 @@ class PackageController extends Controller
         $data['secondaryPrice'] = $priceData->secondary_price;
 
         $list = array();
-        $data['listService'] = $this->servicepackageService->getAllName();
+        $data['listService'] = Config::get('packageservice.listService');
         foreach ($data['listService'] as $value) {
             $list[] = $value;
         }

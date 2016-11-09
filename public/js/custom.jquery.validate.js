@@ -16,6 +16,10 @@
       email: {
         email: true
       },
+      contact_person: {
+        minlength: 2,
+        maxlength: 20
+      },
       contact_person_no : {
         digits: true,
         rangelength : [8, 20]
@@ -35,6 +39,10 @@
         rangelength: "The phone must be between 8 and 20 digits."
       },
       email: "The email must be a valid email address.",
+      contact_person: {
+        minlength: "The contact person field must be at least 2 characters.",
+        maxlength: "The contact person field must not be more than 20 characters."
+      },
       contact_person_no: {
         digits: "The contact person no must be digits.",
         rangelength: "The contact person no must be between 8 and 20 digits."
@@ -57,6 +65,10 @@
       email: {
         email: true
       },
+      contact_person: {
+        minlength: 2,
+        maxlength: 20
+      },
       contact_person_no : {
         digits: true,
         rangelength : [8, 20]
@@ -75,6 +87,10 @@
         rangelength: "The phone must be between 8 and 20 digits."
       },
       email: "The email must be a valid email address.",
+      contact_person: {
+        minlength: "The contact person field must be at least 2 characters.",
+        maxlength: "The contact person field must not be more than 20 characters."
+      },
       contact_person_no: {
         digits: "The contact person no must be digits.",
         rangelength: "The contact person no must be between 8 and 20 digits."
@@ -98,6 +114,10 @@
       email: {
         email: true
       },
+      contact_person: {
+        minlength: 2,
+        maxlength: 20
+      },
       contact_person_no : {
         digits: true,
         rangelength : [8, 20]
@@ -117,6 +137,10 @@
         rangelength: "The phone must be between 8 and 20 digits."
       },
       email: "The email must be a valid email address.",
+      contact_person: {
+        minlength: "The contact person field must be at least 2 characters.",
+        maxlength: "The contact person field must not be more than 20 characters."
+      },
       contact_person_no: {
         digits: "The contact person no must be digits.",
         rangelength: "The contact person no must be between 8 and 20 digits."
@@ -134,7 +158,12 @@
         rangelength : [8, 20]
       },
       email: {
+        required: true,
         email: true
+      },
+      contact_person: {
+        minlength: 2,
+        maxlength: 20
       },
       contact_person_no : {
         digits: true,
@@ -149,7 +178,14 @@
         digits: "The phone must be digits.",
         rangelength: "The phone must be between 8 and 20 digits."
       },
-      email: "The email must be a valid email address.",
+      email: {
+        required: "The email field is required",
+        email: "The email must be a valid email address."
+      },
+      contact_person: {
+        minlength: "The contact person field must be at least 2 characters.",
+        maxlength: "The contact person field must not be more than 20 characters."
+      },
       contact_person_no: {
         digits: "The contact person no must be digits.",
         rangelength: "The contact person no must be between 8 and 20 digits."
@@ -161,12 +197,10 @@
     rules: {
       name: "required",
       address: {
-        required: true,
         minlength: 2,
         maxlength: 50
       },
       phone: {
-        required: true,
         digits: true,
         rangelength : [8, 20]
       },
@@ -174,27 +208,25 @@
         email: true
       },
       dp_id : {
-        digits: true,
-        rangelength : [8, 8]
+        required: true,
+        rangelength: [8, 8]
       }
 
     },
     messages: {
       name: "The name field is required.",
       address: {
-        required: "The address field is required.",
         minlength: "The address must be at least 2 characters.",
         maxlength: "The address must not be more than 50 characters."
       },
       phone: {
-        required: "The phone field is required.",
         digits: "The phone must be digits.",
         rangelength: "The phone must be between 8 and 20 digits."
       },
       email: "The email must be a valid email address.",
       dp_id: {
-        digits: "The DP Id must be digits.",
-        rangelength: "The DP Id must be 8 digits."
+        required: "The DP code field is required.",
+        rangelength: "The DP code must be size of 8."
       },
     }
   });
