@@ -46,15 +46,16 @@
                                              </tr>
                                          </thead>
                                          <tbody>
+				
                                          @foreach($customer as $key => $val)
                                             <tr>
                                                 <td>{{$key+1}}</td>
                                                 <td>{{$val->userdetail->name}}</td>
                                                 <td>{{$val->userdetail->username}}</td>
-                                                <td>{{$val->contact->mobile}}</td>
-                                                <td>{{$val->citizen->citizenshipno}}</td>
-                                                <td>{{$val->dateofbirth}}</td>
-                                                <td><a href="{{url('home/customer/'.$val->id .'/personaldetail')}}" class="btn btn-warning btn-sm">View and Edit</a></td>
+                                                 <td>{{$val->contact->mobile}}</td>						
+						 <td>{{$val->citizen->citizenshipno or ''}}</td>
+						 <td>{{$val->dateofbirth}}</td>
+						 <td><a href="{{url('home/customer/'.$val->id .'/personaldetail')}}" class="btn btn-warning btn-sm">View and Edit</a></td>
                                             </tr>
                                          @endforeach
                                             
