@@ -246,7 +246,7 @@ span.required{
 			  	<div class="col-sm-2">
 			 		  <div class="form-group {{ $errors->has('address') ? ' has-error' : '' }}">
 			              <label>Address <span class="required">*</span></label>
-			              <input type="text" name="address" class="form-control" value="{{old('address')}}"/>
+			              <textarea name="address" class="form-control"/>{{old('address')}}</textarea>
 			              @if ($errors->has('address'))<span class="help-block">{{ $errors->first('address') }} </span>@endif
 			          </div>
 			 	</div>
@@ -302,7 +302,7 @@ span.required{
 				 	<div class="col-sm-2">
 			 		  <div class="form-group {{ $errors->has('taddress') ? ' has-error' : '' }}">
 			              <label>Address</label>
-			              <input type="text" name="taddress" class="form-control" value="{{old('taddress')}}"/>
+			                <textarea name="taddress" class="form-control"/>{{old('taddress')}}</textarea>
 			              @if ($errors->has('taddress'))<span class="help-block">{{ $errors->first('taddress') }} </span>@endif
 			          </div>
 			 	   </div>
