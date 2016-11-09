@@ -13,7 +13,7 @@
                                             <label>Citizenship Issued Place</label>
                                             <select class="form-control issuedistrict" name="issuedistrict">
                                                 @foreach($district as $key => $val)
-                                                  <option value="{{$val->id}}" {{($customer->citizen->issuedistrict == $val->id) ? 'selected' : ''}}>{{$val->name}}</option>
+                                                  <option value="{{$val->id}}" {{(!empty($customer->citizen->issuedistrict) && $customer->citizen->issuedistrict == $val->id) ? 'selected' : ''}}>{{$val->name}}</option>
                                                 @endforeach
                                             </select>
                                               @if ($errors->has('issuedistrict'))
@@ -24,7 +24,7 @@
 
                                          <div class="form-group {{ $errors->has('citizenshipno') ? ' has-error' : '' }}">
                                             <label>Citizenship No.</label>
-                                            <input type="text" name="citizenshipno" class="form-control" value="{{$customer->citizen->citizenshipno}}"/>
+                                            <input type="text" name="citizenshipno" class="form-control" value="{{$customer->citizen->citizenshipno or ''}}"/>
                                             @if ($errors->has('citizenshipno'))
                                                 <span class="help-block">{{ $errors->first('citizenshipno') }} </span>
                                              @endif
@@ -32,7 +32,7 @@
 
                                           <div class="form-group {{ $errors->has('issuedate') ? ' has-error' : '' }}">
                                             <label>Issued Date</label>
-                                            <input type="text" name="issuedate" class="form-control" id="dob" value="{{$customer->citizen->issuedate}}"/>
+                                            <input type="text" name="issuedate" class="form-control" id="dob" value="{{$customer->citizen->issuedate or ''}}"/>
                                             @if ($errors->has('issuedate'))
                                                 <span class="help-block">{{ $errors->first('issuedate') }} </span>
                                              @endif
