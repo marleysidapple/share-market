@@ -778,20 +778,22 @@ span.required{
   });
 
 
+
    $("#customer").validate({
+   
    rules: {
-     // no quoting necessary
-     name: "required",
-     zone: "required",
-     district: "required",
-     vdc_municipality: "required",
-     ward: "required",
-     address: "required",
-     issuedistrict: "required",
-     citizenshipno: "required",
-     issuedate: "required",
-     scancitizenshipcopy: "required",
-     password: "required"
+	     // no quoting necessary
+	     name: "required",
+	     zone: "required",
+	     district: "required",
+	     vdc_municipality: "required",
+	     ward: "required",
+	     address: "required",
+	     issuedistrict: "required",
+	     citizenshipno: "required",
+	     issuedate: "required",
+	     scancitizenshipcopy: "required",
+	     password: "required"
 
    }
  });
