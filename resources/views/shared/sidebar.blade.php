@@ -2,10 +2,10 @@
     <ul class="x-navigation">
         <li class="xn-logo1" style="background:#fe9804;">
             <a href="" style="    text-align: center;font-size: 20px;">SHARE MARKET</a>
-            <a href="index.html#" class="x-navigation-control"></a>
+            <a href="#" class="x-navigation-control"></a>
         </li>
         <li class="xn-profile">
-            <a href="index.html#" class="profile-mini">
+            <a href="#" class="profile-mini">
                 <img src="assets/images/users/avatar.jpg" alt="John Doe"/>
             </a>
             <div class="profile">
@@ -28,7 +28,7 @@
         </li>
 
           <li class="xn-openable {{(\Request::route()->getName() == 'customerlist') ? 'active' : ''}}">
-            <a href="index.html#"><span class="fa fa-user"></span> <span class="xn-text">Customers</span></a>
+            <a href="#"><span class="fa fa-user"></span> <span class="xn-text">Customers</span></a>
             <ul>
               @if(Auth::user()->roles()->first()->name == 'superadmin' || Auth::user()->can('customerlist'))
                 <li class="{{(\Request::route()->getName() == 'customerlist' || \Request::route()->getName() == 'addcustomer')   ? 'active' : ''}}">
@@ -51,7 +51,7 @@
 
        
         <li class="xn-openable {{(\Request::route()->getName() == 'management') ? 'active' : ''}}">
-            <a href="index.html#"><span class="fa fa-cogs"></span> <span class="xn-text">Parameters</span></a>
+            <a href="#"><span class="fa fa-cogs"></span> <span class="xn-text">Parameters</span></a>
             <ul>
 
 
@@ -116,7 +116,7 @@
         <!-- <li class="xn-title">Components</li> -->
 <!--
         <li class="xn-openable">
-            <a href="index.html#"><span class="fa fa-cogs"></span> <span class="xn-text">UI Kits</span></a>
+            <a href="#"><span class="fa fa-cogs"></span> <span class="xn-text">UI Kits</span></a>
             <ul>
                 <li><a href="ui-widgets.html"><span class="fa fa-heart"></span> Widgets</a></li>
                 <li><a href="ui-elements.html"><span class="fa fa-cogs"></span> Elements</a></li>
@@ -135,7 +135,7 @@
             </ul>
         </li>
         <li class="xn-openable">
-            <a href="index.html#"><span class="fa fa-pencil"></span> <span class="xn-text">Forms</span></a>
+            <a href="#"><span class="fa fa-pencil"></span> <span class="xn-text">Forms</span></a>
             <ul>
                 <li class="xn-openable">
                     <a href="form-layouts-two-column.html"><span class="fa fa-tasks"></span> Form Layouts</a>
@@ -162,7 +162,7 @@
             </ul>
         </li>
         <li class="xn-openable">
-            <a href="index.html#"><span class="fa fa-bar-chart-o"></span> <span class="xn-text">Charts</span></a>
+            <a href="#"><span class="fa fa-bar-chart-o"></span> <span class="xn-text">Charts</span></a>
             <ul>
                 <li><a href="charts-morris.html">Morris</a></li>
                 <li><a href="charts-nvd3.html">NVD3</a></li>
@@ -174,18 +174,18 @@
             <a href="maps.html"><span class="fa fa-map-marker"></span> <span class="xn-text">Maps</span></a>
         </li>
         <li class="xn-openable">
-            <a href="index.html#"><span class="fa fa-sitemap"></span> <span class="xn-text">Navigation Levels</span></a>
+            <a href="#"><span class="fa fa-sitemap"></span> <span class="xn-text">Navigation Levels</span></a>
             <ul>
                 <li class="xn-openable">
-                    <a href="index.html#">Second Level</a>
+                    <a href="#">Second Level</a>
                     <ul>
                         <li class="xn-openable">
-                            <a href="index.html#">Third Level</a>
+                            <a href="#">Third Level</a>
                             <ul>
                                 <li class="xn-openable">
-                                    <a href="index.html#">Fourth Level</a>
+                                    <a href="#">Fourth Level</a>
                                     <ul>
-                                        <li><a href="index.html#">Fifth Level</a></li>
+                                        <li><a href="#">Fifth Level</a></li>
                                     </ul>
                                 </li>
                             </ul>
