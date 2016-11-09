@@ -259,6 +259,21 @@ Route::group(['middleware' => 'auth'], function () {
          */
         Route::post('customer/personalinfo/update/{id}', 'CustomerController@updatePersonalDetail');
 
+
+
+        /*
+         * contact detail
+         * get route
+         */
+        Route::get('customer/{id}/contactinfo', 'CustomerController@contactInfo')->name('editcontactinfo');
+
+        /*
+         * updating contact information
+         * post route
+         */
+        Route::post('customer/contactinfo/update/{id}', 'CustomerController@updateContactDetail');
+
+
         /*
          * Editing permanent address detail
          * get route
@@ -392,6 +407,21 @@ Route::group(['middleware' => 'auth'], function () {
         * get route
         */
         Route::get('customer/{id}/login', 'CustomerController@editLogin')->name('editloginthroughprofile');
+
+
+
+        /*
+        * updating other info
+        * get route
+        */
+         Route::get('customer/{id}/otherinfo', 'CustomerController@editOtherInfo')->name('otherinfo');
+
+
+         /*
+         * updating other info
+         * post route
+         */
+         Route::post('customer/otherinfo/update/{id}', 'CustomerController@updateotherInfo');         
 
 
         /*

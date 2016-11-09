@@ -24,13 +24,8 @@ class UpdatePersonalDetailRequest extends Request
      */
     public function rules()
     {
-        $customer = Customer::find($this->route('id'));
         return [
             'name'         => 'required',
-            'email'        => 'required|email|unique:users,email,'.$customer->user_id,
-            'gender'       => 'required',
-            'mobile'       => 'required',
-            'dateofbirth'  => 'required',
             'profilephoto' => 'mimes:jpg,jpeg,png',
         ];
     }

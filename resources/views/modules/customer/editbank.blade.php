@@ -43,6 +43,15 @@
                                         </div>
 
 
+                                           <div class="form-group {{ $errors->has('isprimary') ? ' has-error' : '' }}">
+                                            <label>Is this bank primary ?</label>
+                                            <select class="form-control" name="isprimary">
+                                              <option value="0" {{$customer_bank->isprimary == 0 ? 'selected': ''}}>No</option>
+                                              <option value="1" {{$customer_bank->isprimary == 1 ? 'selected': ''}}>Yes</option>
+                                            </select>
+                                        </div>
+
+
                                         <div class="button pull-left">
                                             <button type="submit" class="btn btn-primary btn-sm">Update</button>
                                         </div>

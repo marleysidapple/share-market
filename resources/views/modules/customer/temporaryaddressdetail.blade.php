@@ -45,29 +45,11 @@
                                         </div>
 
 
-                                        <div class="form-group {{ $errors->has('tole') ? ' has-error' : '' }}">
-                                            <label>Tole</label>
-                                            <input type="text" name="tole" class="form-control" id="dob" value="{{$customer->address->ttole}}"/>
-                                            @if ($errors->has('tole'))
-                                                <span class="help-block">{{ $errors->first('tole') }} </span>
-                                             @endif
-                                        </div>
-
-
-                                          <div class="form-group {{ $errors->has('houseno') ? ' has-error' : '' }}">
-                                            <label>House No.</label>
-                                            <input type="text" name="houseno" class="form-control" id="dob" value="{{$customer->address->thouseno}}"/>
-                                            @if ($errors->has('houseno'))
-                                                <span class="help-block">{{ $errors->first('houseno') }} </span>
-                                             @endif
-                                        </div>
-
-
-                                          <div class="form-group {{ $errors->has('tel') ? ' has-error' : '' }}">
-                                            <label>Telephone</label>
-                                            <input type="text" name="tel" class="form-control" id="dob" value="{{$customer->address->ttel}}"/>
-                                            @if ($errors->has('tel'))
-                                                <span class="help-block">{{ $errors->first('tel') }} </span>
+                                          <div class="form-group {{ $errors->has('tstreet') ? ' has-error' : '' }}">
+                                            <label>Street</label>
+                                            <input type="text" name="tstreet" class="form-control" id="dob" value="{{$customer->address->tstreet}}"/>
+                                            @if ($errors->has('tstreet'))
+                                                <span class="help-block">{{ $errors->first('tstreet') }} </span>
                                              @endif
                                         </div>                                        
 

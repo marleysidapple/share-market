@@ -8,7 +8,7 @@ class CustomerBank extends Model
 {
     protected $table = 'customer_bank';
 
-    protected $fillable = array('customer_id', 'bank_id', 'branch_id', 'accountno', 'accountname');
+    protected $fillable = array('customer_id', 'bank_id', 'branch_id', 'accountno', 'accountname', 'isprimary');
 
     public $timestamps = false;
 

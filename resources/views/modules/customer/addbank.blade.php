@@ -43,6 +43,14 @@
                                              @endif
                                         </div>
 
+                                          <div class="form-group {{ $errors->has('accountnumber') ? ' has-error' : '' }}">
+                                            <label>Is this bank primary ?</label>
+                                            <select class="form-control" name="isprimary">
+                                              <option value="0">No</option>
+                                              <option value="1">Yes</option>
+                                            </select>
+                                        </div>
+
 
                                         <div class="button pull-left">
                                             <button type="submit" class="btn btn-primary btn-sm">Update</button>

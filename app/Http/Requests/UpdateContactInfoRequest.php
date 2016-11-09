@@ -3,8 +3,9 @@
 namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
+use App\Customer;
 
-class UpdateCitizenshipRequest extends Request
+class UpdateContactInfoRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,11 +24,9 @@ class UpdateCitizenshipRequest extends Request
      */
     public function rules()
     {
+        $customer = Customer::find($this->route('id'));
         return [
-            'issuedistrict' => 'required',
-            'issuedate'     => 'required',
-            'citizenshipno' => 'required',
-            'scancopy'      => 'mimes:jpg,jpeg,png',
+            'email'        => 'email|unique:users,email,'.$customer->user_id,
         ];
     }
 }

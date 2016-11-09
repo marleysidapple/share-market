@@ -18,6 +18,7 @@ class CreateCustomerBankTable extends Migration
             $table->integer('bank_id')->unsigned();
             $table->integer('branch_id')->unsigned();
             $table->string('accountno');
+            $table->tinyInteger('isprimary')->default(0);
             $table->string('accountname');
 
             $table->foreign('customer_id')->references('id')->on('customers')->onUpdate('cascade')->onDelete('cascade');

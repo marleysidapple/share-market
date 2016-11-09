@@ -27,6 +27,8 @@ class UpdatePermanentAddressRequest extends Request
             'zone'             => 'required',
             'district'         => 'required',
             'vdc_municipality' => 'required',
+            'ward'             => 'required',
+            'street'           => 'required',
         ];
     }
 }

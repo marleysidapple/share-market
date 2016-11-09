@@ -21,6 +21,7 @@ use App\Http\Requests\AddNewBankRequest;
 use App\Http\Requests\CustomerRequest;
 use App\Http\Requests\UpdateBankRequest;
 use App\Http\Requests\UpdateCitizenshipRequest;
+use App\Http\Requests\UpdateContactInfoRequest;
 use App\Http\Requests\UpdateLoginRequest;
 use App\Http\Requests\UpdatePermanentAddressRequest;
 use App\Http\Requests\UpdatePersonalDetailRequest;
@@ -190,13 +191,13 @@ class CustomerController extends Controller
             'district_id'       => $request->district,
             'vdc_municipality'  => $request->vdc_municipality,
             'ward'              => $request->ward,
-            'street'            => $request->address,
+            'street'            => $request->street,
 
             'tzone_id'          => $request->tzone,
             'tdistrict_id'      => $request->tdistrict,
             'tvdc_municipality' => $request->tvdc_municipality,
             'tward'             => $request->tward,
-            'tstreet'           => $request->taddress,
+            'tstreet'           => $request->tstreet,
         ]);
     }
 
@@ -363,17 +364,52 @@ class CustomerController extends Controller
             $request->file('profilephoto')->move($destination, $fileName);
             $customer->photo = $destination . '/' . $fileName;
         }
-        $user->name  = $request->name;
-        $user->email = $request->email;
+        $user->name = $request->name;
 
-        $customer->gender      = $request->gender;
-        $customer->dateofbirth = $request->dateofbirth;
-        $customer->mobile      = $request->mobile;
+        $customer->gender            = $request->gender;
+        $customer->dateofbirth       = $request->dateofbirth;
+        $customer->fathername        = $request->fathername;
+        $customer->gfathername       = $request->gfathername;
+        $customer->husband_wife_name = $request->husband_wife_name;
+        $customer->status            = 1;
 
         $user->save();
         $customer->save();
 
         return redirect()->back()->with('success', 'Personal Details updated successfully');
+    }
+
+    /*
+     * getting contact information
+     * render edit view
+     */
+    public function contactInfo($id)
+    {
+        $customer = Customer::find($id);
+        return view('modules.customer.contactinfo', compact('customer'));
+    }
+
+    /*
+     * updating contact detail
+     * post to database
+     */
+    public function updateContactDetail(UpdateContactInfoRequest $request, $id)
+    {
+        $customer               = Customer::find($id);
+        $user                   = User::find($customer->user_id);
+        $customerContact        = Customercontact::where('customer_id', $id)->first();
+        $contacts               = Customercontact::find($customerContact->id);
+        $contacts->email        = $request->email;
+        $contacts->mobile       = $request->mobile;
+        $contacts->home_contact = $request->homeno;
+
+        $user->email = $request->email;
+
+        $user->save();
+        $contacts->save();
+
+        return redirect()->back()->with('success', 'Contact Details updated successfully');
+
     }
 
     /*
@@ -400,9 +436,7 @@ class CustomerController extends Controller
         $address->district_id      = $request->district;
         $address->vdc_municipality = $request->vdc_municipality;
         $address->ward             = $request->ward;
-        $address->houseno          = $request->houseno;
-        $address->tole             = $request->tole;
-        $address->tel              = $request->tel;
+        $address->street           = $request->street;
         $address->save();
         return redirect()->back()->with('success', 'Permanent Address updated successfully');
     }
@@ -431,9 +465,7 @@ class CustomerController extends Controller
         $address->tdistrict_id      = $request->district;
         $address->tvdc_municipality = $request->vdc_municipality;
         $address->tward             = $request->ward;
-        $address->thouseno          = $request->houseno;
-        $address->ttole             = $request->tole;
-        $address->ttel              = $request->tel;
+        $address->tstreet           = $request->tstreet;
         $address->save();
         return redirect()->back()->with('success', 'Temporary Address updated successfully');
     }
@@ -475,12 +507,9 @@ class CustomerController extends Controller
             $citizenship->filename = $destination . '/' . $fileName;
         }
 
-        $citizenship->citizenshipno     = $request->citizenshipno;
-        $citizenship->issuedate         = $request->issuedate;
-        $citizenship->fathername        = $request->fathername;
-        $citizenship->gfathername       = $request->gfathername;
-        $citizenship->husband_wife_name = $request->husband_wife_name;
-        $citizenship->issuedistrict     = $request->issuedistrict;
+        $citizenship->citizenshipno = $request->citizenshipno;
+        $citizenship->issuedate     = $request->issuedate;
+        $citizenship->issuedistrict = $request->issuedistrict;
         $citizenship->save();
 
         return redirect()->back()->with('success', 'Citizenship details updated successfully');
@@ -516,11 +545,26 @@ class CustomerController extends Controller
      */
     public function updateBankDetail(UpdateBankRequest $request, $id)
     {
-        $customerBank              = CustomerBank::find($id);
+
+        $customerBank = CustomerBank::find($id);
+
+        if ($request->isprimary == 1) {
+            $customer = $customerBank->customer_id;
+            $cust     = CustomerBank::where('customer_id', $customer)->where('isprimary', 1)->get();
+            if (!is_null($cust)) {
+                foreach ($cust as $key => $val) {
+                    $b            = CustomerBank::find($val->id);
+                    $b->isprimary = 0;
+                    $b->save();
+                }
+            }
+        }
+
         $customerBank->bank_id     = $request->bank;
         $customerBank->branch_id   = $request->branch;
         $customerBank->accountno   = $request->accountnumber;
         $customerBank->accountname = $request->accountname;
+        $customerBank->isprimary   = $request->isprimary;
         $customerBank->save();
 
         return redirect()->back()->with('success', 'Bank details updated successfully');
@@ -554,12 +598,26 @@ class CustomerController extends Controller
      */
     public function addNewBank(AddNewBankRequest $request, $id)
     {
+
+        if ($request->isprimary == 1) {
+            $bank = CustomerBank::where('customer_id', $id)->where('isprimary', 1)->get();
+
+            if (!is_null($bank)) {
+                foreach ($bank as $key => $val) {
+                    $b            = CustomerBank::find($val->id);
+                    $b->isprimary = 0;
+                    $b->save();
+                }
+            }
+        }
+
         $bank = CustomerBank::create([
             'customer_id' => $id,
             'bank_id'     => $request->bank,
             'branch_id'   => $request->branch,
             'accountno'   => $request->accountnumber,
             'accountname' => $request->accountname,
+            'isprimary'   => $request->isprimary,
         ]);
 
         return redirect()->back()->with('success', 'Bank details added successfully');
@@ -663,12 +721,39 @@ class CustomerController extends Controller
         $profession->designation = $request->designation;
         $profession->contact     = $request->contact;
         $profession->address     = $request->address;
-        $profession->pan         = $request->pan;
-        $profession->income      = $request->income;
 
         $profession->save();
 
         return redirect()->back()->with('success', 'Profession details updated successfully');
+    }
+
+    /*
+     * editing other information
+     * render view
+     */
+    public function editOtherInfo($id)
+    {
+        $customer = Customer::find($id);
+        return view('modules.customer.otherinfo', compact('customer'));
+    }
+
+    /*
+     * updating other information
+     * save to database
+     */
+    public function updateotherInfo(Request $request, $id)
+    {
+        $cust                   = Customerreference::where('customer_id', $id)->first();
+        $info                   = Customerreference::find($cust->id);
+        $info->reference_person = $request->reference_person;
+        $info->mainfocus        = $request->mainfocus;
+        $info->client_type      = $request->client_type;
+        $info->pan              = $request->pan;
+        $info->income           = $request->income;
+
+        $info->save();
+
+        return redirect()->back()->with('success', 'Other details updated successfully');
     }
 
     /*

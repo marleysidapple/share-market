@@ -7,7 +7,7 @@
                             {!!csrf_field()!!}
                             <div class="panel panel-default">
                                 <div class="panel-body">
-                                    <h3>Edit Professional Detail</h3>
+                                    <h3>Edit Occupation Detail</h3>
                                     <form role="form">
                                         <div class="form-group {{ $errors->has('name') ? ' has-error' : '' }}">
                                             <label>Organisation Name</label>
@@ -40,23 +40,6 @@
                                                 <span class="help-block">{{ $errors->first('contact') }} </span>
                                              @endif
                                         </div>
-
-                                          <div class="form-group {{ $errors->has('pan') ? ' has-error' : '' }}">
-                                            <label>PAN No.</label>
-                                            <input type="text" name="pan" class="form-control" value="{{$customer->profession->pan}}"/>
-                                            @if ($errors->has('pan'))
-                                                <span class="help-block">{{ $errors->first('pan') }} </span>
-                                             @endif
-                                        </div>
-
-                                          <div class="form-group {{ $errors->has('income') ? ' has-error' : '' }}">
-                                            <label>Income (p.a.)</label>
-                                            <input type="text" name="income" class="form-control" value="{{$customer->profession->income}}"/>
-                                            @if ($errors->has('income'))
-                                                <span class="help-block">{{ $errors->first('income') }} </span>
-                                             @endif
-                                        </div>
-
 
                                         <div class="button pull-left">
                                             <button type="submit" class="btn btn-primary btn-sm">Update</button>

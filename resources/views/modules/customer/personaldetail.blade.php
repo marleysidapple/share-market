@@ -7,7 +7,7 @@
                             {!!csrf_field()!!}
                             <div class="panel panel-default">
                                 <div class="panel-body">
-                                    <h3>Edit Personal Detail</h3>
+                                    <h3>Edit Client Detail</h3>
                                     <form role="form">
                                         <div class="form-group {{ $errors->has('name') ? ' has-error' : '' }}">
                                             <label>Full Name</label>
@@ -17,13 +17,7 @@
                                              @endif
                                         </div>
 
-                                        <div class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
-                                            <label>Email</label>
-                                            <input type="email" name="email" class="form-control" value="{{$customer->userDetail->email}}"/>
-                                            @if ($errors->has('email'))
-                                                <span class="help-block">{{ $errors->first('email') }} </span>
-                                             @endif
-                                        </div>
+                                      
 
                                          <div class="form-group {{ $errors->has('gender') ? ' has-error' : '' }}">
                                             <label>Gender</label>
@@ -37,13 +31,30 @@
                                              @endif
                                         </div>
 
-                                         <div class="form-group {{ $errors->has('mobile') ? ' has-error' : '' }}">
-                                            <label>Mobile</label>
-                                            <input type="text" name="mobile" class="form-control" value="{{$customer->mobile}}"/>
-                                            @if ($errors->has('mobile'))
-                                                <span class="help-block">{{ $errors->first('mobile') }} </span>
+                                         <div class="form-group {{ $errors->has('fathername') ? ' has-error' : '' }}">
+                                            <label>Father's name</label>
+                                            <input type="text" name="fathername" class="form-control" value="{{$customer->fathername}}"/>
+                                            @if ($errors->has('fathername'))
+                                                <span class="help-block">{{ $errors->first('fathername') }} </span>
                                              @endif
                                         </div>
+
+                                         <div class="form-group {{ $errors->has('gfathername') ? ' has-error' : '' }}">
+                                            <label>GrandFather's name</label>
+                                            <input type="text" name="gfathername" class="form-control" value="{{$customer->gfathername}}"/>
+                                            @if ($errors->has('gfathername'))
+                                                <span class="help-block">{{ $errors->first('gfathername') }} </span>
+                                             @endif
+                                        </div>
+
+                                         <div class="form-group {{ $errors->has('husband_wife_name') ? ' has-error' : '' }}">
+                                            <label>Husband/Wife Name</label>
+                                            <input type="text" name="husband_wife_name" class="form-control" value="{{$customer->husband_wife_name}}"/>
+                                            @if ($errors->has('husband_wife_name'))
+                                                <span class="help-block">{{ $errors->first('husband_wife_name') }} </span>
+                                             @endif
+                                        </div>
+
 
                                           <div class="form-group {{ $errors->has('dateofbirth') ? ' has-error' : '' }}">
                                             <label>Date of birth</label>

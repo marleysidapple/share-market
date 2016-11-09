@@ -12,6 +12,7 @@
                                                  <th>Branch</th>                                                 
                                                  <th>Account Name</th>
                                                  <th>Account No.</th>
+                                                 <th>Is Primary?</th>
                                                  <th>Action</th>
                                              </tr>
                                          </thead>
@@ -23,6 +24,7 @@
                                            <td>{{$val->branchname->address}}</td>
                                            <td>{{$val->accountname}}</td>
                                            <td>{{$val->accountno}}</td>
+                                           <td>{{$val->isprimary == 1 ? 'Yes' : 'No'}}</td>
                                            <td><a href="{{url('home/customer/bank/edit/'.$val->id)}}"><i class="fa fa-pencil"></i></a> &nbsp; <a onclick="return confirm('Are you sure?');" href="{{url('home/customer/bank/delete/'.$val->id)}}"><i class="fa fa-trash-o"></i></a></td>
                                          </tr>
                                          @endforeach

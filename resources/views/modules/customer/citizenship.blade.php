@@ -10,7 +10,7 @@
                                     <h3>Edit Citizenship Detail</h3>
                                     <form role="form">
                                         <div class="form-group {{ $errors->has('issuedistrict') ? ' has-error' : '' }}">
-                                            <label>Citizenship Issued district</label>
+                                            <label>Citizenship Issued Place</label>
                                             <select class="form-control issuedistrict" name="issuedistrict">
                                                 @foreach($district as $key => $val)
                                                   <option value="{{$val->id}}" {{($customer->citizen->issuedistrict == $val->id) ? 'selected' : ''}}>{{$val->name}}</option>
@@ -38,32 +38,6 @@
                                              @endif
                                         </div>
 
-
-                                        <div class="form-group {{ $errors->has('fathername') ? ' has-error' : '' }}">
-                                            <label>Father's Name</label>
-                                            <input type="text" name="fathername" class="form-control" id="dob" value="{{$customer->citizen->fathername}}"/>
-                                            @if ($errors->has('fathername'))
-                                                <span class="help-block">{{ $errors->first('fathername') }} </span>
-                                             @endif
-                                        </div>
-
-
-                                          <div class="form-group {{ $errors->has('gfathername') ? ' has-error' : '' }}">
-                                            <label>Grandfather's Name</label>
-                                            <input type="text" name="gfathername" class="form-control" id="dob" value="{{$customer->citizen->gfathername}}"/>
-                                            @if ($errors->has('gfathername'))
-                                                <span class="help-block">{{ $errors->first('gfathername') }} </span>
-                                             @endif
-                                        </div>
-
-
-                                         <div class="form-group {{ $errors->has('husband_wife_name') ? ' has-error' : '' }}">
-                                            <label>Husband/Wife Name</label>
-                                            <input type="text" name="husband_wife_name" class="form-control" id="dob" value="{{$customer->citizen->husband_wife_name}}"/>
-                                            @if ($errors->has('husband_wife_name'))
-                                                <span class="help-block">{{ $errors->first('husband_wife_name') }} </span>
-                                             @endif
-                                        </div>  
 
                                           <div class="form-group {{ $errors->has('scancopy') ? ' has-error' : '' }}">
                                             <label>Citizenship Scanned Copy</label>

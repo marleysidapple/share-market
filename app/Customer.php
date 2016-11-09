@@ -37,6 +37,13 @@ class Customer extends Model
         return $this->hasOne('App\Occupation', 'customer_id');
     }
 
+
+    public function ref()
+    {
+        return $this->hasOne('App\Customerreference', 'customer_id');
+    }
+
+
     public function bank()
     {
         return $this->hasMany('App\CustomerBank');
