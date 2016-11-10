@@ -11,7 +11,7 @@
           </h3>
       </div>
       <div class="panel-body">
-          {!! Form::open(array('url'=>'branch/add', 'role'=>'form', 'class'=>'form-horizontal', 'method'=>'POST')) !!}
+          {!! Form::open(array('url'=>'branch/add', 'role'=>'form', 'class'=>'form-horizontal', 'id'=>'branchForm', 'method'=>'POST')) !!}
 
               <input type="hidden" name="bank_id" value="{{$bankId}}">
               <div class="form-group {{ $errors->has('address') ? ' has-error' : '' }}">
@@ -20,6 +20,16 @@
                     <input type="text" name="address" class="form-control" value="{{old('address')}}"/>
                     @if ($errors->has('address'))
                         <span class="help-block">{{ $errors->first('address') }} </span>
+                     @endif
+                  </div>
+              </div>
+
+              <div class="form-group {{ $errors->has('address') ? ' has-error' : '' }}">
+                  <label class="col-md-3 col-xs-12 control-label">Email</label>
+                  <div class="col-md-6 col-xs-12"> 
+                    <input type="text" name="email" class="form-control" value="{{old('email')}}"/>
+                    @if ($errors->has('email'))
+                        <span class="help-block">{{ $errors->first('email') }} </span>
                      @endif
                   </div>
               </div>
@@ -54,9 +64,9 @@
                   </div>
               </div>
 
-              <div class="button" style="margin-left:270px;">
+              <div class="button" style="margin-left:300px;">
                   <button type="submit" class="btn btn-primary btn-sm">Add</button>
-                  <a href="{{URL::previous()}}" class="btn btn-default btn-sm">Cancel</a>
+                  <a href="{{URL::to('branch/'.$bankId)}}" class="btn btn-default btn-sm">Cancel</a>
 
               </div>
           {!! Form::close() !!}
@@ -64,5 +74,12 @@
   </div>
                        
                       
+                   
+@endsection
+
+@section('javascript')
+
+<script type="text/javascript" src="{{asset('js/jquery.validate.js')}}"></script>
+<script src="{{asset('js/custom.jquery.validate.js')}}"></script>
                    
 @endsection

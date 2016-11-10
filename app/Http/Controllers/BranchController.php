@@ -55,8 +55,9 @@ class BranchController extends Controller
         $rules = array(
             'address'           => 'required|min:2|max:50',
             'phone'             => 'required|digits_between:8,20',
-            'contact_person'    => 'required|min:2|max:20',
-            'contact_person_no' => 'required|digits_between:8,20',
+            'email'             => 'email',
+            'contact_person'    => 'min:2|max:20',
+            'contact_person_no' => 'digits_between:8,20',
         );
         $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) {
@@ -91,8 +92,9 @@ class BranchController extends Controller
         $rules = array(
             'address'           => 'required|min:2|max:50',
             'phone'             => 'required|digits_between:8,20',
-            'contact_person'    => 'required|min:2|max:20',
-            'contact_person_no' => 'required|digits_between:8,20',
+            'email'             => 'email',
+            'contact_person'    => 'min:2|max:20',
+            'contact_person_no' => 'digits_between:8,20',
         );
         $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) {

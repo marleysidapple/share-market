@@ -23,6 +23,7 @@
                  <tr>
                      <th>S.no</th>
                      <th>Address</th>
+                     <th>Email</th>
                      <th>Phone</th>
                      <th>Action</th>
                  </tr>
@@ -40,6 +41,7 @@
                 <tr>
                     <td>{{$start}}</td>
                     <td>{{$pData->address}}</td>
+                    <td>{{$pData->email}}</td>
                     <td>{{$pData->phone}}</td>
                     <td><a href="{{URL::to('branch/'.$pData->bank_id.'/edit/'.$pData->id)}}" class="btn btn-warning btn-sm">Edit</a>&nbsp; 
                         <a href="javascript:void(0)" data-toggle="modal" data-target="#confirm-delete" data-href="{{URL::to('branch/'.$pData->bank_id.'/delete/'.$pData->id)}}" class="btn btn-danger btn-sm">Delete</a>&nbsp; 
