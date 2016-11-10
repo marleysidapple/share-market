@@ -191,7 +191,7 @@
 		                <tr>
 		                    <td>{{$start}}</td>
 		                    <td>{{$pData->name}}</td>
-		                    <td>{{$pData->dp_id}}</td>
+		                    <td>{{$pData->dp_code}}</td>
 		                    <td>{{$pData->address}}</td>
 		                    <td>{{$pData->phone}}</td>
 		                    <td>{{$pData->email}}</td>

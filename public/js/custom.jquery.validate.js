@@ -207,7 +207,7 @@
       email: {
         email: true
       },
-      dp_id : {
+      dp_code : {
         required: true,
         rangelength: [8, 8]
       }
@@ -224,7 +224,7 @@
         rangelength: "The phone must be between 8 and 20 digits."
       },
       email: "The email must be a valid email address.",
-      dp_id: {
+      dp_code: {
         required: "The DP code field is required.",
         rangelength: "The DP code must be size of 8."
       },

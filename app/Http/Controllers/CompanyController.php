@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Services\CompanyService;
 use App\Services\CompanyTypeService;
-use App\Services\RtaService;
+use App\Services\RtsService;
 use Redirect;
 use Input;
 use Validator;
@@ -19,8 +19,9 @@ class CompanyController extends Controller
         // parent::__construct();
         $this->companyService = new CompanyService(); 
         $this->companyTypeService = new CompanyTypeService(); 
-        $this->rtaService = new RtaService(); 
+        $this->rtsService = new RtsService(); 
         $this->select = 'home';
+        $this->tabId = 'listed-company';
     }
 
     public function index()
@@ -40,8 +41,9 @@ class CompanyController extends Controller
     public function add()
     {
         $data['companyType'] = $this->companyTypeService->getallData();
-        $data['rtaList'] = $this->rtaService->getallData();
+        $data['rtaList'] = $this->rtsService->getallData();
         $data['select'] = $this->select;
+        $data['tabId'] = $this->tabId;
         // dd($data);
     	return view('modules.company.company-add', $data);
     }
@@ -72,8 +74,9 @@ class CompanyController extends Controller
 
         $data['pageData'] = $this->companyService->getDataById($id);
         $data['companyType'] = $this->companyTypeService->getallData();
-        $data['rtaList'] = $this->rtaService->getallData();
+        $data['rtaList'] = $this->rtsService->getallData();
         $data['select'] = $this->select;
+        $data['tabId'] = $this->tabId;
         // dd($data);
         return view('modules.company.company-edit', $data);
     }

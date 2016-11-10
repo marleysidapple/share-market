@@ -46,12 +46,15 @@ class DpController extends Controller
 
         $rules = array(
             'name' => 'required',
-            'dp_id' => 'required|size:8',
+            'dp_code' => 'required|size:8|regex:/^[A-Za-z!@#$%^&*]*$/',
             'address' => 'min:2|max:50',
             'phone' => 'digits_between:8,20',
             'email' => 'email'
             );
-        $validator = Validator::make($request->all(), $rules);
+        $messages = array(
+            'dp_code.regex' => 'DP code must contain alphabets and special character only.'
+            );
+        $validator = Validator::make($request->all(), $rules, $messages);
 
         if ($validator->fails()) {
             return Redirect::back()->withErrors($validator)->withInput($request->all());
@@ -76,12 +79,15 @@ class DpController extends Controller
 
         $rules = array(
             'name' => 'required',
-            'dp_id' => 'required|size:8',
+            'dp_code' => 'required|size:8|regex:/^[A-Za-z!@#$%^&*]*$/',
             'address' => 'min:2|max:50',
             'phone' => 'digits_between:8,20',
             'email' => 'email'
             );
-        $validator = Validator::make($request->all(), $rules);
+        $messages = array(
+            'dp_code.regex' => 'DP code must contain alphabets and special character only.'
+            );
+        $validator = Validator::make($request->all(), $rules, $messages);
         if ($validator->fails()) {
             return Redirect::back()->withErrors($validator)->withInput($request->all());
         }

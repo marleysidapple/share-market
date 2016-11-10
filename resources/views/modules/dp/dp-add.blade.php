@@ -20,12 +20,12 @@
                   </div>
               </div>
 
-              <div class="form-group {{ $errors->has('dp_id') ? ' has-error' : '' }}">
+              <div class="form-group {{ $errors->has('dp_code') ? ' has-error' : '' }}">
                   <label class="col-md-3 col-xs-12 control-label">DP Code *</label>
                   <div class="col-md-6 col-xs-12">  
-                  <input type="text" id="dp_id" name="dp_id" class="form-control" value="{{old('dp_id')}}"/>
-                  @if ($errors->has('dp_id'))
-                      <span class="help-block">{{ $errors->first('dp_id') }} </span>
+                  <input type="text" id="dp_code" name="dp_code" class="form-control" value="{{old('dp_code')}}"/>
+                  @if ($errors->has('dp_code'))
+                      <span class="help-block">{{ $errors->first('dp_code') }} </span>
                    @endif
                   </div>
               </div>

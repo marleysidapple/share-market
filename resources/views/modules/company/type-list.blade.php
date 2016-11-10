@@ -7,9 +7,9 @@
   
 <div class="panel panel-default">
     <div class="panel-heading">
-     <h3 class="panel-title">
-        <a href="{{URL::to('management/listed-company')}}">Company Management</a> -> Company Type </h3>
-
+        <h3 class="panel-title">
+            <a href="{{URL::to('management/listed-company')}}"><strong>Company - </strong></a> Types 
+        </h3>
     </div>
     <div class="panel-body">
      <div class="table-responsive">

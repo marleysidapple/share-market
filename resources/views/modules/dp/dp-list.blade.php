@@ -36,7 +36,7 @@
                 <tr>
                     <td>{{$start}}</td>
                     <td>{{$pData->name}}</td>
-                    <td>{{$pData->dp_id}}</td>
+                    <td>{{$pData->dp_code}}</td>
                     <td>{{$pData->address}}</td>
                     <td>{{$pData->phone}}</td>
                     <td><a href="{{URL::to('dp/edit/'.$pData->id)}}" class="btn btn-warning btn-sm">Edit</a>&nbsp; 

@@ -17,6 +17,8 @@ class CompanyTypeController extends Controller
         // parent::__construct();
         $this->companyTypeService = new CompanyTypeService(); 
         $this->select = 'home';
+        $this->tabId = 'listed-company';
+        $this->subTabId = 'type';
     }
 
     public function index()
@@ -26,6 +28,9 @@ class CompanyTypeController extends Controller
         // }else{
         //     $data['page'] = 0;
         // }
+        $data['select'] = $this->select;
+        $data['tabId'] = $this->tabId;
+        $data['subTabId'] = $this->subTabId;
 
         $data['pageData'] = $this->companyTypeService->getallData();
 
@@ -37,6 +42,8 @@ class CompanyTypeController extends Controller
     {
         // dd($data);
         $data['select'] = $this->select;
+        $data['tabId'] = $this->tabId;
+        $data['subTabId'] = $this->subTabId;
     	return view('modules.company.type-add', $data);
     }
 
@@ -61,6 +68,8 @@ class CompanyTypeController extends Controller
     public function edit($id){
         // dd($id);
         $data['select'] = $this->select;
+        $data['tabId'] = $this->tabId;
+        $data['subTabId'] = $this->subTabId;
         $data['pageData'] = $this->companyTypeService->getDataById($id);
         // dd($data);
         return view('modules.company.type-edit', $data);

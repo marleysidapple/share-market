@@ -15,7 +15,8 @@ class CreateDpTable extends Migration
         Schema::create('dp', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->integer('dp_id')->unsigned();
+            $table->string('dp_code');
+            $table->string('email');
             $table->string('address');
             $table->string('phone');
             $table->timestamps();
