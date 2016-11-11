@@ -431,6 +431,14 @@ Route::group(['middleware' => 'auth'], function () {
         */
         Route::post('customer/login/update/{id}', 'CustomerController@updateLoginDetail');
 
+
+
+        /*
+        * ajax route for getting package detail
+        * post route
+        */
+        Route::post('customer/package', 'CustomerController@getService');
+
     });
 
 

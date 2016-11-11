@@ -93,6 +93,7 @@ class CustomerController extends Controller
      */
     public function store(CustomerRequest $request)
     {
+        
         /*
          *
          * things to do
@@ -139,7 +140,7 @@ class CustomerController extends Controller
         ]);
 
         $this->storePackage($customer, $request);
-        $this->storeService($customer, $request);
+        //$this->storeService($customer, $request);
         $this->storeContactDetail($customer, $request);
         $this->storeAddressDetail($customer, $request);
         $this->storeCitizenshipDetail($customer, $destinationPath, $request);
@@ -159,7 +160,7 @@ class CustomerController extends Controller
             'package_id'  => $request->package,
         ]);
     }
-
+/*
     public function storeService($customer, $request)
     {
         if (count($request->service) != "0") {
@@ -170,7 +171,7 @@ class CustomerController extends Controller
                 $cust_service->save();
             }
         }
-    }
+    }*/
 
     public function storeContactDetail($customer, $request)
     {
@@ -239,7 +240,7 @@ class CustomerController extends Controller
             'customer_id' => $customer->id,
             'designation' => $request->designation,
             'name'        => $request->organisation,
-            'address'     => $request->address,
+            'address'     => $request->oaddress,
             'contact'     => $request->contact,
 
         ]);
@@ -782,6 +783,28 @@ class CustomerController extends Controller
         $user->save();
 
         return redirect()->back()->with('success', 'Login details updated successfully');
+    }
+
+
+
+    /*
+    * getting package details
+    *
+    */
+    public function getService(Request $request)
+    {
+        $system = Packagesystem::find($request->dt);
+        $services = explode(',', $system->service);
+
+        $arr = array();
+        
+        foreach($services as $s){
+            $html = '<li><input type="checkbox" checked disabled><span class="stext">'.$s.'</span></li>';
+            array_push($arr, $html);
+        }
+
+
+        return \Response::json($arr);
     }
 
 }

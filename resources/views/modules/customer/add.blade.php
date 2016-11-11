@@ -24,6 +24,15 @@ span.required{
 }
 
 
+.services{
+	list-style-type: none;
+}
+
+span.stext{
+	font-weight: bold;
+}
+
+
 </style>
  <form action="{{url('home/customer/store')}}" method="post" enctype="multipart/form-data" id="customer">
  {!! csrf_field() !!}
@@ -38,7 +47,7 @@ span.required{
 			 	<div class="col-sm-6">
 			 		  <div class="form-group {{ $errors->has('package') ? ' has-error' : '' }}">
 			              <label>Choose Package</label>
-			              <select class="form-control select" name="package">
+			              <select class="form-control package" name="package">
 			              	<option value="">Select Package</option>
 			              @foreach($packages as $key => $val)
 			              	<option value="{{$val->id}}">{{$val->name}}</option>
@@ -53,19 +62,9 @@ span.required{
 				 	<div class="form-group">
 				 		<label>Focus Services</label>
 				 		<div class="form-group">
-				 		<table class="table table bordered">
-				 			@foreach($service as $key => $val)
-				 				<tr>
-				 					<td>{{$val->service_name}}</td>
-				 					<td><input type="checkbox" name="service[]" value="{{$val->id}}"/></td>
-				 				</tr>
-				 			@endforeach
-				 		</table>
-				 		<!--  @foreach($service as $key => $val)
-					 		<div class="col-sm-4">
-					 			<input type="checkbox" name="service[]" value="{{$val->id}}"/>&nbsp; {{$val->service_name}}<br/>
-					 		</div>
-					 	@endforeach -->
+				 		<ul class="services">
+				 			
+				 		</ul>
 					 	</div>
 				 	</div>
 			 	</div>
@@ -432,10 +431,10 @@ span.required{
 
 
 			  	<div class="col-sm-3">
-			 		  <div class="form-group {{ $errors->has('address') ? ' has-error' : '' }}">
+			 		  <div class="form-group {{ $errors->has('oaddress') ? ' has-error' : '' }}">
 			              <label>Organisation Address</label>
-			              <input type="text" name="address" class="form-control" value="{{old('address')}}"/>
-			              @if ($errors->has('address'))<span class="help-block">{{ $errors->first('address') }} </span>@endif
+			              <input type="text" name="oaddress" class="form-control" value="{{old('oaddress')}}"/>
+			              @if ($errors->has('oaddress'))<span class="help-block">{{ $errors->first('oaddress') }} </span>@endif
 			          </div>
 			 	</div>
 
@@ -802,6 +801,22 @@ span.required{
 
    }
  });
+
+
+
+   $('.package').off('click').on('click', function(){
+   	$('.services').html('');
+   		var dt = $('.package option:selected').val();
+   		
+   		$.ajax({
+   			type: 'post',
+   			url: '{{url("home/customer/package")}}',
+   			data: {dt: dt, _token: $('input[name=_token]').val()},
+   			success:function(data){
+   				$('.services').append(data);
+   			}
+   		});
+   });
  
 </script>
 @endsection

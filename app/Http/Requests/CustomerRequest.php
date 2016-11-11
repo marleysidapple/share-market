@@ -32,12 +32,12 @@ class CustomerRequest extends Request
             'district'             => 'required',
             'vdc_municipality'     => 'required',
             'ward'                 => 'required',
-            'street'               => 'required',
+            'address'               => 'required',
             
-            'citizenshipno'        => 'required',
+           /* 'citizenshipno'        => 'required',
             'issuedate'            => 'required',
             'issuedistrict'        => 'required',
-            'scancitizenshipcopy'  => 'required|mimes:jpg,jpeg,png',
+            'scancitizenshipcopy'  => 'required|mimes:jpg,jpeg,png',*/
         ];
     }
 
