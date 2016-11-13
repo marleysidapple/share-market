@@ -17,6 +17,7 @@ class CreateBrokerTable extends Migration
             $table->string('name');
             $table->string('address');
             $table->string('broker_no');
+            $table->string('email');
             $table->string('phone');
             $table->string('contact_person');
             $table->string('contact_person_no');

@@ -17,10 +17,10 @@ class CreateCompanyTable extends Migration
             $table->string('company_name');
             $table->integer('company_type_id')->unsigned();
             $table->string('company_ticker');
-            $table->integer('rta_id')->unsigned();
+            $table->integer('rts_id')->unsigned();
             $table->timestamps();
                 
-            $table->foreign('rta_id')->references('id')->on('rta')
+            $table->foreign('rts_id')->references('id')->on('rts')
                 ->onUpdate('cascade')->onDelete('cascade');
         });
     }

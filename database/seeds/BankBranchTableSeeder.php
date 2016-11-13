@@ -16,34 +16,37 @@ class BankBranchTableSeeder extends Seeder
         Branch::create([
             'bank_id' => '1',
             'address' => 'Newroad, Kathmanduu',
-            'phone' => '01454381',
-            'contact_person'    => 'Dinesh Regmi',
-            'contact_person_no' => '983098485'
+            'email' => 'dinesh@gmail.com',
+            'phone' => '01454381'
+        ]);
+
+        Branch::create([
+            'bank_id' => '1',
+            'address' => 'Tinkune, Kathmanduu',
+            'email' => 'roshan@gmail.com',
+            'phone' => '01454548'
         ]);
 
         Branch::create([
             'bank_id' => '2',
             'address' => 'Tangal, Kathmanduu',
-            'phone' => '01763987',
-            'contact_person'    => 'Pusp Joshi',
-            'contact_person_no' => '9849837453'
+            'email' => 'pushjoshi@gmail.com',
+            'phone' => '01763987'
         ]);
 
 
         Branch::create([
             'bank_id' => '2',
             'address' => 'Maharajgunj, Kathmanduu',
-            'phone' => '014732647',
-            'contact_person'    => 'Vishal Thapa',
-            'contact_person_no' => '980384505'
+            'email' => 'vishalthapa@gmail.com',
+            'phone' => '014732647'
         ]);
 
         Branch::create([
             'bank_id' => '3',
             'address' => 'Panipokhari, Kathmanduu',
-            'phone' => '014392183',
-            'contact_person'    => 'Sishir Khadka',
-            'contact_person_no' => '984983745'
+            'email' => 'sishir@gmail.com',
+            'phone' => '014392183'
         ]);
     }
 }

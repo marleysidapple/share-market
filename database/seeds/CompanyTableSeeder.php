@@ -16,7 +16,7 @@ class CompanyTableSeeder extends Seeder
 	        'company_name' => 'company one',
 	        'company_type_id' => '1',
 	        'company_ticker' => 'CO',
-	        'rta_id'	=> '1'
+	        'rts_id'	=> '1'
 	    ]);
     }
 }

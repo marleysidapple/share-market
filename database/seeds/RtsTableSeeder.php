@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\Rts;
 
-class RtaTableSeeder extends Seeder
+class RtsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.

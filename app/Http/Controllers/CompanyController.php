@@ -55,7 +55,7 @@ class CompanyController extends Controller
             'company_name' => 'required',
             'company_type_id' => 'required|int',
             'company_ticker' => 'required',
-            'rta_id' => 'required|int'
+            'rts_id' => 'required|int'
             );
         $validator = Validator::make($request->all(), $rules);
 
@@ -87,7 +87,7 @@ class CompanyController extends Controller
             'company_name' => 'required',
             'company_type_id' => 'required|int',
             'company_ticker' => 'required',
-            'rta_id' => 'required|int'
+            'rts_id' => 'required|int'
             );
         $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) {

@@ -43,6 +43,26 @@
         $('#confirm-delete').on('show.bs.modal', function (e) {
                $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
             });
+
+        function loadEdit(editurl)
+        {
+            $.ajax({
+                 url: editurl,
+                    type: 'get',
+                    success: function(result)
+                    {
+                        
+                        $('#editModal').html(result);
+                        $('#editModal').modal('show');
+                     
+                    },
+                    error: function()
+                    {
+                       $('#modalinfo div').html(' <div class="modal-content"><div class="modal-header"><h2>Could not complete the request.</h2></div></div>');
+                        $('#modalinfo').modal('show'); 
+                    }
+            })
+        }
     </script>
 
     

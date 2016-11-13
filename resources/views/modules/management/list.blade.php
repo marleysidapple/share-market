@@ -60,9 +60,11 @@
 		                    <td>{{$pData->phone}}</td>
 		                    <td>{{$pData->email}}</td>
 		                    <td>{{$pData->bank_grade}}</td>
-		                    <td><a href="{{URL::to('bank/edit/'.$pData->id)}}" class="btn btn-warning btn-sm">Edit</a>&nbsp; 
+		                    <td>
+		                    	<a href="{{URL::to('bank/'.$pData->id.'/view')}}" class="btn btn-primary btn-sm">View</a>&nbsp; 
+		                    	<a href="{{URL::to('bank/edit/'.$pData->id)}}" class="btn btn-warning btn-sm">Edit</a>&nbsp; 
 		                        <a href="javascript:void(0)" data-toggle="modal" data-target="#confirm-delete" data-href="{{URL::to('/bank/delete/'.$pData->id)}}" class="btn btn-danger btn-sm">Delete</a>&nbsp; 
-		                        <a href="{{URL::to('branch/'.$pData->id)}}" class="btn btn-success btn-sm">Add Branch</a>
+		                        <a href="{{URL::to('branch/'.$pData->id)}}" class="btn btn-success btn-sm">Branch</a>
 		                    </td>
 		                </tr>
 		                @endforeach

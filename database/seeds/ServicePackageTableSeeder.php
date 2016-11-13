@@ -15,5 +15,9 @@ class ServicePackageTableSeeder extends Seeder
         Servicepackage::create([
 	        'service_name' => 'Right Share'
 	    ]);
+
+        Servicepackage::create([
+            'service_name' => 'Dematerialization'
+        ]);
     }
 }

@@ -451,6 +451,13 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('bank/edit/{id}', 'BankController@edit')->name('editBank');
     Route::post('bank/edit', 'BankController@update')->name('updateBank');
     Route::get('bank/delete/{id}', 'BankController@deleteData')->name('deleteBank');
+    Route::get('bank/{bid}/view', 'BankController@view')->name('viewBank');
+
+    /* bank contact perons routes */
+    Route::post('bank/add-contact-person', 'BankController@storeContactPerson')->name('storeContactPerson');
+    Route::get('bank/{bid}/contact-person/edit/{id}', 'BankController@editContactPerson')->name('editContactPerson');
+    Route::post('bank/contact-person/edit', 'BankController@updateContactPerson')->name('updateContactPerson');
+    Route::get('bank/{bid}/contact-person/delete/{id}', 'BankController@deleteContactPerson')->name('deleteContactPerson');
 
     /* branch routes */
 

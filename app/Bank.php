@@ -16,6 +16,11 @@ class Bank extends Model
   		return $this->hasMany('App\Branch', 'bank_id');
   	}
 
+  	// public function bankContactPerson()
+  	// {
+  	// 	return $this->hasMany('App\BankContactPerson', 'bank_id');
+  	// }
+
 }
 
 

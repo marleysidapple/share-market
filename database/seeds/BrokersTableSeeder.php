@@ -16,6 +16,7 @@ class BrokersTableSeeder extends Seeder
           'name'  => 'first broker',
           'address' => 'kupandol',
           'broker_no' => '123456',
+          'email' => 'borker@gmail.com',
           'phone' => '9874547854',
           'contact_person' => 'person',
           'contact_person_no' => '9874541256'

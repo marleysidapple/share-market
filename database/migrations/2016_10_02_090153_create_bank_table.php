@@ -16,10 +16,9 @@ class CreateBankTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('address');
+            $table->string('email');
             $table->string('phone');
             $table->enum('bank_grade', ['A', 'B', 'C', 'D']);
-            $table->string('contact_person');
-            $table->string('contact_person_no');
             $table->timestamps();
         });
     }

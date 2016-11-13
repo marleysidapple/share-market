@@ -14,7 +14,7 @@ class DpTableSeeder extends Seeder
     {
         Dptable::create([
 	        'name' => 'dp test',
-	        'dp_code' => '123456$%',
+	        'dp_code' => 'alpha@$%',
             'email' => 'test@gmail.com',
 	        'address' => 'Kupandol',
 	        'phone'	=> '9845474556'

@@ -15,5 +15,9 @@ class CompanyTypeTableSeeder extends Seeder
         Companytype::create([
 	        'type' => 'finance',
 	    ]);
+
+        Companytype::create([
+            'type' => 'bank',
+        ]);
     }
 }
