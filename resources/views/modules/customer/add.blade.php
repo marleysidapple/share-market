@@ -475,8 +475,14 @@ span.stext{
 			  	<div class="col-sm-2">
 			 		  <div class="form-group {{ $errors->has('clienttype') ? ' has-error' : '' }}">
 			              <label>Client Type</label>
-			              <input type="text" name="clienttype" class="form-control" value="{{old('clienttype')}}"/>
-			              @if ($errors->has('clienttype'))<span class="help-block">{{ $errors->first('clienttype') }} </span>@endif
+			              <select class="form-control" name="clienttype">
+			              	<option value="">Select Client Type</option>
+			              	@foreach($client as $key => $val)
+			              		<option value="{{$val->id}}">{{$val->name}}</option>
+			              	@endforeach
+			              </select>
+			           <!--    <input type="text" name="clienttype" class="form-control" value="{{old('clienttype')}}"/>
+			              @if ($errors->has('clienttype'))<span class="help-block">{{ $errors->first('clienttype') }} </span>@endif -->
 			          </div>
 			 	</div>
 

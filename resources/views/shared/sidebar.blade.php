@@ -74,6 +74,12 @@
                     </li>
                 @endif
 
+                  @if(Auth::user()->roles()->first()->name == 'superadmin' || Auth::user()->can('clienttype'))
+                    <li class="{{(\Request::route()->getName() == 'clienttype') ? 'active' : ''}}">
+                        <a href="{{url('home/clienttype')}}"><span class="fa fa-user"></span> <span class="xn-text">Client Types</span></a>
+                    </li>
+                @endif
+
                 <li class="@if(isset($select) && $select == 'home') active @endif"><a href="{{url('management')}}"><span class="fa fa-home"></span> Home Management</a></li>
                 <li class="@if(isset($select) && $select == 'package') active @endif"><a href="{{url('package')}}"><span class="fa fa-dollar"></span> Package Management</a></li>        
 

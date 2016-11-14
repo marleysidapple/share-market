@@ -27,7 +27,12 @@
 
                                          <div class="form-group {{ $errors->has('client_type') ? ' has-error' : '' }}">
                                             <label>Client Type</label>
-                                            <input type="text" name="client_type" class="form-control" value="{{$customer->ref->client_type}}"/>
+
+                                            <select class="form-control" name="client_type">
+                                                @foreach($client as $key => $val)
+                                                    <option value="{{$val->id}}" {{($val->id == $customer->ref->client_type) ? 'selected' : '' }}>{{$val->name}}</option>
+                                                @endforeach
+                                            </select>
                                             @if ($errors->has('client_type'))
                                                 <span class="help-block">{{ $errors->first('client_type') }} </span>
                                              @endif

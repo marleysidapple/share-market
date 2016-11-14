@@ -439,6 +439,42 @@ Route::group(['middleware' => 'auth'], function () {
         */
         Route::post('customer/package', 'CustomerController@getService');
 
+
+
+        /*
+        * listing client type
+        * 
+        */
+        Route::get('clienttype', 'ClientTypeController@listAll')->name('clienttype');
+
+
+        /*
+        * adding new client type
+        * get route
+        */
+        Route::get('clienttype/add', 'ClientTypeController@add')->name('addclienttype');
+
+
+        /*
+        * saving new client type
+        * post route
+        */
+        Route::post('clienttype/store', 'ClientTypeController@store');
+
+
+        /*
+        * editing client type edit detail
+        * get route
+        */
+        Route::get('clienttype/edit/{id}', 'ClientTypeController@edit')->name('editclienttype');
+
+
+        /*
+        * updating client type
+        * post route
+        */
+        Route::post('clienttype/update/{id}', 'ClientTypeController@update');
+
     });
 
 

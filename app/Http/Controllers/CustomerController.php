@@ -35,6 +35,7 @@ use App\Servicepackage;
 use App\User;
 use App\Username;
 use App\Zone;
+use App\Clienttype;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
@@ -66,6 +67,7 @@ class CustomerController extends Controller
         $district = District::OrderBy('name', 'asc')->get();
         $packages = Packagesystem::all();
         $service  = Servicepackage::all();
+        $client   = Clienttype::all();
 
         $user = User::OrderBy('id', 'desc')->select('username')->first();
 
@@ -84,7 +86,7 @@ class CustomerController extends Controller
          */
         $username = Username::first();
         $username = $username->prefix . $username->year . $final;
-        return view('modules.customer.add', compact(array('bank', 'username', 'zone', 'district', 'packages', 'service')));
+        return view('modules.customer.add', compact(array('bank', 'username', 'zone', 'district', 'packages', 'service', 'client')));
     }
 
     /*
@@ -337,6 +339,7 @@ class CustomerController extends Controller
      */
     public function personalDetail($id)
     {
+        
         $customer = Customer::find($id);
         return view('modules.customer.personaldetail', compact('customer'));
     }
@@ -735,7 +738,8 @@ class CustomerController extends Controller
     public function editOtherInfo($id)
     {
         $customer = Customer::find($id);
-        return view('modules.customer.otherinfo', compact('customer'));
+        $client = Clienttype::all();
+        return view('modules.customer.otherinfo', compact('customer', 'client'));
     }
 
     /*
