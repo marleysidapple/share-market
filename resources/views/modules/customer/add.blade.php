@@ -463,13 +463,13 @@ span.stext{
 			          </div>
 			 	</div>
 
-			 	<div class="col-sm-2">
+			 	<!-- <div class="col-sm-2">
 			 		  <div class="form-group {{ $errors->has('focus') ? ' has-error' : '' }}">
 			              <label>Main Focus</label>
 			              <input type="text" name="focus" class="form-control" value="{{old('focus')}}"/>
 			              @if ($errors->has('focus'))<span class="help-block">{{ $errors->first('focus') }} </span>@endif
 			          </div>
-			 	</div>
+			 	</div> -->
 
 
 			  	<div class="col-sm-2">

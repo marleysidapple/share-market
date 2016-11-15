@@ -14,7 +14,7 @@
 
                                             <select class="form-control zone" name="zone">
                                                 @foreach($zone as $key => $val)
-                                                  <option value="{{$val->id}}" {{($customer->address->zone_id == $val->id) ? 'selected' : ''}}>{{$val->name}}</option>
+                                                  <option value="{{$val->id}}" {{ isset($customer->address->zone_id) ? ($customer->address->zone_id == $val->id) ? 'selected' : '' : ''}}>{{$val->name}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -28,7 +28,7 @@
 
                                          <div class="form-group {{ $errors->has('vdc_municipality') ? ' has-error' : '' }}">
                                             <label>Municipality/VDC</label>
-                                            <input type="text" name="vdc_municipality" class="form-control" value="{{$customer->address->vdc_municipality}}"/>
+                                            <input type="text" name="vdc_municipality" class="form-control" value="{{$customer->address->vdc_municipality or ''}}"/>
                                             @if ($errors->has('vdc_municipality'))
                                                 <span class="help-block">{{ $errors->first('vdc_municipality') }} </span>
                                              @endif
@@ -36,7 +36,7 @@
 
                                           <div class="form-group {{ $errors->has('ward') ? ' has-error' : '' }}">
                                             <label>Ward</label>
-                                            <input type="text" name="ward" class="form-control" id="dob" value="{{$customer->address->ward}}"/>
+                                            <input type="text" name="ward" class="form-control" id="dob" value="{{$customer->address->ward or ''}}"/>
                                             @if ($errors->has('ward'))
                                                 <span class="help-block">{{ $errors->first('ward') }} </span>
                                              @endif
@@ -45,7 +45,7 @@
 
                                         <div class="form-group {{ $errors->has('street') ? ' has-error' : '' }}">
                                             <label>Address</label>
-                                            <input type="text" name="street" class="form-control" id="dob" value="{{$customer->address->street}}"/>
+                                            <input type="text" name="street" class="form-control" id="dob" value="{{$customer->address->street or ''}}"/>
                                             @if ($errors->has('street'))
                                                 <span class="help-block">{{ $errors->first('street') }} </span>
                                              @endif
@@ -71,7 +71,7 @@
 
   $('select.zone').off('change').on('change', function(){
     var zone = $('select.zone option:selected').val();
-    var district_id = "{{$customer->address->district_id}}";
+    var district_id = "{{$customer->address->district_id or '1'}}";
     $.ajax({
       type:'post',
       url: '{{url("home/customer/district")}}',

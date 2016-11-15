@@ -11,11 +11,20 @@
                                     <form role="form">
                                         <div class="form-group {{ $errors->has('zone') ? ' has-error' : '' }}">
                                             <label>Zone</label>
+                                            @if(isset($customer->address->tzone_id))
                                             <select class="form-control zone" name="zone">
                                                 @foreach($zone as $key => $val)
-                                                  <option value="{{$val->id}}" {{($customer->address->tzone_id == $val->id) ? 'selected' : ''}}>{{$val->name}}</option>
+                                                  <option value="{{$val->id}}" {{(($customer->address->tzone_id != "") && $customer->address->tzone_id == $val->id) ? 'selected' : ''}}>{{$val->name}}</option>
                                                 @endforeach
                                             </select>
+                                            @else
+                                               <select class="form-control zone" name="zone">
+                                                @foreach($zone as $key => $val)
+                                                  <option value="{{$val->id}}">{{$val->name}}</option>
+                                                @endforeach
+                                               </select>
+
+                                            @endif
                                               @if ($errors->has('zone'))
                                                 <span class="help-block">{{ $errors->first('zone') }} </span>
                                              @endif
@@ -30,7 +39,7 @@
 
                                          <div class="form-group {{ $errors->has('vdc_municipality') ? ' has-error' : '' }}">
                                             <label>Municipality/VDC</label>
-                                            <input type="text" name="vdc_municipality" class="form-control" value="{{$customer->address->tvdc_municipality}}"/>
+                                            <input type="text" name="vdc_municipality" class="form-control" value="{{$customer->address->tvdc_municipality or ''}}"/>
                                             @if ($errors->has('vdc_municipality'))
                                                 <span class="help-block">{{ $errors->first('vdc_municipality') }} </span>
                                              @endif
@@ -38,7 +47,7 @@
 
                                           <div class="form-group {{ $errors->has('ward') ? ' has-error' : '' }}">
                                             <label>Ward</label>
-                                            <input type="text" name="ward" class="form-control" id="dob" value="{{$customer->address->tward}}"/>
+                                            <input type="text" name="ward" class="form-control" id="dob" value="{{$customer->address->tward or ''}}"/>
                                             @if ($errors->has('ward'))
                                                 <span class="help-block">{{ $errors->first('ward') }} </span>
                                              @endif
@@ -47,7 +56,7 @@
 
                                           <div class="form-group {{ $errors->has('tstreet') ? ' has-error' : '' }}">
                                             <label>Street</label>
-                                            <input type="text" name="tstreet" class="form-control" id="dob" value="{{$customer->address->tstreet}}"/>
+                                            <input type="text" name="tstreet" class="form-control" id="dob" value="{{$customer->address->tstreet or ''}}"/>
                                             @if ($errors->has('tstreet'))
                                                 <span class="help-block">{{ $errors->first('tstreet') }} </span>
                                              @endif
@@ -73,7 +82,8 @@
 
   $('select.zone').off('change').on('change', function(){
     var zone = $('select.zone option:selected').val();
-    var district_id = "{{$customer->address->tdistrict_id}}";
+    var district_id = "{{$customer->address->tdistrict_id or '1'}}";
+
     $.ajax({
       type:'post',
       url: '{{url("home/customer/district")}}',

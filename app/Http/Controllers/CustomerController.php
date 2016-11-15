@@ -7,6 +7,7 @@ use App\Bank;
 use App\Branch;
 use App\Broker;
 use App\Citizenship;
+use App\Clienttype;
 use App\Customer;
 use App\CustomerBank;
 use App\Customercontact;
@@ -35,7 +36,6 @@ use App\Servicepackage;
 use App\User;
 use App\Username;
 use App\Zone;
-use App\Clienttype;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
@@ -95,7 +95,6 @@ class CustomerController extends Controller
      */
     public function store(CustomerRequest $request)
     {
-        
         /*
          *
          * things to do
@@ -142,7 +141,7 @@ class CustomerController extends Controller
         ]);
 
         $this->storePackage($customer, $request);
-        //$this->storeService($customer, $request);
+        $this->storeService($customer, $request);
         $this->storeContactDetail($customer, $request);
         $this->storeAddressDetail($customer, $request);
         $this->storeCitizenshipDetail($customer, $destinationPath, $request);
@@ -162,18 +161,19 @@ class CustomerController extends Controller
             'package_id'  => $request->package,
         ]);
     }
-/*
+
     public function storeService($customer, $request)
     {
         if (count($request->service) != "0") {
             foreach ($request->service as $key => $val) {
+                echo $val;
                 $cust_service              = new Customerservice;
                 $cust_service->customer_id = $customer->id;
                 $cust_service->service_id  = $val;
                 $cust_service->save();
             }
         }
-    }*/
+    }
 
     public function storeContactDetail($customer, $request)
     {
@@ -265,7 +265,7 @@ class CustomerController extends Controller
         $ref = Customerreference::create([
             'customer_id'      => $customer->id,
             'reference_person' => $request->reference,
-            'mainfocus'        => $request->focus,
+            'mainfocus'        => '0',
             'client_type'      => $request->clienttype,
             'pan'              => $request->pan,
             'income'           => $request->income,
@@ -339,7 +339,7 @@ class CustomerController extends Controller
      */
     public function personalDetail($id)
     {
-        
+
         $customer = Customer::find($id);
         return view('modules.customer.personaldetail', compact('customer'));
     }
@@ -434,14 +434,27 @@ class CustomerController extends Controller
      */
     public function updatePaddressDetail(UpdatePermanentAddressRequest $request, $id)
     {
-        $address                   = Address::where('customer_id', $id)->select('id')->first();
-        $address                   = Address::find($address->id);
-        $address->zone_id          = $request->zone;
-        $address->district_id      = $request->district;
-        $address->vdc_municipality = $request->vdc_municipality;
-        $address->ward             = $request->ward;
-        $address->street           = $request->street;
-        $address->save();
+        $address = Address::where('customer_id', $id)->select('id')->first();
+
+        if (count($address) != "0") {
+            $addr                   = Address::find($address->id);
+            $addr->zone_id          = $request->zone;
+            $addr->district_id      = $request->district;
+            $addr->vdc_municipality = $request->vdc_municipality;
+            $addr->ward             = $request->ward;
+            $addr->street           = $request->street;
+            $addr->save();
+        } else {
+            $addr                   = new Address;
+            $addr->customer_id      = $id;
+            $addr->zone_id          = $request->zone;
+            $addr->district_id      = $request->district;
+            $addr->vdc_municipality = $request->vdc_municipality;
+            $addr->ward             = $request->ward;
+            $addr->street           = $request->street;
+            $addr->save();
+
+        }
         return redirect()->back()->with('success', 'Permanent Address updated successfully');
     }
 
@@ -738,7 +751,7 @@ class CustomerController extends Controller
     public function editOtherInfo($id)
     {
         $customer = Customer::find($id);
-        $client = Clienttype::all();
+        $client   = Clienttype::all();
         return view('modules.customer.otherinfo', compact('customer', 'client'));
     }
 
@@ -751,7 +764,7 @@ class CustomerController extends Controller
         $cust                   = Customerreference::where('customer_id', $id)->first();
         $info                   = Customerreference::find($cust->id);
         $info->reference_person = $request->reference_person;
-        $info->mainfocus        = $request->mainfocus;
+        $info->mainfocus        = '0';
         $info->client_type      = $request->client_type;
         $info->pan              = $request->pan;
         $info->income           = $request->income;
@@ -789,24 +802,21 @@ class CustomerController extends Controller
         return redirect()->back()->with('success', 'Login details updated successfully');
     }
 
-
-
     /*
-    * getting package details
-    *
-    */
+     * getting package details
+     *
+     */
     public function getService(Request $request)
     {
-        $system = Packagesystem::find($request->dt);
+        $system   = Packagesystem::find($request->dt);
         $services = explode(',', $system->service);
 
         $arr = array();
-        
-        foreach($services as $s){
-            $html = '<li><input type="checkbox" checked disabled><span class="stext">'.$s.'</span></li>';
+
+        foreach ($services as $s) {
+            $html = '<li><input type="checkbox" name="service[] value="'.$s.'"><span class="stext">' . $s . '</span></li>';
             array_push($arr, $html);
         }
-
 
         return \Response::json($arr);
     }

@@ -17,13 +17,13 @@
                                              @endif
                                         </div>
 
-                                        <div class="form-group {{ $errors->has('mainfocus') ? ' has-error' : '' }}">
+                                       <!--  <div class="form-group {{ $errors->has('mainfocus') ? ' has-error' : '' }}">
                                             <label>Main Focus</label>
                                             <input type="text" name="mainfocus" class="form-control" value="{{$customer->ref->mainfocus}}"/>
                                             @if ($errors->has('mainfocus'))
                                                 <span class="help-block">{{ $errors->first('mainfocus') }} </span>
                                              @endif
-                                        </div>
+                                        </div> -->
 
                                          <div class="form-group {{ $errors->has('client_type') ? ' has-error' : '' }}">
                                             <label>Client Type</label>
