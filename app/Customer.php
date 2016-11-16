@@ -48,4 +48,9 @@ class Customer extends Model
     {
         return $this->hasMany('App\CustomerBank');
     }
+
+    public function childs()
+    {
+        return $this->hasMany('App\Customermember', 'parent_id');
+    }
 }

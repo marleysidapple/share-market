@@ -12,6 +12,7 @@ use App\Customer;
 use App\CustomerBank;
 use App\Customercontact;
 use App\Customerdmat;
+use App\Customermember;
 use App\Customerpackage;
 use App\Customerreference;
 use App\Customerservice;
@@ -123,8 +124,8 @@ class CustomerController extends Controller
     {
 
         $destinationPath = 'uploads/' . date('his') . '-' . str_slug($request->name);
-        if ($request->file('profilephoto') != ""){
-            $ext             = $request->file('profilephoto')->getClientOriginalExtension();
+        if ($request->file('profilephoto') != "") {
+            $ext = $request->file('profilephoto')->getClientOriginalExtension();
             if ($request->file('profilephoto')->isValid()) {
                 $fileName = str_random(4) . date('his') . '.' . $ext;
                 $request->file('profilephoto')->move($destinationPath, $fileName);
@@ -818,11 +819,91 @@ class CustomerController extends Controller
         $arr = array();
 
         foreach ($services as $s) {
-            $html = '<li><input type="checkbox" name="service[] value="'.$s.'"><span class="stext">' . $s . '</span></li>';
+            $html = '<li><input type="checkbox" name="service[] value="' . $s . '"><span class="stext">' . $s . '</span></li>';
             array_push($arr, $html);
         }
 
         return \Response::json($arr);
+    }
+
+    /*
+     * adding new member
+     * render view
+     */
+    public function listMember($id)
+    {
+        $customer = Customer::find($id);
+
+        $findChilds = Customermember::where('parent_id', $customer->user_id)->select('child_id')->get();
+
+        if ($findChilds != "") {
+            $childrens = User::whereIn('id', $findChilds)->get();
+        }
+
+        return view('modules.customer.listmember', compact('customer', 'childrens'));
+    }
+
+    /*
+     * adding members
+     *
+     */
+    public function addMember($id)
+    {
+
+        $existingMembers = Customermember::select('child_id')->get();
+        $existingParent  = Customermember::select('parent_id')->get();
+
+        if (!is_null($existingMembers)) {
+            foreach ($existingMembers as $m) {
+                $arr1[] = $m->child_id;
+            }
+        }
+
+        if (!is_null($existingParent)) {
+            foreach ($existingParent as $p) {
+                $arr2[] = $p->parent_id;
+            }
+        }
+
+        $filters = array_merge($arr1, $arr2);
+
+        if (is_null($filters)) {
+            $filters = array();
+        }
+
+        $users = User::whereHas('roles', function ($q) {
+            $q->where('name', 'user');
+        })
+            ->where('id', '!=', $id)
+            ->whereNotIn('id', $filters)
+            ->get();
+
+        $customer = Customer::where('user_id', $id)->first();
+        return view('modules.customer.addmember', compact('customer', 'users'));
+
+    }
+
+    /*
+     * saving members
+     * post to db
+     */
+    public function saveMember(Request $request, $id)
+    {
+        // $id - parent
+        // $request->member - child
+
+        $crossCheck = Customermember::where('parent_id', $id)->where('child_id', $request->member)->first();
+
+        if (count($crossCheck) != "0") {
+            return redirect::back()->with('error', 'Record already exists');
+        }
+
+        Customermember::create([
+            'parent_id' => $id,
+            'child_id'  => $request->member,
+        ]);
+
+        return redirect()->back()->with('success', 'Member added successfully');
     }
 
 }

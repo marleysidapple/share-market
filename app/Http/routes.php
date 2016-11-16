@@ -475,6 +475,29 @@ Route::group(['middleware' => 'auth'], function () {
         */
         Route::post('clienttype/update/{id}', 'ClientTypeController@update');
 
+
+
+        /*
+        * listing new member
+        * get route
+        */
+        Route::get('customer/{id}/listmember', 'CustomerController@listMember')->name('listmember');
+
+
+        /*
+        * adding members
+        * get route
+        */
+        Route::get('customer/addmember/{id}', 'CustomerController@addMember')->name('addmember');
+
+
+
+        /*
+        * saving member to database
+        * post route
+        */
+        Route::post('customer/addmember/{id}', 'CustomerController@saveMember');
+
     });
 
 
