@@ -865,12 +865,8 @@ class CustomerController extends Controller
             }
         }
 
-        if ($arr1 == ""){
+        if (!isset($arr1)){
             $arr1 = array();
-        }
-
-         if ($arr2 == ""){
-            $arr2 = array();
         }
 
         $filters = array_merge($arr1, $arr2);
