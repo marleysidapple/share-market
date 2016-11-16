@@ -56,4 +56,16 @@ class Helper
         $newTimestamp = strtotime('+1 year', strtotime($dt));
         return date('Y-m-d', $newTimestamp);
     }
+
+
+
+    public static function renderPic($photo)
+    {
+        $parts = explode('/', $photo);
+        if ($parts['2'] == ""){
+            return 0;
+        } else{
+            return 1;
+        }
+    }
 }

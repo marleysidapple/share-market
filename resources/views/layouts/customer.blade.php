@@ -8,7 +8,11 @@
                             <div class="panel panel-default">
                                 <div class="panel-body profile" style="background: url({{asset('assets/images/gallery/music-4.jpg')}}) center center no-repeat;">
                                     <div class="profile-image">
-                                        <img src="{{asset($customer->photo)}}" alt="{{$customer->userdetail->name}}"/>
+                                        @if(GH::renderPic($customer->photo) == 1)
+                                             <img src="{{asset($customer->photo)}}" alt="{{$customer->userdetail->name}}"/>
+                                        @else
+                                              <img src="{{asset('img/user-image.png')}}" alt="{{$customer->userdetail->name}}"/>
+                                        @endif
                                     </div>
                                     <div class="profile-data">
                                         <div class="profile-data-name">{{$customer->userdetail->name}}</div>
@@ -26,13 +30,13 @@
                                         <a href="{{url('home/customer/'.$customer->id.'/taddressdetail')}}" class="list-group-item {{(\Request::route()->getName() == 'edittemporaryaddress') ? 'active' : ''}}"><span class="fa fa-building"></span>Temporary Address Detail</a>
                                         <a href="{{url('home/customer/'.$customer->id.'/citizenship')}}" class="list-group-item {{(\Request::route()->getName() == 'editcitizenshipdetail') ? 'active' : ''}}"><span class="fa fa-folder"></span> Citizenship Detail</a>
                                         <a href="{{url('home/customer/'.$customer->id.'/banks')}}" class="list-group-item {{(\Request::route()->getName() == 'editbankdetail') ? 'active' : ''}}"><span class="fa fa-bank"></span> Bank Detail</a>
-                                        <a href="{{url('home/customer/'.$customer->id.'/dmat')}}" class="list-group-item {{(\Request::route()->getName() == 'editdmataccountdetail') ? 'active' : ''}}"><span class="fa fa-bank"></span> DMAT Detail</a>
+                                       <!--  <a href="{{url('home/customer/'.$customer->id.'/dmat')}}" class="list-group-item {{(\Request::route()->getName() == 'editdmataccountdetail') ? 'active' : ''}}"><span class="fa fa-bank"></span> DMAT Detail</a> -->
                                         <a href="{{url('home/customer/'.$customer->id.'/profession')}}" class="list-group-item {{(\Request::route()->getName() == 'editprofession') ? 'active' : ''}}"><span class="fa fa-briefcase"></span> Occupation Detail</a>
                                          <a href="{{url('home/customer/'.$customer->id.'/otherinfo')}}" class="list-group-item {{(\Request::route()->getName() == 'otherinfo') ? 'active' : ''}}"><span class="fa fa-briefcase"></span>Other Information</a>
                                         <a href="{{url('home/customer/'.$customer->id.'/login')}}" class="list-group-item {{(\Request::route()->getName() == 'editloginthroughprofile') ? 'active' : ''}}"><span class="fa fa-cog"></span>Change Password</a>
                                        
                                         @if(GH::ret($customer->id)) 
-                                        <a href="{{url('home/customer/'.$customer->id.'/listmember')}}" class="list-group-item {{(\Request::route()->getName() == 'listmember') ? 'active' : ''}}"><span class="fa fa-plus"></span>Add Member</a>
+                                        <a href="{{url('home/customer/'.$customer->id.'/listmember')}}" class="list-group-item {{(\Request::route()->getName() == 'listmember') ? 'active' : ''}}"><span class="fa fa-users"></span>Add Member</a>
                                         @endif
                                     </div>
 
