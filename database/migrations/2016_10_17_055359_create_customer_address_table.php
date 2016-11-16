@@ -21,8 +21,8 @@ class CreateCustomerAddressTable extends Migration
             $table->string('ward');
             $table->string('street');
 
-            $table->integer('tzone_id')->unsigned();
-            $table->integer('tdistrict_id')->unsigned();
+            $table->integer('tzone_id')->nullable();
+            $table->integer('tdistrict_id')->nullable();
             $table->string('tvdc_municipality');
             $table->string('tward');
             $table->string('tstreet');
@@ -31,9 +31,6 @@ class CreateCustomerAddressTable extends Migration
             $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
             $table->foreign('zone_id')->references('id')->on('zone')->onDelete('cascade');
             $table->foreign('district_id')->references('id')->on('district')->onDelete('cascade');
-            $table->foreign('tzone_id')->references('id')->on('zone')->onDelete('cascade');
-            $table->foreign('tdistrict_id')->references('id')->on('district')->onDelete('cascade');
-
         });
     }
 

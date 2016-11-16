@@ -123,10 +123,14 @@ class CustomerController extends Controller
     {
 
         $destinationPath = 'uploads/' . date('his') . '-' . str_slug($request->name);
-        $ext             = $request->file('profilephoto')->getClientOriginalExtension();
-        if ($request->file('profilephoto')->isValid()) {
-            $fileName = str_random(4) . date('his') . '.' . $ext;
-            $request->file('profilephoto')->move($destinationPath, $fileName);
+        if ($request->file('profilephoto') != ""){
+            $ext             = $request->file('profilephoto')->getClientOriginalExtension();
+            if ($request->file('profilephoto')->isValid()) {
+                $fileName = str_random(4) . date('his') . '.' . $ext;
+                $request->file('profilephoto')->move($destinationPath, $fileName);
+            }
+        } else {
+            $fileName = '';
         }
 
         $customer = Customer::create([
@@ -196,8 +200,8 @@ class CustomerController extends Controller
             'ward'              => $request->ward,
             'street'            => $request->street,
 
-            'tzone_id'          => $request->tzone,
-            'tdistrict_id'      => $request->tdistrict,
+            'tzone_id'          => $request->tzone ? $request->tzone : '',
+            'tdistrict_id'      => $request->tdistrict ? $request->tdistrict : '',
             'tvdc_municipality' => $request->tvdc_municipality,
             'tward'             => $request->tward,
             'tstreet'           => $request->tstreet,
