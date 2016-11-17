@@ -101,7 +101,14 @@
             </div>
             <div class="col-md-5">
               <div class="form-group {{ $errors->has('designation') ? ' has-error' : '' }}">
-                  <label class="col-md-3 col-xs-12 control-label">Designation *
+                  <label class="col-md-3 col-xs-12 control-label">Designation *</label>
+                  <div class="col-md-9 col-xs-12">   
+                      <input type="text" name="designation[]" class="form-control" value="{{old('designation')}}"/>
+                      <div class="fb-error"></div>
+                      @if ($errors->has('designation'))
+                          <span class="help-block">{{ $errors->first('designation') }} </span>
+                      @endif
+                  </div>
               </div>
             </div>
             <div class="clearfix"></div><br />

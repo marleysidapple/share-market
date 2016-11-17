@@ -46,17 +46,17 @@
                   </div>
               </div>
 
-              <div class="form-group {{ $errors->has('rta_id') ? ' has-error' : '' }}">
+              <div class="form-group {{ $errors->has('rts_id') ? ' has-error' : '' }}">
                   <label class="col-md-3 col-xs-12 control-label">Choose RTS *</label>
                   <div class="col-md-6 col-xs-12">   
-                  <select id="rta_id" name="rta_id" class="form-control">
+                  <select id="rts_id" name="rts_id" class="form-control">
                     <option>--select--</option>
                      @foreach($rtaList as $rtaData)
                     <option value="{{$rtaData->id}}">{{$rtaData->name}}</option>
                     @endforeach
                   </select>
-                  @if ($errors->has('rta_id'))
-                      <span class="help-block">{{ $errors->first('rta_id') }} </span>
+                  @if ($errors->has('rts_id'))
+                      <span class="help-block">{{ $errors->first('rts_id') }} </span>
                    @endif
                   </div>
               </div>
